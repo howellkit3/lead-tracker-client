@@ -1,25 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import ContractorCreate from './contractors/ContractorCreate'
 import ContractorEdit from './contractors/ContractorEdit'
 import ContractorDelete from './contractors/ContractorDelete'
 import ContractorList from './contractors/ContractorList'
 import ContractorShow from './contractors/ContractorShow'
 import Header from './Header';
+import history from '../history';
 
 const App = () => {
     return (
         <div>
-            <BrowserRouter>
+            <Router history={history}>
                 <div>
                     <Header />
-                    <Route path="/contractor" exact component={ContractorList} />
-                    <Route path="/contractor/new" exact component={ContractorCreate} />
-                    <Route path="/contractor/edit" exact component={ContractorEdit} />
-                    <Route path="/contractor/delete" exact component={ContractorDelete} />
-                    <Route path="/contractor/show" exact component={ContractorShow} />
+                    <Route path="/contractors" exact component={ContractorList} />
+                    <Route path="/contractors/new" exact component={ContractorCreate} />
+                    <Route path="/contractors/edit/:id" exact component={ContractorEdit} />
+                    <Route path="/contractors/delete" exact component={ContractorDelete} />
+                    <Route path="/contractors/show" exact component={ContractorShow} />
                 </div>
-            </BrowserRouter>
+            </Router>
         </div>
     )
 }
