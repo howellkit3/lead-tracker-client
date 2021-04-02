@@ -12,9 +12,7 @@ class ContractorList extends React.Component {
     return (
         <div className="right floated content">
             <Link to={`/contractors/edit/${contractor.id}`} className="ui button primary">Edit</Link>
-            <button className="ui button negative">
-                Delete
-            </button>
+            <Link to={`/contractors/delete/${contractor.id}`} className="ui button negative">Delete</Link>
         </div>
     );
   }
