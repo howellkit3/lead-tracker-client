@@ -1,5 +1,5 @@
 import contractors from '../apis/contractors';
-import { SIGN_IN, SIGN_OUT } from './types';
+import { SIGN_IN, SIGN_OUT, CREATE_CONTRACTOR } from './types';
 
 export const signIn = (userId) => {
     return {
@@ -15,7 +15,9 @@ export const signIn = (userId) => {
   };
   
   export const createContractor = formValues => async dispatch => {
-    contractors.post('/contractors', formValues);
+    const response = await contractors.post('/contractors', formValues)
+
+    dispatch( {type: CREATE_CONTRACTOR, payload: response.data});
   }
 
   
