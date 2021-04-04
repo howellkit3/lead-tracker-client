@@ -15,12 +15,12 @@ class ContractorDelete extends React.Component {
 
     return (
       <React.Fragment>
-        {/* <button
+        <button
           onClick={() => this.props.deleteContractor(id)}
           className="ui button negative"
         >
           Delete
-        </button> */}
+        </button>
         <Link to="/contractors" className="ui button">
           Cancel
         </Link>
@@ -29,10 +29,17 @@ class ContractorDelete extends React.Component {
   }
 
   renderContent() {
-    return `Are you sure you want to delete the contractor`;
+    if (!this.props.contractors) {
+      return 'Are you sure you want to delete this contractor?';
+    }
+
+    return `Are you sure you want to delete the contractor with name of: ${
+      this.props.contractors.contractor_name
+    }`;
   }
 
   render() {
+    console.log("props", this.props);
     return (
       <Modal
         title="Delete Contractor"
@@ -45,10 +52,10 @@ class ContractorDelete extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { contractors: state.streams[ownProps.match.params.id] };
+  return { contractors: state.contractors[ownProps.match.params.id] };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchContractor }
+  { fetchContractor, deleteContractor  }
 )(ContractorDelete);

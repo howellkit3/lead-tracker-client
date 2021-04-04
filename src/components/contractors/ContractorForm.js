@@ -44,7 +44,7 @@ class ContractorForm extends React.Component {
 const validate = (formValues) => {
     const errors = {};
     if(!formValues.contractor_name) {
-        errors.contractor_name = 'You must enter a constructor name';
+        errors.contractor_name = 'You must enter a contactor name';
     }
     return errors;
 }

@@ -59,19 +59,20 @@ export const signIn = (userId) => {
     dispatch( {type: FETCH_CONTRACTOR, payload: response.data});
   }
 
-  // export const editContractor = (id, formValues) => async dispatch => {
-  //   const response = await contractors.patch(`/streams/${id}`, formValues);
+  export const editContractor = (id, formValues) => async dispatch => {
+    formValues['id'] = id;
+    const response = await api.put(`updateData/contractors/${id}`, formValues);
+  
+    dispatch({ type: EDIT_CONTRACTOR, payload: response.data });
+    history.push('/contractors');
+  };
 
-  //   dispatch({ type: EDIT_CONTRACTOR, payload: response.data });
-  //   history.push('/contractors');
-  // }
+  export const deleteContractor = (id) => async dispatch => {
+    await api.delete(`deleteData/contractors/${id}`);
 
-  // export const deleteContractor = (id) => async dispatch => {
-  //   await contractors.delete(`/contractors/${id}`);
-
-  //   dispatch({ type: DELETE_CONTRACTOR, payload: id });
-  //   history.push('/contractors');
-  // }
+    dispatch({ type: DELETE_CONTRACTOR, payload: id });
+    history.push('/contractors');
+  }
 
 // LENDERS
   export const createLender = formValues => async dispatch => {
