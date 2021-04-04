@@ -25,6 +25,12 @@ import AddressCreate from './addresses/AddressCreate'
 import AddressList from './addresses/AddressList'
 // import AddressShow from './addresses/AddressShow'
 
+import LeadCreate from './leads/LeadCreate'
+import LeadEdit from './leads/LeadEdit'
+import LeadDelete from './leads/LeadDelete'
+import LeadList from './leads/LeadList'
+import LeadShow from './leads/LeadShow'
+
 import Header from './Header';
 import history from '../history';
 
@@ -57,6 +63,10 @@ const App = () => {
                     {/* <Route path="/agents/edit/:id" exact component={ContractorEdit} />
                     <Route path="/agents/delete/:id" exact component={ContractorDelete} />
                     <Route path="/agents/show" exact component={ContractorShow} /> */}
+
+                    <Route path="/leads" exact component={LeadList} />
+                    <Route path="/leads/new" exact component={LeadCreate} />
+                    <Route path="/leads/edit/:id" exact component={LeadEdit} />
                 </div>
             </Router>
         </div>

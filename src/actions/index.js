@@ -23,6 +23,11 @@ import {
   FETCH_ADDRESS,
   DELETE_ADDRESS,
   EDIT_ADDRESS,
+  CREATE_LEAD,
+  FETCH_LEAD,
+  FETCH_LEADS,
+  DELETE_LEAD,
+  EDIT_LEAD,
 } from './types';
 
 export const signIn = (userId) => {
@@ -113,3 +118,27 @@ export const fetchAddresses = () => async dispatch => {
 
   dispatch({ type: FETCH_ADDRESSES, payload: response.data });
 };
+
+// LEADS
+export const createLead = formValues => async dispatch => {
+  const response = await api.post('addNewData/leads', formValues);
+
+  dispatch({ type: CREATE_LEAD, payload: response.data });
+}
+
+export const fetchLeads = () => async dispatch => {
+  const response = await api.get('/getAllData/leads');
+
+  dispatch({ type: FETCH_LEADS, payload: response.data });
+}
+
+export const fetchLead = (id) => async dispatch => {
+  const response = await api.get(`/getData/leads/${id}`);
+  dispatch( {type: FETCH_LEAD, payload: response.data[0]});
+}
+
+export const editLead = (id, formValues) => async dispatch => {
+    const response = await api.put(`/updateData/leads/${id}`, formValues)
+
+    dispatch( {type: EDIT_LEAD, payload: response.data});
+  }

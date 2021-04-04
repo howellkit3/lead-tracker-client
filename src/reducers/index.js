@@ -5,6 +5,7 @@ import contractorReducer from './contractorReducer';
 import lenderReducer from './lenderReducer';
 import agentReducer from './agentReducer';
 import addressReducer from './addressReducer';
+import leadReducer from './leadReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     contractors: contractorReducer,
     lenders: lenderReducer,
     agents: agentReducer,
-    addresses: addressReducer
+    addresses: addressReducer,
+    leads: leadReducer
 })
