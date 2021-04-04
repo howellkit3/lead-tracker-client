@@ -19,24 +19,38 @@ class ContractorList extends React.Component {
   }
 
   renderList() {
-    return this.props.leads.map(lead => {
+
+    // return this.props.contractors.map(contractor => {
+    //   return (
+    //     <div className="item" key={contractor.id}>
+    //     {this.renderAdmin(contractor)}
+    //       <i className="large middle aligned icon building" />
+    //       <div className="content">
+    //         {contractor.contractor_name}
+    //       </div>
+    //     </div>
+    //   );
+    // });
+
+    return Object.keys(this.props.leads).map(lead1 => {
+      const lead = this.props.leads[lead1];
       return (
-        <tr key={lead.id}>
-            <td>{lead.agentData}</td>
-            <td>{lead.addressData['address']}</td>
-            <td>{lead.titleCompany}</td>
-            <td>{lead.hasEarnestMoneyDeposit ? 'Y' : 'N'}</td>
-            <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
-            <td>{lead.isVacant ? 'Y' : 'N'}</td>
-            <td>{lead.isAssignedToContract ? 'Y' : 'N'}</td>
-            <td>{lead.leadSource}</td>
-            <td>{lead.lenderData['lender_name']}</td>
-            <td>{lead.estimatedFinishDate}</td>
-            <td>{lead.contractorData['contractor_name']}</td>
-            <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
-            <td>{this.renderAdmin(lead)}</td>
-        </tr>
-      );
+          <tr key={lead.id}>
+              <td>{lead.agentData}</td>
+              <td>{lead.addressData['address']}</td>
+              <td>{lead.titleCompany}</td>
+              <td>{lead.hasEarnestMoneyDeposit ? 'Y' : 'N'}</td>
+              <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
+              <td>{lead.isVacant ? 'Y' : 'N'}</td>
+              <td>{lead.isAssignedToContract ? 'Y' : 'N'}</td>
+              <td>{lead.leadSource}</td>
+              <td>{lead.lenderData['lender_name']}</td>
+              <td>{lead.estimatedFinishDate}</td>
+              <td>{lead.contractorData['contractor_name']}</td>
+              <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
+              <td>{this.renderAdmin(lead)}</td>
+          </tr>
+        );
     });
   }
 
@@ -84,7 +98,7 @@ class ContractorList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      leads: Object.values(state.leads.data),
+      leads: state.leads,
       isSignedIn: state.auth.isSignedIn
     };
 };

@@ -54,7 +54,7 @@ export const signIn = (userId) => {
 
   export const fetchContractors = () => async dispatch => {
     const response = await api.get('getAllData/contractors');
-
+    console.log("************* data", response.data);
     dispatch({ type: FETCH_CONTRACTORS, payload: response.data });
   };
 
