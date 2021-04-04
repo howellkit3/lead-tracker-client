@@ -24,5 +24,3 @@ export const FETCH_ADDRESS = 'FETCH_ADDRESS';
 export const FETCH_ADDRESSES = 'FETCH_ADDRESSES';
 export const DELETE_ADDRESS = 'DELETE_ADDRESS';
 export const EDIT_ADDRESS = 'EDIT_ADDRESS';
-
-

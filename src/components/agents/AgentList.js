@@ -19,23 +19,25 @@ class AgentList extends React.Component {
 
   renderList() {
     return this.props.agents.map(agent => {
-      return (
-        <div className="item" key={agent.id}>
-        {this.renderAdmin(agent)}
-          <i className="large middle aligned icon user" />
-          <div className="content">
-            {agent.first_name } { agent.middle_name }, { agent.last_name }
-            <div className="description">
-                {agent.email}
-              </div>
+      if(agent.id) {
+        return (
+          <div className="item" key={agent.id}>
+          {this.renderAdmin(agent)}
+            <i className="large middle aligned icon user" />
+            <div className="content">
+              {agent.first_name } { agent.middle_name }, { agent.last_name }
+              <div className="description">
+                  {agent.email}
+                </div>
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     });
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
+      // if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/agents/new" className="ui button primary">
@@ -43,7 +45,7 @@ class AgentList extends React.Component {
                 </Link>
               </div>
             )
-      }
+      // }
   }
 
   render() {
