@@ -1,28 +1,29 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchContractor, editContractor } from '../../actions'
-import ContractorForm from './ContractorForm';
-class ContractorEdit extends React.Component {
+import { fetchLender, editLender } from '../../actions'
+import LenderForm from './LenderForm';
+class LenderEdit extends React.Component {
 
     componentDidMount() {
-        this.props.fetchContractor(this.props.match.params.id);
+        this.props.fetchLender(this.props.match.params.id);
     }
 
     onSubmit = formValues => {
-        this.props.editContractor(this.props.match.params.id, formValues);
+        this.props.editLender(this.props.match.params.id, formValues);
     };
 
     render() {
-        if (!this.props.contractor) {
+      console.log("lender", this.props.lender);
+        if (!this.props.lender) {
           return <div>Loading...</div>;
         }
     
         return (
           <div>
-            <h3>Edit a Contractor</h3>
-            <ContractorForm
-              initialValues={_.pick(this.props.contractor, 'contractor_name')}
+            <h3>Edit a Lender</h3>
+            <LenderForm
+              initialValues={_.pick(this.props.lender, 'lender_name')}
               onSubmit={this.onSubmit}
             />
           </div>
@@ -31,10 +32,10 @@ class ContractorEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return { contractor: state.contractors[ownProps.match.params.id]  };
+    return { lender: state.lenders[ownProps.match.params.id]  };
 }
 
 export default connect(
     mapStateToProps,
-    { fetchContractor, editContractor } 
-    )(ContractorEdit);
+    { fetchLender, editLender } 
+    )(LenderEdit);
