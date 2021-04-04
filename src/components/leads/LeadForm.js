@@ -48,7 +48,7 @@ class LeadForm extends React.Component {
         return (
         <div className={className}>
             <label>{label}</label>
-            <select {...input} autoComplete="off">
+            <select defaultValue={input.value} {...input} autoComplete="off" >
                  <option key={0}/>
                  {Object.keys(this.props[category]).map((id) => {
                      const data = this.props[category][id]; 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchLeads, fetchLead } from '../../actions';
-import { FETCH_LEAD } from '../../actions/types';
+import { fetchLeads } from '../../actions';
 
 class LeadList extends React.Component {
   componentDidMount() {
@@ -20,9 +19,9 @@ class LeadList extends React.Component {
 
   renderList() {
 
-    console.log("************** THIS IS A TEST", this.props.leads);
-    return Object.keys(this.props.leads).map(lead1 => {
-      const lead = this.props.leads[lead1];
+    // return Object.keys(this.props.leads).map(lead1 => {
+      return this.props.leads.map(lead => {
+      // const lead = this.props.leads[lead1];
       return (
           <tr key={lead.id}>
               <td>{lead.agentData}</td>
@@ -87,7 +86,7 @@ class LeadList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      leads: state.leads,
+      leads: Object.values(state.leads),
       isSignedIn: state.auth.isSignedIn
     };
 };
@@ -95,5 +94,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {fetchLeads}
+  { fetchLeads }
 )(LeadList);
