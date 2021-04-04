@@ -60,15 +60,17 @@ export const signIn = (userId) => {
   }
 
   // export const editContractor = (id, formValues) => async dispatch => {
-  //   const response = await contractors.put(`/contractors/${id}`)
+  //   const response = await contractors.patch(`/streams/${id}`, formValues);
 
-  //   dispatch( {type: EDIT_CONTRACTOR, payload: response.data});
+  //   dispatch({ type: EDIT_CONTRACTOR, payload: response.data });
+  //   history.push('/contractors');
   // }
 
   // export const deleteContractor = (id) => async dispatch => {
-  //   const response = await contractors.delete(`/contractors/${id}`)
+  //   await contractors.delete(`/contractors/${id}`);
 
-  //   dispatch( {type: DELETE_CONTRACTOR, payload: id});
+  //   dispatch({ type: DELETE_CONTRACTOR, payload: id });
+  //   history.push('/contractors');
   // }
 
 // LENDERS
