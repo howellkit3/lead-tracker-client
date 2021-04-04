@@ -83,7 +83,6 @@ class LeadForm extends React.Component {
     }
     
     render() {
-        console.log("******** this props", this.props);
         return (
             <form 
                 onSubmit={this.props.handleSubmit(this.onSubmit)} 

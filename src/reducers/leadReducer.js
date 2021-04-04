@@ -14,11 +14,11 @@ export default (state = {}, action) => {
     case FETCH_LEAD:
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_LEAD:
-      return { ...state.leads, [action.payload.id]: action.payload };
+      return { ...state, ..._.mapKeys(action.payload, 'id')};
     case EDIT_LEAD:
-      return { ...state.leads, [action.payload.id]: action.payload };
+      return { ...state, ..._.mapKeys(action.payload, 'id')};
     case DELETE_LEAD:
-      return _.omit(state.leads, action.payload);
+      return _.omit(state, action.payload);
     default:
       return state;
   }

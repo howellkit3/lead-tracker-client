@@ -18,10 +18,8 @@ class LeadList extends React.Component {
   }
 
   renderList() {
-
-    // return Object.keys(this.props.leads).map(lead1 => {
-      return this.props.leads.map(lead => {
-      // const lead = this.props.leads[lead1];
+    return Object.keys(this.props.leads).map(lead1 => {
+      const lead = this.props.leads[lead1];
       return (
           <tr key={lead.id}>
               <td>{lead.agentData}</td>
@@ -43,7 +41,7 @@ class LeadList extends React.Component {
   }
 
   renderCreate() {
-      // if (this.props.isSignedIn) {
+      if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/leads/new" className="ui button primary">
@@ -51,7 +49,7 @@ class LeadList extends React.Component {
                 </Link>
               </div>
             )
-      // }
+      }
   }
 
   render() {
@@ -86,7 +84,7 @@ class LeadList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      leads: Object.values(state.leads),
+      leads: state.leads,
       isSignedIn: state.auth.isSignedIn
     };
 };

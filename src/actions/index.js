@@ -1,5 +1,6 @@
 import api from '../apis/api';
 import history from '../history';
+import _ from 'lodash';
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -121,13 +122,14 @@ export const fetchAddresses = () => async dispatch => {
 // LEADS
 export const createLead = formValues => async dispatch => {
   const response = await api.post('addNewData/leads', formValues);
-  // dispatch({ type: CREATE_LEAD, payload: response.data });
+  dispatch({ type: CREATE_LEAD, payload: response.data });
   history.push('/leads');
-
+ 
 }
 
 export const fetchLeads = () => async dispatch => {
   const response = await api.get('/getAllData/leads');
+
   dispatch({ type: FETCH_LEADS, payload: response.data });
 }
 
@@ -138,7 +140,7 @@ export const fetchLead = (id) => async dispatch => {
 
 export const editLead = (id, formValues) => async dispatch => {
   const response = await api.put(`/updateData/leads/${id}`, formValues)
-  // dispatch( {type: EDIT_LEAD, payload: response.data});
+  dispatch( {type: EDIT_LEAD, payload: response.data});
   history.push('/leads');
 
 }
