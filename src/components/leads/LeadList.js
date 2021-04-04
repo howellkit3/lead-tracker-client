@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchLeads, fetchLead } from '../../actions';
 import { FETCH_LEAD } from '../../actions/types';
 
-class ContractorList extends React.Component {
+class LeadList extends React.Component {
   componentDidMount() {
     this.props.fetchLeads();
   }
@@ -20,18 +20,7 @@ class ContractorList extends React.Component {
 
   renderList() {
 
-    // return this.props.contractors.map(contractor => {
-    //   return (
-    //     <div className="item" key={contractor.id}>
-    //     {this.renderAdmin(contractor)}
-    //       <i className="large middle aligned icon building" />
-    //       <div className="content">
-    //         {contractor.contractor_name}
-    //       </div>
-    //     </div>
-    //   );
-    // });
-
+    console.log("************** THIS IS A TEST", this.props.leads);
     return Object.keys(this.props.leads).map(lead1 => {
       const lead = this.props.leads[lead1];
       return (
@@ -55,7 +44,7 @@ class ContractorList extends React.Component {
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
+      // if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/leads/new" className="ui button primary">
@@ -63,7 +52,7 @@ class ContractorList extends React.Component {
                 </Link>
               </div>
             )
-      }
+      // }
   }
 
   render() {
@@ -107,4 +96,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {fetchLeads}
-)(ContractorList);
+)(LeadList);

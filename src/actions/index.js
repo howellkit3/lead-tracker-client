@@ -54,7 +54,6 @@ export const signIn = (userId) => {
 
   export const fetchContractors = () => async dispatch => {
     const response = await api.get('getAllData/contractors');
-    console.log("************* data", response.data);
     dispatch({ type: FETCH_CONTRACTORS, payload: response.data });
   };
 
@@ -122,8 +121,9 @@ export const fetchAddresses = () => async dispatch => {
 // LEADS
 export const createLead = formValues => async dispatch => {
   const response = await api.post('addNewData/leads', formValues);
-
   dispatch({ type: CREATE_LEAD, payload: response.data });
+  history.push('/leads');
+
 }
 
 export const fetchLeads = () => async dispatch => {
@@ -138,7 +138,14 @@ export const fetchLead = (id) => async dispatch => {
 }
 
 export const editLead = (id, formValues) => async dispatch => {
-    const response = await api.put(`/updateData/leads/${id}`, formValues)
+  const response = await api.put(`/updateData/leads/${id}`, formValues)
+  dispatch( {type: EDIT_LEAD, payload: response.data});
+  history.push('/leads');
 
-    dispatch( {type: EDIT_LEAD, payload: response.data});
-  }
+}
+
+export const deleteLead = (id) => async dispatch => {
+  await api.delete(`deleteData/leads/${id}`);
+  dispatch({ type: DELETE_LEAD, payload: id });
+  history.push('/leads');
+}

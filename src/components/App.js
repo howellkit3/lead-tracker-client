@@ -67,6 +67,8 @@ const App = () => {
                     <Route path="/leads" exact component={LeadList} />
                     <Route path="/leads/new" exact component={LeadCreate} />
                     <Route path="/leads/edit/:id" exact component={LeadEdit} />
+                    <Route path="/leads/delete/:id" exact component={LeadDelete} />
+
                 </div>
             </Router>
         </div>
