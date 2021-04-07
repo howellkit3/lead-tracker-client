@@ -81,9 +81,9 @@ export class Dashboard extends Component {
                                 <div className="content">
                                     <div className={`ui ${cat.color} statistic circular`} >
                                         <div className="value">
-                                            {cat.category === 0 && `${(sort0/totalItem) * 100} %`}
-                                            {cat.category === 1 && `${(sort1/totalItem) * 100} %`}
-                                            {cat.category === 2 && `${(sort2/totalItem) * 100} %`}
+                                            {cat.category === 0 && `${(sort0/totalItem || 0) * 100} %`}
+                                            {cat.category === 1 && `${(sort1/totalItem || 0) * 100} %`}
+                                            {cat.category === 2 && `${(sort2/totalItem || 0) * 100} %`}
                                         </div>
                                     </div>
                                     <div className="header">
@@ -133,17 +133,6 @@ export class Dashboard extends Component {
     }
 
     render() {
-        const sort0 = this.props.leads.filter((x) => {
-            let today = new Date();
-            let originalData = new Date(x.estimatedFinishDate);
-            let basisDate = new Date(x.estimatedFinishDate);
-            basisDate.setMonth(basisDate.getMonth() - 1); // Date less than 1 month before estimated Finish date
-            return x.isClosed != true && today >= basisDate && today <= originalData
-        }).length;
-        const sort1 = this.props.leads.filter((x) => x.isClosed != true && new Date(x.estimatedFinishDate) < new Date()).length;
-        const sort2 = this.props.leads.filter((x) => x.isClosed == true).length;
-        const totalItem = this.props.leads.length;
-
         return (
             <div className="container">
                 <h2>Dashboard</h2>

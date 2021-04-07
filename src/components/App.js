@@ -1,5 +1,9 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import Login from './login/Login';
+
 
 import ContractorCreate from './contractors/ContractorCreate'
 import ContractorEdit from './contractors/ContractorEdit'
@@ -42,7 +46,10 @@ const App = () => {
             <Router history={history}>
                 <div>
                     <Header />
-                    <Route path="/" exact component={Dashboard} />
+                    <Route path="/" exact component={Login} />
+
+                    {/* Following routes to secure */}
+                    <Route path="/dashboard" exact component={Dashboard} />
 
                     <Route path="/contractors" exact component={ContractorList} />
                     <Route path="/contractors/new" exact component={ContractorCreate} />

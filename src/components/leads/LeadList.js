@@ -29,7 +29,7 @@ class LeadList extends React.Component {
     //DATA LIMIT WITH PAGINATION
     let data = Object.keys({...this.props.leads}).slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
     if(data.length === 0 || !data) {
-      return <div class="ui segment">
+      return <div class="ui segment sixteen wide">
         <div class="ui active inverted dimmer centered">
           <div class="ui text loader">Loading</div>
         </div>
