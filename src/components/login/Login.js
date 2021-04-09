@@ -20,8 +20,8 @@ export class Login extends Component {
         return (
                 <React.Fragment>
                 {!this.state.isLoading && <div>
-                     <div class="ui centered two column grid">  
-                        <div class="column">
+                     <div className="ui centered two column grid">  
+                        <div className="column">
                             <img src="/images/company-image.png" className="company-image" />
                         </div>
                     </div>
