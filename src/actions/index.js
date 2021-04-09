@@ -148,24 +148,11 @@ import {
     history.push('/agents');
   }
 
-// ADDRESSES
-export const createAddress = formValues => async dispatch => {
-  const response = await api.post('addNewData/addresses',  formValues)
-  dispatch( {type: CREATE_ADDRESS, payload: response.data});
-  history.push('/addresses');
-}
-
-export const fetchAddresses = () => async dispatch => {
-  const response = await api.get('getAllData/addresses');
-  dispatch({ type: FETCH_ADDRESSES, payload: response.data });
-};
-
 // LEADS
 export const createLead = formValues => async dispatch => {
   const response = await api.post('addNewData/leads', formValues);
   dispatch({ type: CREATE_LEAD, payload: response.data });
   history.push('/leads');
- 
 }
 
 export const fetchLeads = () => async dispatch => {
@@ -183,13 +170,25 @@ export const editLead = (id, formValues) => async dispatch => {
   const response = await api.put(`/updateData/leads/${id}`, formValues)
   dispatch( {type: EDIT_LEAD, payload: response.data});
   history.push('/leads');
-
 }
 
 export const deleteLead = (id) => async dispatch => {
   await api.delete(`deleteData/leads/${id}`);
   // dispatch({ type: DELETE_LEAD, payload: id });
   history.push('/leads');
+}
+
+// ADDRESSES
+export const createAddress = formValues => async dispatch => {
+  const response = await api.post('addNewData/addresses',  formValues)
+  dispatch( {type: CREATE_ADDRESS, payload: response.data});
+  history.push('/addresses');
+}
+
+export const fetchAddresses = () => async dispatch => {
+  const response = await api.get('getAllData/addresses');
+  dispatch({ type: FETCH_ADDRESSES, payload: response.data });
+};
 
 export const fetchAddress = (id) => async dispatch => {
   const response = await api.get(`getData/addresses/${id}`)
