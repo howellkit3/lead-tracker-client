@@ -33,15 +33,19 @@ class LeadEdit extends React.Component {
     
     render() {
         return (
-            <div>
-                <h3>Edit Lead</h3>
-                <LeadForm 
-                    initialValues={this.props.lead}
-                    addresses={this.props.addresses} 
-                    agents={this.props.agents} 
-                    contractors={this.props.contractors} 
-                    lenders={this.props.lenders} 
-                    onSubmit={this.onSubmit}/>
+            <div className="ui main text container">
+                <div className="ui form" >
+                    <h4 className="ui dividing header">Edit a Lead</h4>
+                    <div className="field" style={{marginTop: '5%'}}>
+                    <LeadForm 
+                        initialValues={this.props.lead}
+                        addresses={this.props.addresses} 
+                        agents={this.props.agents} 
+                        contractors={this.props.contractors} 
+                        lenders={this.props.lenders} 
+                        onSubmit={this.onSubmit}/>
+                    </div>
+                </div>
             </div>
         )
     }

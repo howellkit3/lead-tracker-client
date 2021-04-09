@@ -2,7 +2,6 @@ import api from '../apis/api';
 import login from '../apis/login';
 import logout from '../apis/logout';
 import history from '../history';
-import _ from 'lodash';
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -29,7 +28,6 @@ import {
   CREATE_LEAD,
   FETCH_LEAD,
   FETCH_LEADS,
-  DELETE_LEAD,
   EDIT_LEAD,
 } from './types';
 
@@ -191,6 +189,7 @@ export const fetchAddresses = () => async dispatch => {
 };
 
 export const fetchAddress = (id) => async dispatch => {
+  console.log("Aaaaaaaaaaa");
   const response = await api.get(`getData/addresses/${id}`)
   dispatch( {type: FETCH_ADDRESS, payload: response.data});
 }

@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAddress, editAddress } from '../../actions'
 import AddressForm from './AddressForm';
-
 class AddressEdit extends React.Component {
+
     componentDidMount() {
         this.props.fetchAddress(this.props.match.params.id);
     }
@@ -23,9 +23,9 @@ class AddressEdit extends React.Component {
             <div className="ui form" >
                 <h4 className="ui dividing header">Edit an Address</h4>
                 <div className="field" style={{marginTop: '5%'}}>
-                <AddressForm
-                  initialValues={_.pick(this.props.address, 'address', 'type')}
-                  onSubmit={this.onSubmit} />
+                 <AddressForm
+                    initialValues={_.pick(this.props.address, 'address')}
+                    onSubmit={this.onSubmit}/>
                 </div>
             </div>
           </div>

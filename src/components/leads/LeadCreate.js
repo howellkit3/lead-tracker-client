@@ -29,14 +29,19 @@ class LeadCreate extends React.Component {
     
     render() {
         return (
-            <div>
-                <h3>Add new Leads</h3>
-                <LeadForm 
-                    addresses={this.props.addresses} 
-                    agents={this.props.agents} 
-                    contractors={this.props.contractors} 
-                    lenders={this.props.lenders} 
-                    onSubmit={this.onSubmit}/>
+
+            <div className="ui main text container">
+                <div className="ui form" >
+                    <h4 className="ui dividing header">Add new Contractor</h4>
+                    <div className="field" style={{marginTop: '5%'}}>
+                        <LeadForm 
+                            addresses={this.props.addresses} 
+                            agents={this.props.agents} 
+                            contractors={this.props.contractors} 
+                            lenders={this.props.lenders} 
+                            onSubmit={this.onSubmit}/>
+                    </div>
+                </div>
             </div>
         )
     }
