@@ -14,7 +14,6 @@ class LenderEdit extends React.Component {
     };
 
     render() {
-      console.log("lender", this.props.lender);
         if (!this.props.lender) {
           return <div>Loading...</div>;
         }

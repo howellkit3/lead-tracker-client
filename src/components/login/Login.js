@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import GoogleAuth from '../GoogleAuth';
 import { connect } from 'react-redux';
-
+import './Login.css'
 
 export class Login extends Component {
     render() {
         return (
-            <div>
-                <h1>Welcome to Lead Tracker (Alisin naten Header sa login page)</h1>
+            <div >
+                <div class="ui centered two column grid">
+                    <div class="column">
+                        <img src="/images/company-image.png" className="company-image" />
+                    </div>
+                </div>
+               
                 <div className="ui placeholder segment">
                     <div className="ui two column very relaxed stackable grid">
                         <div className="column">
@@ -18,14 +23,16 @@ export class Login extends Component {
                             <div className="middle aligned column">
                             <div className="ui move up reveal">
                                 <div className="visible content segment">
-                                    <div className="ui placeholder segment">
+                                    <div className="ui placeholder segment" style={{ backgroundImage:"/images/company-image.png" }}>
                                         <div className="ui icon header">
                                             <i className="pink birthday cake icon"></i>
                                             Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <div className="hidden content">
+                                    
                                     Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
                                 </div>
                             </div>
