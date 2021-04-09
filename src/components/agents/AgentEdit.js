@@ -20,13 +20,18 @@ class AgentEdit extends React.Component {
         }
     
         return (
-          <div>
-            <h3>Edit an Agent</h3>
-            <AgentForm
-              initialValues={_.pick(this.props.agent, 'first_name', 'middle_name', 'last_name', 'email')}
-              onSubmit={this.onSubmit}
-            />
+
+          <div className="ui main text container">
+              <div className="ui form" >
+                  <h4 className="ui dividing header">Edit an Agent</h4>
+                  <div className="field" style={{marginTop: '5%'}}>
+                  <AgentForm
+                    initialValues={_.pick(this.props.agent, 'first_name', 'middle_name', 'last_name', 'email')}
+                    onSubmit={this.onSubmit}/>
+                  </div>
+              </div>
           </div>
+
         );
     }
 }

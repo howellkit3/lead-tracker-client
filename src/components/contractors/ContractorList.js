@@ -10,7 +10,7 @@ class ContractorList extends React.Component {
 
   renderAdmin(contractor) {
     return (
-        <div className="right floated content">
+        <div className="left floated content">
             <Link to={`/contractors/edit/${contractor.id}`} className="ui button primary">Edit</Link>
             <Link to={`/contractors/delete/${contractor.id}`} className="ui button negative">Delete</Link>
         </div>
@@ -21,13 +21,10 @@ class ContractorList extends React.Component {
     return this.props.contractors.map(contractor => {
       if(contractor.id){
         return (
-          <div className="item" key={contractor.id}>
-          {this.renderAdmin(contractor)}
-            <i className="large middle aligned icon building" />
-            <div className="content">
-              {contractor.contractor_name}
-            </div>
-          </div>
+            <tr key={contractor.id}>
+              <td>{contractor.contractor_name}</td>
+              <td>{this.renderAdmin(contractor)}</td>
+            </tr>
         );
       }
     });
@@ -47,10 +44,28 @@ class ContractorList extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Contractors</h2>
-        <div className="ui celled list">{this.renderList()}</div>
-        {this.renderCreate()}
+      <div className="ui main text container">
+        <div className="ui grid">
+          <div className="four wide column">
+            <h2>Contractors</h2>
+          </div>
+          <div className="twelve wide column right aligned">
+            {this.renderCreate()}
+          </div>
+          <div className="sixteen wide column">
+            <table className="ui left aligned striped celled table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderList()}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }

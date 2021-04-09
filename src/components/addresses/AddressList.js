@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchAddresses } from '../../actions';
 
 class AddressList extends React.Component {
+
   componentDidMount() {
     this.props.fetchAddresses();
   }
@@ -17,37 +18,20 @@ class AddressList extends React.Component {
     );
   }
 
-  renderAddressType(type) {
-    if( type===1 ) {
-      return "Construction";
-    } else if ( type===2 ) {
-      return "On Market";
-    } else if ( type===3 ) {
-      return "Problem";
-    } else if ( type===4) {
-      return "Lis Pendens";
-    } else {
-      return "unknown";
-    }
-  }
+
 
   renderList() {
+    const AddressType = ['Construction', 'On Market', 'Problem', 'Lis Pendens'];
     return this.props.addresses.map(address => {
       if(address.id) {
         return (
-          <div className="item" key={address.id}>
-          {this.renderAdmin(address)}
-            <i className="large middle aligned icon map marker" />
-            <div className="content">
-              {address.address }
-                <div className="description">
-                  {this.renderAddressType(address.type)}
-                </div>
-            </div>
-          </div>
+            <tr key={address.id}>
+              <td>{address.address}</td>
+              <td>{(AddressType[address.type - 1]) ? AddressType[address.type - 1] : 'unknown' }</td>
+              <td>{this.renderAdmin(address)}</td>
+            </tr>
         );
       }
-  
     });
   }
 
@@ -65,10 +49,30 @@ class AddressList extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Address</h2>
-        <div className="ui celled list">{this.renderList()}</div>
-        {this.renderCreate()}
+
+      <div className="ui main text container">
+        <div className="ui grid">
+          <div className="four wide column">
+            <h2>Address</h2>
+          </div>
+          <div className="twelve wide column right aligned">
+            {this.renderCreate()}
+          </div>
+          <div className="sixteen wide column">
+            <table className="ui left aligned striped celled table">
+              <thead>
+                <tr>
+                  <th>Address</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderList()}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
