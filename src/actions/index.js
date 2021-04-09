@@ -2,7 +2,6 @@ import api from '../apis/api';
 import login from '../apis/login';
 import logout from '../apis/logout';
 import history from '../history';
-import _ from 'lodash';
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -29,7 +28,6 @@ import {
   CREATE_LEAD,
   FETCH_LEAD,
   FETCH_LEADS,
-  DELETE_LEAD,
   EDIT_LEAD,
 } from './types';
 
@@ -105,8 +103,10 @@ import {
         'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
       } 
     }
-
-    await api.delete(`deleteData/contractors/${id}`, {}, options);
+    let formValues = [];
+    formValues['id'] = id;
+    formValues['status'] = 0;
+    const response = await api.put(`updateData/contractors/${id}`, formValues);
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
   }
@@ -165,7 +165,10 @@ import {
       } 
     }
 
-    await api.delete(`deleteData/lenders/${id}`, {}, options);
+    let formValues = [];
+    formValues['id'] = id;
+    formValues['status'] = 0;
+    const response = await api.put(`updateData/lenders/${id}`, formValues);
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
   }
@@ -223,7 +226,10 @@ import {
       } 
     }
 
-    await api.delete(`deleteData/agents/${id}`, {}, options);
+    let formValues = [];
+    formValues['id'] = id;
+    formValues['status'] = 0;
+    const response = await api.put(`updateData/agents/${id}`, formValues);
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
   }
@@ -337,7 +343,12 @@ export const deleteAddress = (id) => async dispatch => {
       'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
     } 
   }
-  await api.delete(`deleteData/addresses/${id}`, {}, options);
+  
+  let formValues = [];
+  formValues['id'] = id;
+  formValues['status'] = 0;
+  console.log(formValues);
+  const response = await api.put(`updateData/addresses/${id}`, formValues);
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }

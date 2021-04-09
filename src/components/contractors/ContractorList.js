@@ -35,7 +35,7 @@ class ContractorList extends React.Component {
             return (
               <div>
                 <Link to="/contractors/new" className="ui button primary">
-                    Create Stream
+                    Contractor
                 </Link>
               </div>
             )

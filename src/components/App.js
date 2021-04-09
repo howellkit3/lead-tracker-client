@@ -1,6 +1,5 @@
 import React from 'react';
-import { Router, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Router, Route } from 'react-router-dom';
 
 import Login from './login/Login';
 
@@ -32,7 +31,6 @@ import LeadCreate from './leads/LeadCreate'
 import LeadEdit from './leads/LeadEdit'
 import LeadDelete from './leads/LeadDelete'
 import LeadList from './leads/LeadList'
-import LeadShow from './leads/LeadShow'
 
 import Dashboard from './dashboard/Dashboard'
 
@@ -41,13 +39,14 @@ import history from '../history';
 
 const App = (props) => {
     return (
-        <div>
+        <div className="background">
             <Router history={history}>
-                <div>
+                <div >
                     <Header />
                     <Route path="/" exact component={() => <Login user={props.isSignedIn} /> } />
 
                     {/* Following routes to secure */}
+
                     {/* <Route path="/dashboard" exact component={Dashboard} /> */}
                     <ProtectedApp path="/dashboard" exact user={props.isSignedIn} component={Dashboard}/>
 

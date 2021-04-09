@@ -12,8 +12,8 @@ class AddressList extends React.Component {
   renderAdmin(address) {
     return (
         <div className="right floated content">
-            <Link to={`/address/edit/${address.id}`} className="ui button primary">Edit</Link>
-            <Link to={`/address/delete/${address.id}`} className="ui button negative">Delete</Link>
+            <Link to={`/addresses/edit/${address.id}`} className="ui button primary">Edit</Link>
+            <Link to={`/addresses/delete/${address.id}`} className="ui button negative">Delete</Link>
         </div>
     );
   }
@@ -21,13 +21,13 @@ class AddressList extends React.Component {
 
 
   renderList() {
-    const AddressType = ['Construction', 'On Market', 'Problem', 'Lis Pendens'];
+    const addressType = ['Construction', 'On Market', 'Problem', 'Lis Pendens'];
     return this.props.addresses.map(address => {
       if(address.id) {
         return (
-            <tr key={address.id}>
+            <tr>
               <td>{address.address}</td>
-              <td>{(AddressType[address.type - 1]) ? AddressType[address.type - 1] : 'unknown' }</td>
+              <td>{addressType[address.type - 1]}</td>
               <td>{this.renderAdmin(address)}</td>
             </tr>
         );
@@ -59,7 +59,7 @@ class AddressList extends React.Component {
             {this.renderCreate()}
           </div>
           <div className="sixteen wide column">
-            <table className="ui left aligned striped celled table">
+            <table class="ui left aligned striped celled table">
               <thead>
                 <tr>
                   <th>Address</th>

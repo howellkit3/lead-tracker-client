@@ -95,55 +95,63 @@ class LeadList extends React.Component {
   }
   //END OF PAGINATION
   renderCreate() {
-      if (this.props.isSignedIn) {
+    //  if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/leads/new" className="ui button primary">
-                    Create Stream
+                    Add a Lead
                 </Link>
               </div>
             )
-      }
+     // }
   }
 
   render() {
     return (
-      <div className="container">
-        <h2>Leads</h2>
-        <table className="ui celled padded table">
-            <thead>
-                <th>Agent</th>
-                <th>Address</th>
-                <th>Title Company</th>
-                <th>EMD</th>
-                <th>Renovation (Y/N)</th>
-                <th>Vacant</th>
-                <th>Assigned to Contract</th>
-                <th>Lead Source</th>
-                <th>Lender</th>
-                <th>Estimated Finish</th>
-                <th>Contractor</th>
-                <th>Close of Escrow</th>
-                <th>Actions</th>
-            </thead>
-            <tbody>
-                {this.renderList()}
-            </tbody>
-            {/* PAGINATION PART */}
-            <tfoot>
-              <tr>
-                <th colspan="13">
-                  <div className="ui right floated pagination menu">
-                    {this.renderLimit()}
-                    {this.renderPagination()}
-                  </div>
-                  <div className="ui left floated">
-                    {this.renderCreate()}
-                  </div>
-                </th>
-              </tr>
-            </tfoot>
-        </table>
+      <div className="ui main container">
+        <div className="ui grid">
+          <div className="four wide column">
+            <h2>Leads</h2>
+          </div>
+          <div className="twelve wide column right aligned">
+            {this.renderCreate()}
+          </div>
+          <div className="sixteen wide column">
+            <table className="ui left aligned striped celled table">
+              <thead>
+                <tr>
+                  <th>Agent</th>
+                  <th>Address</th>
+                  <th>Title Company</th>
+                  <th>EMD</th>
+                  <th>Renovation (Y/N)</th>
+                  <th>Vacant</th>
+                  <th>Assigned to Contract</th>
+                  <th>Lead Source</th>
+                  <th>Lender</th>
+                  <th>Estimated Finish</th>
+                  <th>Contractor</th>
+                  <th>Close of Escrow</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {this.renderList()}
+              </tbody>
+              {/* PAGINATION PART */}
+              <tfoot>
+                <tr>
+                  <th colspan="13">
+                    <div className="ui right floated pagination menu">
+                      {this.renderLimit()}
+                      {this.renderPagination()}
+                    </div>
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }

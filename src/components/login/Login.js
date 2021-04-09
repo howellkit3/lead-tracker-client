@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GoogleAuth from '../GoogleAuth';
 import { connect } from 'react-redux';
 import history from '../../history';
+import './Login.css'
 
 export class Login extends Component {
     constructor() {
@@ -19,7 +20,11 @@ export class Login extends Component {
         return (
                 <React.Fragment>
                 {!this.state.isLoading && <div>
-                    <h1>Welcome to Lead Tracker (Alisin naten Header sa login page)</h1>
+                     <div class="ui centered two column grid">  
+                        <div class="column">
+                            <img src="/images/company-image.png" className="company-image" />
+                        </div>
+                    </div>
                     <div className="ui placeholder segment">
                         <div className="ui two column very relaxed stackable grid">
                             <div className="column">
