@@ -81,7 +81,10 @@ import {
   };
 
   export const deleteContractor = (id) => async dispatch => {
-    await api.delete(`deleteData/contractors/${id}`);
+    let formValues = [];
+    formValues['id'] = id;
+    formValues['status'] = 0;
+    const response = await api.put(`updateData/contractors/${id}`, formValues);
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
   }
@@ -111,7 +114,10 @@ import {
   };
 
   export const deleteLender = (id) => async dispatch => {
-    await api.delete(`deleteData/lenders/${id}`);
+    let formValues = [];
+    formValues['id'] = id;
+    formValues['status'] = 0;
+    const response = await api.put(`updateData/lenders/${id}`, formValues);
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
   }
@@ -141,7 +147,10 @@ import {
   };
 
   export const deleteAgent = (id) => async dispatch => {
-    await api.delete(`deleteData/agents/${id}`);
+    let formValues = [];
+    formValues['id'] = id;
+    formValues['status'] = 0;
+    const response = await api.put(`updateData/agents/${id}`, formValues);
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
   }
@@ -189,7 +198,6 @@ export const fetchAddresses = () => async dispatch => {
 };
 
 export const fetchAddress = (id) => async dispatch => {
-  console.log("Aaaaaaaaaaa");
   const response = await api.get(`getData/addresses/${id}`)
   dispatch( {type: FETCH_ADDRESS, payload: response.data});
 }
@@ -202,7 +210,11 @@ export const editAddress = (id, formValues) => async dispatch => {
 };
 
 export const deleteAddress = (id) => async dispatch => {
-  await api.delete(`deleteData/addresses/${id}`);
+  let formValues = [];
+  formValues['id'] = id;
+  formValues['status'] = 0;
+  console.log(formValues);
+  const response = await api.put(`updateData/addresses/${id}`, formValues);
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }
