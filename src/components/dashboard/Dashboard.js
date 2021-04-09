@@ -81,9 +81,9 @@ export class Dashboard extends Component {
                                 <div className="content">
                                     <div className={`ui ${cat.color} statistic circular`} >
                                         <div className="value">
-                                            {cat.category === 0 && `${(sort0/totalItem || 0) * 100} %`}
-                                            {cat.category === 1 && `${(sort1/totalItem || 0) * 100} %`}
-                                            {cat.category === 2 && `${(sort2/totalItem || 0) * 100} %`}
+                                            {cat.category === 0 && `${((sort0/totalItem || 0) * 100).toFixed(2)} %`}
+                                            {cat.category === 1 && `${((sort1/totalItem || 0) * 100).toFixed(2)} %`}
+                                            {cat.category === 2 && `${((sort2/totalItem || 0) * 100).toFixed(2)} %`}
                                         </div>
                                     </div>
                                     <div className="header">
