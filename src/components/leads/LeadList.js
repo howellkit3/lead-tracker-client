@@ -99,7 +99,7 @@ class LeadList extends React.Component {
             return (
               <div>
                 <Link to="/leads/new" className="ui button primary">
-                    Create Stream
+                    Add a Lead
                 </Link>
               </div>
             )
