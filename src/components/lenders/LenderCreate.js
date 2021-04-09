@@ -11,9 +11,13 @@ class LenderCreate extends React.Component {
     
     render() {
         return (
-            <div>
-                <h3>Add new Lender</h3>
-                <LenderForm onSubmit={this.onSubmit} />
+            <div className="ui main text container">
+                <div className="ui form" >
+                    <h4 className="ui dividing header">Add new Lender</h4>
+                    <div className="field" style={{marginTop: '5%'}}>
+                        <LenderForm onSubmit={this.onSubmit} />
+                    </div>
+                </div>
             </div>
         )
     }

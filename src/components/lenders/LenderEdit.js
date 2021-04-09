@@ -20,12 +20,15 @@ class LenderEdit extends React.Component {
         }
     
         return (
-          <div>
-            <h3>Edit a Lender</h3>
-            <LenderForm
-              initialValues={_.pick(this.props.lender, 'lender_name')}
-              onSubmit={this.onSubmit}
-            />
+          <div className="ui main text container">
+            <div className="ui form" >
+                <h4 className="ui dividing header">Edit a Lender</h4>
+                <div className="field" style={{marginTop: '5%'}}>
+                 <LenderForm
+                    initialValues={_.pick(this.props.lender, 'lender_name')}
+                    onSubmit={this.onSubmit}/>
+                </div>
+            </div>
           </div>
         );
     }

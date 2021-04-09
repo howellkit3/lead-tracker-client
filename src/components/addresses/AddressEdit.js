@@ -19,12 +19,15 @@ class AddressEdit extends React.Component {
         }
     
         return (
-          <div>
-            <h3>Edit an Address</h3>
-            <AddressForm
-              initialValues={_.pick(this.props.address, 'address', 'type')}
-              onSubmit={this.onSubmit}
-            />
+          <div className="ui main text container">
+            <div className="ui form" >
+                <h4 className="ui dividing header">Edit an Address</h4>
+                <div className="field" style={{marginTop: '5%'}}>
+                <AddressForm
+                  initialValues={_.pick(this.props.address, 'address', 'type')}
+                  onSubmit={this.onSubmit} />
+                </div>
+            </div>
           </div>
         );
     }

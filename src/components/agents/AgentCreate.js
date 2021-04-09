@@ -11,9 +11,13 @@ class AgentCreate extends React.Component {
     
     render() {
         return (
-            <div>
-                <h3>Add new Agent</h3>
-                <AgentForm onSubmit={this.onSubmit} />
+            <div className="ui main text container">
+                <div className="ui form" >
+                    <h4 className="ui dividing header">Add new Agent</h4>
+                    <div className="field" style={{marginTop: '5%'}}>
+                        <AgentForm onSubmit={this.onSubmit} />
+                    </div>
+                </div>
             </div>
         )
     }

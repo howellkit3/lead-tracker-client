@@ -18,19 +18,18 @@ class LenderList extends React.Component {
   }
 
   renderList() {
+
     return this.props.lenders.map(lender => {
-       if(lender.id) {
+      if(lender.id) {
         return (
-          <div className="item" key={lender.id}>
-          {this.renderAdmin(lender)}
-            <i className="large middle aligned icon male" />
-            <div className="content">
-              {lender.lender_name}
-            </div>
-          </div>
+            <tr key={lender.id}>
+              <td>{lender.lender_name}</td>
+              <td>{this.renderAdmin(lender)}</td>
+            </tr>
         );
-       }
+      }
     });
+
   }
 
   renderCreate() {
@@ -47,10 +46,29 @@ class LenderList extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Lenders</h2>
-        <div className="ui celled list">{this.renderList()}</div>
-        {this.renderCreate()}
+
+      <div className="ui main text container">
+        <div className="ui grid">
+          <div className="four wide column">
+            <h2>Lenders</h2>
+          </div>
+          <div className="twelve wide column right aligned">
+            {this.renderCreate()}
+          </div>
+          <div className="sixteen wide column">
+            <table className="ui left aligned striped celled table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderList()}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
