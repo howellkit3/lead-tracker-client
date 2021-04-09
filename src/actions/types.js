@@ -24,3 +24,10 @@ export const FETCH_ADDRESS = 'FETCH_ADDRESS';
 export const FETCH_ADDRESSES = 'FETCH_ADDRESSES';
 export const DELETE_ADDRESS = 'DELETE_ADDRESS';
 export const EDIT_ADDRESS = 'EDIT_ADDRESS';
+
+export const CREATE_LEAD = 'CREATE_LEAD';
+export const FETCH_LEAD = 'FETCH_LEAD';
+export const FETCH_LEADS = 'FETCH_LEADS';
+export const DELETE_LEAD = 'DELETE_LEAD';
+export const EDIT_LEAD = 'EDIT_LEAD';
+
