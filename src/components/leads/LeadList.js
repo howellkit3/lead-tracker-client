@@ -8,7 +8,7 @@ class LeadList extends React.Component {
     super();
     this.state = {
       activePage :  1,
-      itemPerPage: 3,
+      itemPerPage: 10,
       list: []
     }
   }
@@ -40,6 +40,7 @@ class LeadList extends React.Component {
       const lead = this.props.leads[lead1];
       return (
           <tr key={lead.id}>
+              <td>{lead.leadNumber}</td>
               <td>{lead.agentData}</td>
               <td>{lead.addressData['address']}</td>
               <td>{lead.titleCompany}</td>
@@ -95,7 +96,7 @@ class LeadList extends React.Component {
   }
   //END OF PAGINATION
   renderCreate() {
-    //  if (this.props.isSignedIn) {
+     if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/leads/new" className="ui button primary">
@@ -103,23 +104,23 @@ class LeadList extends React.Component {
                 </Link>
               </div>
             )
-     // }
+     }
   }
 
   render() {
     return (
-      <div className="ui main container">
-        <div className="ui grid">
-          <div className="four wide column">
-            <h2>Leads</h2>
-          </div>
-          <div className="twelve wide column right aligned">
-            {this.renderCreate()}
-          </div>
-          <div className="sixteen wide column">
-            <table className="ui left aligned striped celled table">
+      <div className="ui stackable four column grid" style={{marginLeft:'100px', marginRight:'100px'}}>
+        <div className="four wide column">
+          <h2>Leads</h2>
+        </div>
+        <div className="twelve wide column right aligned">
+          {this.renderCreate()}
+        </div>
+        <div className="sixteen wide column">
+          <table className="ui left aligned striped celled table">
               <thead>
                 <tr>
+                  <th>Lead ID</th>
                   <th>Agent</th>
                   <th>Address</th>
                   <th>Title Company</th>
@@ -151,7 +152,6 @@ class LeadList extends React.Component {
               </tfoot>
             </table>
           </div>
-        </div>
       </div>
     );
   }

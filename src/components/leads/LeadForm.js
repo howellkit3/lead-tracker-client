@@ -1,11 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
-
 class LeadForm extends React.Component {
     constructor() {
     super();
         this.fields = [
-            { name:'leadNumber', label: 'Lead Number:', type:'number', category:''},
             { name:'agent_id', label: 'Agent:', type:'select', category: 'agents'},
             { name:'address_id', label: 'Address:', type:'select', category: 'addresses'},
             { name:'titleCompany', label: 'Company Title:', type:'text', category:''},
@@ -20,9 +18,9 @@ class LeadForm extends React.Component {
             { name:'contractor_id', label: 'Contractor:', type:'select', category:'contractors'},
             { name:'isClosed', label: 'Is closed', type:'checkbox', category:''},
             { name:'closeDate', label: 'Closing Date:', type:'date', category:''}
-        ]
+        ];
     }
-    renderError({ error, touched }) {
+    renderError({error, touched}) {
         if (touched && error) {
             return (
                 <div className="ui error message">
@@ -34,13 +32,24 @@ class LeadForm extends React.Component {
 
     renderInput = ({ input, label, meta, type }) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
-        return (
-        <div className={className}>
-            <label>{label}</label>
-            <input {...input} autoComplete="off" type={type}/>
-            {this.renderError(meta)}
-        </div>
-        );
+
+        if(input.name == 'leadNumber') {
+            return (
+                <div className={className}>
+                    <label>{label}</label>
+                    <input {...input} autoComplete="off" type={type} value={Math.floor(Math.random()*90000) + 10000}/>
+                    {this.renderError(meta)}
+                </div>
+            );
+        } else {
+            return (
+                <div className={className}>
+                    <label>{label}</label>
+                    <input {...input} autoComplete="off" type={type}/>
+                    {this.renderError(meta)}
+                </div>
+            );
+        }
     };
 
     renderSelect = ({ input, label, meta, category}) => {
@@ -79,6 +88,7 @@ class LeadForm extends React.Component {
     };
 
     onSubmit = formValues => {
+        formValues['leadNumber'] = Math.floor(Math.random()*90000) + 10000;
         this.props.onSubmit(formValues);
     }
     
@@ -103,26 +113,26 @@ class LeadForm extends React.Component {
 
 const validate = (formValues) => {
     const errors = {};
-    if(!formValues.leadNumber) { errors.leadNumber = 'You must enter a value'; } 
     if(!formValues.agent_id) { errors.agent_id = 'You must enter a value'; } 
-    if(!formValues.address_id) { errors.address_id = 'You must enter a value'; } 
-    if(!formValues.titleCompany) { errors.titleCompany = 'You must enter a value'; } 
-    if(!formValues.vacantDate) { errors.vacantDate = 'You must enter a value'; } 
-    if(!formValues.leadSource) { errors.leadSource = 'You must enter a value'; } 
-    if(!formValues.lender_id) { errors.lender_id = 'You must enter a value'; } 
-    if(!formValues.estimatedFinishDate) { errors.estimatedFinishDate = 'You must enter a value'; } 
-    if(!formValues.contract_id) { errors.contract_id = 'You must enter a value'; } 
-    if(!formValues.closeDate) { errors.closeDate = 'You must enter a value'; }
-    if(!formValues.hasEarnestMoneyDeposit) formValues.hasEarnestMoneyDeposit = false; 
-    if(!formValues.isUnderRenovation) formValues.isUnderRenovation = false; 
-    if(!formValues.isAssignedToContract) formValues.isAssignedToContract = false; 
-    if(!formValues.isClosed) formValues.isClosed = false; 
-    if(new Date(formValues.estimatedFinishDate) < new Date()) { errors.estimatedFinishDate = "Estimated date must not be less than today"}
-    if(new Date(formValues.closeDate) < new Date()) { errors.closeDate = "Closing date must not be less than today"}
+    // if(!formValues.address_id) { errors.address_id = 'You must enter a value'; } 
+    // if(!formValues.titleCompany) { errors.titleCompany = 'You must enter a value'; } 
+    // if(!formValues.vacantDate) { errors.vacantDate = 'You must enter a value'; } 
+    // if(!formValues.leadSource) { errors.leadSource = 'You must enter a value'; } 
+    // if(!formValues.lender_id) { errors.lender_id = 'You must enter a value'; } 
+    // if(!formValues.estimatedFinishDate) { errors.estimatedFinishDate = 'You must enter a value'; } 
+    // if(!formValues.contract_id) { errors.contract_id = 'You must enter a value'; } 
+    // if(!formValues.closeDate) { errors.closeDate = 'You must enter a value'; }
+    // if(!formValues.hasEarnestMoneyDeposit) formValues.hasEarnestMoneyDeposit = false; 
+    // if(!formValues.isUnderRenovation) formValues.isUnderRenovation = false; 
+    // if(!formValues.isAssignedToContract) formValues.isAssignedToContract = false; 
+    // if(!formValues.isClosed) formValues.isClosed = false; 
+    // if(new Date(formValues.estimatedFinishDate) < new Date()) { errors.estimatedFinishDate = "Estimated date must not be less than today"}
+    // if(new Date(formValues.closeDate) < new Date()) { errors.closeDate = "Closing date must not be less than today"}
     return errors;
 }
 
 export default reduxForm({
     form: 'leadForm',
+    enableReinitialize: true,
     validate
 })(LeadForm);
