@@ -19,28 +19,30 @@ class LenderList extends React.Component {
 
   renderList() {
     return this.props.lenders.map(lender => {
-      return (
-        <div className="item" key={lender.id}>
-        {this.renderAdmin(lender)}
-          <i className="large middle aligned icon male" />
-          <div className="content">
-            {lender.lender_name}
+       if(lender.id) {
+        return (
+          <div className="item" key={lender.id}>
+          {this.renderAdmin(lender)}
+            <i className="large middle aligned icon male" />
+            <div className="content">
+              {lender.lender_name}
+            </div>
           </div>
-        </div>
-      );
+        );
+       }
     });
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
+      // if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/lenders/new" className="ui button primary">
-                    Create Stream
+                    Create Lender
                 </Link>
               </div>
             )
-      }
+      // }
   }
 
   render() {

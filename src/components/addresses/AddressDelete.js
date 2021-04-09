@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 import history from '../../history';
-import { fetchContractor, deleteContractor } from '../../actions';
+import { fetchAddress, deleteAddress } from '../../actions';
 
-class ContractorDelete extends React.Component {
+class AddressDelete extends React.Component {
   componentDidMount() {
-    this.props.fetchContractor(this.props.match.params.id);
+    this.props.fetchAddress(this.props.match.params.id);
   }
 
   renderActions() {
@@ -16,12 +16,12 @@ class ContractorDelete extends React.Component {
     return (
       <React.Fragment>
         <button
-          onClick={() => this.props.deleteContractor(id)}
+          onClick={() => this.props.deleteAddress(id)}
           className="ui button negative"
         >
           Delete
         </button>
-        <Link to="/contractors" className="ui button">
+        <Link to="/addresses" className="ui button">
           Cancel
         </Link>
       </React.Fragment>
@@ -29,12 +29,12 @@ class ContractorDelete extends React.Component {
   }
 
   renderContent() {
-    if (!this.props.contractors) {
-      return 'Are you sure you want to delete this contractor?';
+    if (!this.props.addresses) {
+      return 'Are you sure you want to delete this address?';
     }
 
-    return `Are you sure you want to delete the contractor with name of: ${
-      this.props.contractors.contractor_name
+    return `Are you sure you want to delete the address with name of: ${
+      this.props.addresses.address
     }`;
   }
 
@@ -42,20 +42,20 @@ class ContractorDelete extends React.Component {
     console.log("props", this.props);
     return (
       <Modal
-        title="Delete Contractor"
+        title="Delete Address"
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={() => history.push('/contractors')}
+        onDismiss={() => history.push('/addresses')}
       />
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { contractors: state.contractors[ownProps.match.params.id] };
+  return { addresses: state.addresses[ownProps.match.params.id] };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchContractor, deleteContractor  }
-)(ContractorDelete);
+  { fetchAddress, deleteAddress  }
+)(AddressDelete);

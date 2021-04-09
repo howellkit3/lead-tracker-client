@@ -18,13 +18,13 @@ class AddressList extends React.Component {
   }
 
   renderAddressType(type) {
-    if( type==1 ) {
+    if( type===1 ) {
       return "Construction";
-    } else if ( type==2 ) {
+    } else if ( type===2 ) {
       return "On Market";
-    } else if ( type==3 ) {
+    } else if ( type===3 ) {
       return "Problem";
-    } else if ( type==4) {
+    } else if ( type===4) {
       return "Lis Pendens";
     } else {
       return "unknown";
@@ -33,23 +33,26 @@ class AddressList extends React.Component {
 
   renderList() {
     return this.props.addresses.map(address => {
-      return (
-        <div className="item" key={address.id}>
-        {this.renderAdmin(address)}
-          <i className="large middle aligned icon map marker" />
-          <div className="content">
-            {address.address }
-              <div className="description">
-                {this.renderAddressType(address.type)}
-              </div>
+      if(address.id) {
+        return (
+          <div className="item" key={address.id}>
+          {this.renderAdmin(address)}
+            <i className="large middle aligned icon map marker" />
+            <div className="content">
+              {address.address }
+                <div className="description">
+                  {this.renderAddressType(address.type)}
+                </div>
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
+  
     });
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
+      // if (this.props.isSignedIn) {
             return (
               <div>
                 <Link to="/addresses/new" className="ui button primary">
@@ -57,7 +60,7 @@ class AddressList extends React.Component {
                 </Link>
               </div>
             )
-      }
+      // }
   }
 
   render() {

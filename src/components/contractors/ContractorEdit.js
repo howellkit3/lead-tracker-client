@@ -1,24 +1,40 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchContractor } from '../../actions'
-
+import { fetchContractor, editContractor } from '../../actions'
+import ContractorForm from './ContractorForm';
 class ContractorEdit extends React.Component {
 
     componentDidMount() {
-        this.props.fetchStream(this.props.match.params.id);
+        this.props.fetchContractor(this.props.match.params.id);
     }
+
+    onSubmit = formValues => {
+        this.props.editContractor(this.props.match.params.id, formValues);
+    };
 
     render() {
         if (!this.props.contractor) {
-            return <div>Loading...</div>;
+          return <div>Loading...</div>;
         }
-
-        return <div>{this.props.contractor.contractor_name}</div>
+    
+        return (
+          <div>
+            <h3>Edit a Contractor</h3>
+            <ContractorForm
+              initialValues={_.pick(this.props.contractor, 'contractor_name')}
+              onSubmit={this.onSubmit}
+            />
+          </div>
+        );
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return { contractor: state.contractor[ownProps.match.params.id]  };
+    return { contractor: state.contractors[ownProps.match.params.id]  };
 }
 
-export default connect(mapStateToProps, { fetchContractor } )(ContractorEdit);
+export default connect(
+    mapStateToProps,
+    { fetchContractor, editContractor } 
+    )(ContractorEdit);
