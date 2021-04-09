@@ -35,6 +35,7 @@ import {
     let response = false;
     response = await login.post('/login', userEmail);
     const token = response.data.access_token;
+    console.log("************* RESPONSE", response);
     //WILL RETURN ERROR MESSAGE inside response.data.message, response.status != 200 login failed
     sessionStorage.setItem("access_token", token); //STORE TOKEN TO SESSION STORAGE (WILL CHANGE IT)
 
@@ -64,23 +65,44 @@ import {
   }
 
   export const fetchContractors = () => async dispatch => {
-    const response = await api.get('getAllData/contractors');
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
+    const response = await api.get('getAllData/contractors', {}, options);
     dispatch({ type: FETCH_CONTRACTORS, payload: response.data });
   };
 
   export const fetchContractor = (id) => async dispatch => {
-    const response = await api.get(`getData/contractors/${id}`)
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+    const response = await api.get(`getData/contractors/${id}`, {}, options)
     dispatch( {type: FETCH_CONTRACTOR, payload: response.data});
   }
 
   export const editContractor = (id, formValues) => async dispatch => {
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
     formValues['id'] = id;
-    const response = await api.put(`updateData/contractors/${id}`, formValues);
+    const response = await api.put(`updateData/contractors/${id}`, formValues, options);
     dispatch({ type: EDIT_CONTRACTOR, payload: response.data });
     history.push('/contractors');
   };
 
   export const deleteContractor = (id) => async dispatch => {
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
@@ -91,29 +113,58 @@ import {
 
 // LENDERS
   export const createLender = formValues => async dispatch => {
-    const response = await api.post('addNewData/lenders',  formValues)
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
+    const response = await api.post('addNewData/lenders',  formValues, options)
     dispatch( {type: CREATE_LENDER, payload: response.data});
     history.push('/lenders');
   }
 
   export const fetchLenders = () => async dispatch => {
-    const response = await api.get('getAllData/lenders');
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
+    const response = await api.get('getAllData/lenders', {}, options);
     dispatch({ type: FETCH_LENDERS, payload: response.data });
   };
 
   export const fetchLender = (id) => async dispatch => {
-    const response = await api.get(`getData/lenders/${id}`)
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+    const response = await api.get(`getData/lenders/${id}`, {}, options)
     dispatch( {type: FETCH_LENDER, payload: response.data});
   }
 
   export const editLender = (id, formValues) => async dispatch => {
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
     formValues['id'] = id;
-    const response = await api.put(`updateData/lenders/${id}`, formValues);
+    const response = await api.put(`updateData/lenders/${id}`, formValues, options);
     dispatch({ type: EDIT_LENDER, payload: response.data });
     history.push('/lenders');
   };
 
   export const deleteLender = (id) => async dispatch => {
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
@@ -124,29 +175,57 @@ import {
 
 // AGENTS
   export const createAgent = formValues => async dispatch => {
-    const response = await api.post('addNewData/agents',  formValues)
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
+    const response = await api.post('addNewData/agents',  formValues, options)
     dispatch( {type: CREATE_AGENT, payload: response.data});
     history.push('/agents');
   }
 
   export const fetchAgents = () => async dispatch => {
-    const response = await api.get('getAllData/agents');
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+    const response = await api.get('getAllData/agents', {}, options);
     dispatch({ type: FETCH_AGENTS, payload: response.data });
   };
 
   export const fetchAgent = (id) => async dispatch => {
-    const response = await api.get(`getData/agents/${id}`)
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+    const response = await api.get(`getData/agents/${id}`, {}, options)
     dispatch( {type: FETCH_AGENT, payload: response.data});
   }
 
   export const editAgent = (id, formValues) => async dispatch => {
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
     formValues['id'] = id;
-    const response = await api.put(`updateData/agents/${id}`, formValues);
+    const response = await api.put(`updateData/agents/${id}`, formValues, options);
     dispatch({ type: EDIT_AGENT, payload: response.data });
     history.push('/agents');
   };
 
   export const deleteAgent = (id) => async dispatch => {
+    const options = {
+      headers: {
+        'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+      } 
+    }
+
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
@@ -157,59 +236,114 @@ import {
 
 // LEADS
 export const createLead = formValues => async dispatch => {
-  const response = await api.post('addNewData/leads', formValues);
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+  const response = await api.post('addNewData/leads', formValues, options);
   dispatch({ type: CREATE_LEAD, payload: response.data });
   history.push('/leads');
 }
 
 export const fetchLeads = () => async dispatch => {
-  const response = await api.get('/getAllData/leads');
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  const response = await api.get('/getAllData/leads', {}, options);
 
   dispatch({ type: FETCH_LEADS, payload: response.data });
 }
 
 export const fetchLead = (id) => async dispatch => {
-  const response = await api.get(`/getData/leads/${id}`);
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  const response = await api.get(`/getData/leads/${id}`, {}, options);
   dispatch( {type: FETCH_LEAD, payload: response.data[0]});
 }
 
 export const editLead = (id, formValues) => async dispatch => {
-  const response = await api.put(`/updateData/leads/${id}`, formValues)
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  const response = await api.put(`/updateData/leads/${id}`, formValues, {}, options)
   dispatch( {type: EDIT_LEAD, payload: response.data});
   history.push('/leads');
 }
 
 export const deleteLead = (id) => async dispatch => {
-  await api.delete(`deleteData/leads/${id}`);
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  await api.delete(`deleteData/leads/${id}`, {}, options);
   // dispatch({ type: DELETE_LEAD, payload: id });
   history.push('/leads');
 }
 
 // ADDRESSES
 export const createAddress = formValues => async dispatch => {
-  const response = await api.post('addNewData/addresses',  formValues)
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+  const response = await api.post('addNewData/addresses',  formValues, options)
   dispatch( {type: CREATE_ADDRESS, payload: response.data});
   history.push('/addresses');
 }
 
 export const fetchAddresses = () => async dispatch => {
-  const response = await api.get('getAllData/addresses');
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+  const response = await api.get('getAllData/addresses', {}, options);
   dispatch({ type: FETCH_ADDRESSES, payload: response.data });
 };
 
 export const fetchAddress = (id) => async dispatch => {
-  const response = await api.get(`getData/addresses/${id}`)
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+  const response = await api.get(`getData/addresses/${id}`, {}, options)
   dispatch( {type: FETCH_ADDRESS, payload: response.data});
 }
 
 export const editAddress = (id, formValues) => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
   formValues['id'] = id;
-  const response = await api.put(`updateData/addresses/${id}`, formValues);
+  const response = await api.put(`updateData/addresses/${id}`, formValues, options);
   dispatch({ type: EDIT_ADDRESS, payload: response.data });
   history.push('/addresses');
 };
 
 export const deleteAddress = (id) => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+  
   let formValues = [];
   formValues['id'] = id;
   formValues['status'] = 0;
