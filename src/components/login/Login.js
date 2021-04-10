@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import GoogleAuth from '../GoogleAuth';
-import { connect } from 'react-redux';
 import history from '../../history';
 import './Login.css'
 
@@ -22,7 +21,7 @@ export class Login extends Component {
                 {!this.state.isLoading && <div>
                      <div className="ui centered two column grid">  
                         <div className="column">
-                            <img src="/images/company-image.png" className="company-image" />
+                            <img src="/images/company-image.png" className="company-image" alt="company"/>
                         </div>
                     </div>
                     <div className="ui placeholder segment">

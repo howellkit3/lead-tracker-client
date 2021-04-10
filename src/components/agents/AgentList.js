@@ -28,19 +28,20 @@ class AgentList extends React.Component {
             </tr>
         );
       }
+      return null;
     });
   }
 
   renderCreate() {
-      // if (this.props.isSignedIn) {
-            return (
-              <div>
-                <Link to="/agents/new" className="ui button primary">
-                    Create Agent
-                </Link>
-              </div>
-            )
-      // }
+      if (this.props.isSignedIn) {
+        return (
+          <div>
+            <Link to="/agents/new" className="ui button primary">
+                Create Agent
+            </Link>
+          </div>
+        )
+      }
   }
 
   render() {

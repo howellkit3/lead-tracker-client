@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { editLead, fetchLeads, fetchContractors, fetchLenders, fetchAgents, fetchAddresses } from '../../actions'
 import LeadForm from './LeadForm';

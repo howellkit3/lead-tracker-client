@@ -7,7 +7,7 @@ import {
   DELETE_AGENT
 } from '../actions/types';
 
-export default (state = {}, action) => {
+const agentReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_AGENTS:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
@@ -23,3 +23,5 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+export default agentReducer;

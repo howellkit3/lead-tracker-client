@@ -35,6 +35,8 @@ class LeadList extends React.Component {
             return new Date(this.props.leads[a].estimatedFinishDate) - new Date(this.props.leads[b].estimatedFinishDate);
           case 2:
             return this.props.leads[b].isClosed - this.props.leads[a].isClosed;
+          default:
+            return null;
         }
       })
     } else {
@@ -82,7 +84,6 @@ class LeadList extends React.Component {
 
   //PAGINATION PART
   renderPagination() {
-    let { activePage }  = {...this.state};
     const pages = Object.keys(this.props.leads).length / this.state.itemPerPage;
     const elements = [];
     for(let i = 0; i < pages; i++) {
@@ -106,7 +107,7 @@ class LeadList extends React.Component {
 
   actionPagination(page, mode, e) {
     const maxPage = Math.round(Object.keys(this.props.leads).length / this.state.itemPerPage);
-    if(this.state.activePage === 1 && mode === 1 || this.state.activePage === maxPage && mode === 2) return
+    if((this.state.activePage === 1 && mode === 1) || (this.state.activePage === maxPage && mode === 2)) return
     if(!mode) page = page < 1 ? 1 : page > maxPage ? maxPage : page;
     else page = mode === 1 ? this.state.activePage - 1 : this.state.activePage + 1;
     this.setState({activePage : page});

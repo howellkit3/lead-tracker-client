@@ -7,7 +7,7 @@ import {
   DELETE_LEAD
 } from '../actions/types';
 
-export default (state = {}, action) => {
+const leadReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_LEADS:
       return { ...state, ..._.mapKeys(action.payload, 'id') }
@@ -23,4 +23,6 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+export default leadReducer;
   

@@ -107,7 +107,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/contractors/${id}`, formValues, options);
+    await api.put(`updateData/contractors/${id}`, formValues, options);
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
   }
@@ -169,7 +169,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/lenders/${id}`, formValues, options);
+    await api.put(`updateData/lenders/${id}`, formValues, options);
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
   }
@@ -230,7 +230,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/agents/${id}`, formValues, options);
+    await api.put(`updateData/agents/${id}`, formValues, options);
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
   }
@@ -351,7 +351,7 @@ export const deleteAddress = (id) => async dispatch => {
   formValues['id'] = id;
   formValues['status'] = 0;
   console.log(formValues);
-  const response = await api.put(`updateData/addresses/${id}`, formValues, options);
+  await api.put(`updateData/addresses/${id}`, formValues, options);
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }
