@@ -8,7 +8,7 @@ class LeadList extends React.Component {
     super();
     this.state = {
       activePage :  1,
-      itemPerPage: 10,
+      itemPerPage: 50,
       list: []
     }
   }
@@ -118,13 +118,13 @@ class LeadList extends React.Component {
   //END OF PAGINATION
   renderCreate() {
      if (this.props.isSignedIn) {
-            return (
-              <div>
-                <Link to="/leads/new" className="ui button primary">
-                    Add a Lead
-                </Link>
-              </div>
-            )
+        return (
+          <div>
+            <Link to="/leads/new" className="ui button primary">
+                Add a Lead
+            </Link>
+          </div>
+        )
      }
   }
 

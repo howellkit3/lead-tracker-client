@@ -291,7 +291,7 @@ export const deleteLead = (id) => async dispatch => {
   }
 
   await api.delete(`deleteData/leads/${id}`, options);
-  // dispatch({ type: DELETE_LEAD, payload: id });
+  dispatch({ type: DELETE_LEAD, payload: id });
   history.push('/leads');
   
 }
