@@ -54,6 +54,7 @@ class LeadForm extends React.Component {
 
     renderSelect = ({ input, label, meta, category}) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+
         return (
         <div className={className}>
             <label>{label}</label>
@@ -61,12 +62,16 @@ class LeadForm extends React.Component {
                  <option key={0}/>
                  {Object.keys(this.props[category]).map((id) => {
                      const data = this.props[category][id]; 
-                     return <option key={data.id} value={data.id}>
-                         {category === 'addresses' && data.address}
-                         {category === 'agents' && `${data.first_name} ${data.middle_name} ${data.last_name}`}
-                         {category === 'lenders' && `${data.lender_name}`}
-                         {category === 'contractors' && `${data.contractor_name}`}
-                     </option>
+                     if(data.address !== undefined || data.first_name !== undefined 
+                        || data.lender_name !== undefined || data.contractor_name !== undefined) {
+                        return <option key={data.id} value={data.id}>
+                        {category === 'addresses' && `${data.address}`}
+                        {category === 'agents' && `${data.first_name} ${data.middle_name} ${data.last_name}`}
+                        {category === 'lenders' && `${data.lender_name}`}
+                        {category === 'contractors' && `${data.contractor_name}`}
+                        </option>
+                    }
+                    return null;
                  })
                  }
              </select>
