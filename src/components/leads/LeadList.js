@@ -25,9 +25,30 @@ class LeadList extends React.Component {
     );
   }
 
+  processList() {
+    let processedData ;
+    if(this.props.match.params) {
+      processedData = [...Object.keys({...this.props.leads})].sort((a, b) => {
+        switch(+this.props.match.params.id) {
+          case 0:
+          case 1:
+            return new Date(this.props.leads[a].estimatedFinishDate) - new Date(this.props.leads[b].estimatedFinishDate);
+          case 2:
+            return this.props.leads[b].isClosed - this.props.leads[a].isClosed;
+        }
+      })
+    } else {
+      processedData = [...Object.keys({...this.props.leads})].reverse();
+    }
+
+    return processedData;
+  }
+
   renderList() {
     //DATA LIMIT WITH PAGINATION
-    let data = Object.keys({...this.props.leads}).slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
+    let processedData = this.processList();
+
+    let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
     if(data.length === 0 || !data) {
       return <div class="ui segment sixteen wide">
         <div class="ui active inverted dimmer centered">
@@ -65,7 +86,7 @@ class LeadList extends React.Component {
     const pages = Object.keys(this.props.leads).length / this.state.itemPerPage;
     const elements = [];
     for(let i = 0; i < pages; i++) {
-      elements.push(<a href='#' onClick={() => this.actionPagination(i+1)} className="item">{i+1}</a>)
+      elements.push(<a href='#' key={i} onClick={() => this.actionPagination(i+1)} className="item">{i+1}</a>)
     }
     
     return <React.Fragment>
@@ -142,7 +163,7 @@ class LeadList extends React.Component {
               {/* PAGINATION PART */}
               <tfoot>
                 <tr>
-                  <th colspan="13">
+                  <th colSpan="13">
                     <div className="ui right floated pagination menu">
                       {this.renderLimit()}
                       {this.renderPagination()}

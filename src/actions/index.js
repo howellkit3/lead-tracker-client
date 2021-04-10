@@ -72,7 +72,7 @@ import {
       } 
     }
 
-    const response = await api.get('getAllData/contractors', {}, options);
+    const response = await api.get('getAllData/contractors', options);
     dispatch({ type: FETCH_CONTRACTORS, payload: response.data });
   };
 
@@ -82,7 +82,7 @@ import {
         'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
       } 
     }
-    const response = await api.get(`getData/contractors/${id}`, {}, options)
+    const response = await api.get(`getData/contractors/${id}`, options)
     dispatch( {type: FETCH_CONTRACTOR, payload: response.data});
   }
 
@@ -107,7 +107,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/contractors/${id}`, formValues);
+    const response = await api.put(`updateData/contractors/${id}`, formValues, options);
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
   }
@@ -132,7 +132,7 @@ import {
       } 
     }
 
-    const response = await api.get('getAllData/lenders', {}, options);
+    const response = await api.get('getAllData/lenders', options);
     dispatch({ type: FETCH_LENDERS, payload: response.data });
   };
 
@@ -142,7 +142,7 @@ import {
         'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
       } 
     }
-    const response = await api.get(`getData/lenders/${id}`, {}, options)
+    const response = await api.get(`getData/lenders/${id}`, options)
     dispatch( {type: FETCH_LENDER, payload: response.data});
   }
 
@@ -169,7 +169,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/lenders/${id}`, formValues);
+    const response = await api.put(`updateData/lenders/${id}`, formValues, options);
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
   }
@@ -193,7 +193,7 @@ import {
         'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
       } 
     }
-    const response = await api.get('getAllData/agents', {}, options);
+    const response = await api.get('getAllData/agents', options);
     dispatch({ type: FETCH_AGENTS, payload: response.data });
   };
 
@@ -203,7 +203,7 @@ import {
         'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
       } 
     }
-    const response = await api.get(`getData/agents/${id}`, {}, options)
+    const response = await api.get(`getData/agents/${id}`, options)
     dispatch( {type: FETCH_AGENT, payload: response.data});
   }
 
@@ -230,7 +230,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/agents/${id}`, formValues);
+    const response = await api.put(`updateData/agents/${id}`, formValues, options);
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
   }
@@ -247,16 +247,16 @@ export const createLead = formValues => async dispatch => {
   history.push('/leads');
 }
 
-export const fetchLeads = () => async dispatch => {
+export const fetchLeads = (params) => async dispatch => {
   const options = {
     headers: {
       'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
     } 
   }
 
-  const response = await api.get('/getAllData/leads', {}, options);
-
-  dispatch({ type: FETCH_LEADS, payload: response.data });
+  const response = await api.get('/getAllData/leads', options);
+  
+  dispatch({ type: FETCH_LEADS, payload: response.data});
 }
 
 export const fetchLead = (id) => async dispatch => {
@@ -266,7 +266,7 @@ export const fetchLead = (id) => async dispatch => {
     } 
   }
 
-  const response = await api.get(`/getData/leads/${id}`, {}, options);
+  const response = await api.get(`/getData/leads/${id}`, options);
   dispatch( {type: FETCH_LEAD, payload: response.data[0]});
 }
 
@@ -277,7 +277,7 @@ export const editLead = (id, formValues) => async dispatch => {
     } 
   }
 
-  const response = await api.put(`/updateData/leads/${id}`, formValues, {}, options)
+  const response = await api.put(`/updateData/leads/${id}`, formValues, options)
   dispatch( {type: EDIT_LEAD, payload: response.data});
   history.push('/leads');
 }
@@ -290,11 +290,8 @@ export const deleteLead = (id) => async dispatch => {
     } 
   }
 
-  let formValues = [];
-  formValues['id'] = id;
-  formValues['status'] = 0;
-  const response = await api.put(`updateData/leads/${id}`, formValues);
-  dispatch({ type: DELETE_LEAD, payload: id });
+  await api.delete(`deleteData/leads/${id}`, options);
+  // dispatch({ type: DELETE_LEAD, payload: id });
   history.push('/leads');
   
 }
@@ -317,7 +314,7 @@ export const fetchAddresses = () => async dispatch => {
       'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
     } 
   }
-  const response = await api.get('getAllData/addresses', {}, options);
+  const response = await api.get('getAllData/addresses', options);
   dispatch({ type: FETCH_ADDRESSES, payload: response.data });
 };
 
@@ -327,7 +324,7 @@ export const fetchAddress = (id) => async dispatch => {
       'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
     } 
   }
-  const response = await api.get(`getData/addresses/${id}`, {}, options)
+  const response = await api.get(`getData/addresses/${id}`, options)
   dispatch( {type: FETCH_ADDRESS, payload: response.data});
 }
 
@@ -354,7 +351,7 @@ export const deleteAddress = (id) => async dispatch => {
   formValues['id'] = id;
   formValues['status'] = 0;
   console.log(formValues);
-  const response = await api.put(`updateData/addresses/${id}`, formValues);
+  const response = await api.put(`updateData/addresses/${id}`, formValues, options);
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }

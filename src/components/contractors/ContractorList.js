@@ -73,7 +73,7 @@ class ContractorList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      contractors: Object.values(state.contractors),
+      contractors: Object.values(state.contractors).reverse(),
       isSignedIn: state.auth.isSignedIn
     };
 };

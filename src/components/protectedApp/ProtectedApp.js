@@ -10,9 +10,8 @@ export default function ProtectedApp({component: Component, user, ...rest}) {
             render={
                 props => {
                     if(user) {
-                        console.log("**********", user);
                         return <div>  
-                            <Component />
+                            <Component match={props.match}/>
                         </div>
                     } else {
                         // history.push('/');
