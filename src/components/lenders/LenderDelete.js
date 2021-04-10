@@ -33,16 +33,15 @@ class LenderDelete extends React.Component {
       return 'Are you sure you want to delete this lender?';
     }
 
-    return `Are you sure you want to delete the lender with name of: ${
+    return `Are you sure you want to delete the lender with first name of: ${
       this.props.lenders.lender_name
     }`;
   }
 
   render() {
-    console.log("props", this.props);
     return (
       <Modal
-        title="Delete Lender"
+        title="Delete a Lender"
         content={this.renderContent()}
         actions={this.renderActions()}
         onDismiss={() => history.push('/lenders')}
