@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import history from '../../history';
 
 export default function ProtectedApp({component: Component, user, ...rest}) {
     return (

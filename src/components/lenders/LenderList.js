@@ -28,20 +28,21 @@ class LenderList extends React.Component {
             </tr>
         );
       }
+      return null;
     });
 
   }
 
   renderCreate() {
-      // if (this.props.isSignedIn) {
-            return (
-              <div>
-                <Link to="/lenders/new" className="ui button primary">
-                    Create Lender
-                </Link>
-              </div>
-            )
-      // }
+      if (this.props.isSignedIn) {
+          return (
+            <div>
+              <Link to="/lenders/new" className="ui button primary">
+                  Create Lender
+              </Link>
+            </div>
+          )
+      }
   }
 
   render() {

@@ -67,10 +67,10 @@ export class Dashboard extends Component {
             let originalData = new Date(x.estimatedFinishDate);
             let basisDate = new Date(x.estimatedFinishDate);
             basisDate.setMonth(basisDate.getMonth() - 1); // Date less than 1 month before estimated Finish date
-            return x.isClosed != true && today >= basisDate && today <= originalData
+            return x.isClosed !== true && today >= basisDate && today <= originalData
         }).length;
-        const sort1 = this.props.leads.filter((x) => x.isClosed != true && new Date(x.estimatedFinishDate) < new Date()).length;
-        const sort2 = this.props.leads.filter((x) => x.isClosed == true).length;
+        const sort1 = this.props.leads.filter((x) => x.isClosed !== true && new Date(x.estimatedFinishDate) < new Date()).length;
+        const sort2 = this.props.leads.filter((x) => x.isClosed === true).length;
         const totalItem = this.props.leads.length;
         return <div className="ui stackable grid centered">
         {

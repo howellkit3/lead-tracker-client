@@ -25,13 +25,15 @@ class AddressList extends React.Component {
     return this.props.addresses.map(address => {
       if(address.id) {
         return (
-            <tr>
+            <tr key={address.id}>
               <td>{address.address}</td>
               <td>{addressType[address.type - 1]}</td>
               <td>{this.renderAdmin(address)}</td>
             </tr>
         );
       }
+
+      return null
     });
   }
 
@@ -59,7 +61,7 @@ class AddressList extends React.Component {
             {this.renderCreate()}
           </div>
           <div className="sixteen wide column">
-            <table class="ui left aligned striped celled table">
+            <table className="ui left aligned striped celled table">
               <thead>
                 <tr>
                   <th>Address</th>

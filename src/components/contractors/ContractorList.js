@@ -27,19 +27,20 @@ class ContractorList extends React.Component {
             </tr>
         );
       }
+      return null;
     });
   }
 
   renderCreate() {
-      // if (this.props.isSignedIn) {
-            return (
-              <div>
-                <Link to="/contractors/new" className="ui button primary">
-                    Contractor
-                </Link>
-              </div>
-            )
-      // }
+      if (this.props.isSignedIn) {
+        return (
+          <div>
+            <Link to="/contractors/new" className="ui button primary">
+                Add a Contractor
+            </Link>
+          </div>
+        )
+      }
   }
 
   render() {
