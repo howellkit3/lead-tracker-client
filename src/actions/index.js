@@ -246,7 +246,7 @@ export const createLead = formValues => async dispatch => {
   history.push('/leads');
 }
 
-export const fetchLeads = () => async dispatch => {
+export const fetchLeads = (params) => async dispatch => {
   const options = {
     headers: {
       'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
@@ -254,8 +254,8 @@ export const fetchLeads = () => async dispatch => {
   }
 
   const response = await api.get('/getAllData/leads', options);
-
-  dispatch({ type: FETCH_LEADS, payload: response.data });
+  
+  dispatch({ type: FETCH_LEADS, payload: response.data});
 }
 
 export const fetchLead = (id) => async dispatch => {

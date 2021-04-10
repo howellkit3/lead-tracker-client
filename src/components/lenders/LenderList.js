@@ -76,7 +76,7 @@ class LenderList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      lenders: Object.values(state.lenders),
+      lenders: Object.values(state.lenders).reverse(),
       isSignedIn: state.auth.isSignedIn
     };
 };
