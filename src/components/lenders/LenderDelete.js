@@ -33,7 +33,7 @@ class LenderDelete extends React.Component {
       return 'Are you sure you want to delete this lender?';
     }
 
-    return `Are you sure you want to delete the lender with first name of: ${
+    return `Are you sure you want to delete the lender with name of: ${
       this.props.lenders.lender_name
     }`;
   }
