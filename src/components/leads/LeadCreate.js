@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { createLead, fetchContractors, fetchLenders, fetchAgents, fetchAddresses } from '../../actions'
 import LeadForm from './LeadForm';
@@ -52,7 +51,7 @@ const mapStateToProps = state => {
         addresses : state.addresses,
         agents : state.agents,
         contractors : state.contractors,
-        lenders : state.lenders
+        lenders : state.lenders,
     }
 }
 
