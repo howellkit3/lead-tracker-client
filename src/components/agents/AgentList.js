@@ -76,7 +76,7 @@ class AgentList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      agents: Object.values(state.agents),
+      agents: Object.values(state.agents).reverse(),
       isSignedIn: state.auth.isSignedIn
     };
 };

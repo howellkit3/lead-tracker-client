@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Login from './login/Login';
 
@@ -72,9 +73,9 @@ const App = (props) => {
 
 
                     {/* <Route path="/addresses" exact component={AddressList} />
-                    <Route path="/addresses/new" exact component={AddressCreate} />
-                    <Route path="/addresses/edit/:id" exact component={AddressEdit} />
-                    <Route path="/addresses/delete/:id" exact component={AddressDelete} /> */}
+                    <Route path="/addresses/new" exact component={AddressCreate} /> */}
+                    {/* <Route path="/addresses/edit/:id" exact component={AddressEdit} /> */}
+                    {/* <Route path="/addresses/delete/:id" exact component={AddressDelete} /> */}
                     {/* <Route path="/addresses/show" exact component={ContractorShow} /> */}
                     <ProtectedApp path="/addresses" exact user={props.isSignedIn} component={AddressList} />
                     <ProtectedApp path="/addresses/new" exact user={props.isSignedIn} component={AddressCreate} />

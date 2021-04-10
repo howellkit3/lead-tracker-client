@@ -80,7 +80,7 @@ class AddressList extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-      addresses: Object.values(state.addresses),
+      addresses: Object.values(state.addresses).reverse(),
       isSignedIn: state.auth.isSignedIn
     };
 };
