@@ -34,7 +34,7 @@ class LeadDelete extends React.Component {
     }
 
     return `Are you sure you want to delete the contractor with name of: ${
-      this.props.leads.id
+      this.props.leads.leadNumber
     }`;
   }
 
