@@ -12,7 +12,6 @@ class ContractorDelete extends React.Component {
 
   renderActions() {
     const { id } = this.props.match.params;
-
     return (
       <React.Fragment>
         <button

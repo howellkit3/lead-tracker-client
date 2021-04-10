@@ -39,10 +39,9 @@ class LenderDelete extends React.Component {
   }
 
   render() {
-    console.log("props", this.props);
     return (
       <Modal
-        title="Delete Lender"
+        title="Delete a Lender"
         content={this.renderContent()}
         actions={this.renderActions()}
         onDismiss={() => history.push('/lenders')}
