@@ -106,7 +106,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/contractors/${id}`, formValues);
+    const response = await api.put(`updateData/contractors/${id}`, formValues, options);
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
   }
@@ -168,7 +168,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/lenders/${id}`, formValues);
+    const response = await api.put(`updateData/lenders/${id}`, formValues, options);
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
   }
@@ -229,7 +229,7 @@ import {
     let formValues = [];
     formValues['id'] = id;
     formValues['status'] = 0;
-    const response = await api.put(`updateData/agents/${id}`, formValues);
+    const response = await api.put(`updateData/agents/${id}`, formValues, options);
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
   }
@@ -276,7 +276,7 @@ export const editLead = (id, formValues) => async dispatch => {
     } 
   }
 
-  const response = await api.put(`/updateData/leads/${id}`, formValues, {}, options)
+  const response = await api.put(`/updateData/leads/${id}`, formValues, options)
   dispatch( {type: EDIT_LEAD, payload: response.data});
   history.push('/leads');
 }
@@ -288,7 +288,7 @@ export const deleteLead = (id) => async dispatch => {
     } 
   }
 
-  await api.delete(`deleteData/leads/${id}`, {}, options);
+  await api.delete(`deleteData/leads/${id}`, options);
   // dispatch({ type: DELETE_LEAD, payload: id });
   history.push('/leads');
 }
@@ -348,7 +348,7 @@ export const deleteAddress = (id) => async dispatch => {
   formValues['id'] = id;
   formValues['status'] = 0;
   console.log(formValues);
-  const response = await api.put(`updateData/addresses/${id}`, formValues);
+  const response = await api.put(`updateData/addresses/${id}`, formValues, options);
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }
