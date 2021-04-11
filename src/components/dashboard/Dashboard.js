@@ -46,7 +46,7 @@ export class Dashboard extends Component {
                                     <div className={`ui huge ${cat.color} statistic`}>
                                         
                                         <div className="value">
-                                            {(this.props[cat.title].length -1) < 0 ? 0 : this.props[cat.title].length -1 }
+                                            {this.props[cat.title].length}
                                         </div>
                                     </div>
                                     {/* <div className="header2">
