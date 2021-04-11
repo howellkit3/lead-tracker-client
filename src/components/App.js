@@ -43,9 +43,7 @@ const App = (props) => {
                 <div >
                     <Header />
                     <Route path="/" exact component={() => <Login user={props.isSignedIn} /> } />
-
                     {/* Following routes to secure */}
-
                     <ProtectedApp path="/dashboard" exact user={props.isSignedIn} component={Dashboard}/>
 
                     <ProtectedApp path="/contractors" exact user={props.isSignedIn} component={ContractorList}/>
@@ -82,11 +80,11 @@ const App = (props) => {
 const mapStateToProps = state => {
     return {
         isSignedIn: state.auth.isSignedIn
-      };
-  };
+    };
+};
   
   
-  export default connect(
-    mapStateToProps,
-    null
-  )(App);
+export default connect(
+mapStateToProps,
+null
+)(App);

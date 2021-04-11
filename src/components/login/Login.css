@@ -1,3 +1,7 @@
 .company-image {
-    width: 100%;
+    width: 50vw;
+}
+
+.pointing {
+    display: none;
 }
