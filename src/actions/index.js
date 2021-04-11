@@ -2,6 +2,7 @@ import api from '../apis/api';
 import login from '../apis/login';
 import logout from '../apis/logout';
 import history from '../history';
+import { toast } from "react-toastify";
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -61,6 +62,7 @@ import {
       } 
     }
     const response = await api.post('/addNewData/contractors', formValues, options);
+    toast.success("Contractor was successfully added!");
     dispatch( {type: CREATE_CONTRACTOR, payload: response.data});
     history.push('/contractors');
   }
@@ -94,6 +96,7 @@ import {
     }
     formValues['id'] = id;
     const response = await api.put(`updateData/contractors/${id}`, formValues, options);
+    toast.success("Contractor was successfully updated!");
     dispatch({ type: EDIT_CONTRACTOR, payload: response.data });
     history.push('/contractors');
   };
@@ -108,6 +111,7 @@ import {
     formValues['id'] = id;
     formValues['status'] = 0;
     await api.put(`updateData/contractors/${id}`, formValues, options);
+    toast.success("Contractor was successfully removed!");
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
   }
@@ -121,6 +125,7 @@ import {
     }
 
     const response = await api.post('addNewData/lenders',  formValues, options)
+    toast.success("Lender was successfully added!" );
     dispatch( {type: CREATE_LENDER, payload: response.data});
     history.push('/lenders');
   }
@@ -155,6 +160,7 @@ import {
 
     formValues['id'] = id;
     const response = await api.put(`updateData/lenders/${id}`, formValues, options);
+    toast.success("Lender was successfully updated!");
     dispatch({ type: EDIT_LENDER, payload: response.data });
     history.push('/lenders');
   };
@@ -170,6 +176,7 @@ import {
     formValues['id'] = id;
     formValues['status'] = 0;
     await api.put(`updateData/lenders/${id}`, formValues, options);
+    toast.success("Lender was successfully removed!");
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
   }
@@ -183,6 +190,7 @@ import {
     }
 
     const response = await api.post('addNewData/agents',  formValues, options)
+    toast.success("Agent was successfully added!");
     dispatch( {type: CREATE_AGENT, payload: response.data});
     history.push('/agents');
   }
@@ -216,6 +224,7 @@ import {
 
     formValues['id'] = id;
     const response = await api.put(`updateData/agents/${id}`, formValues, options);
+    toast.success("Agent was successfully updated!");
     dispatch({ type: EDIT_AGENT, payload: response.data });
     history.push('/agents');
   };
@@ -231,6 +240,7 @@ import {
     formValues['id'] = id;
     formValues['status'] = 0;
     await api.put(`updateData/agents/${id}`, formValues, options);
+    toast.success("Agent was successfully removed!");
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
   }
@@ -243,6 +253,7 @@ export const createLead = formValues => async dispatch => {
     } 
   }
   const response = await api.post('addNewData/leads', formValues, options);
+  toast.success("Lead was successfully added!");
   dispatch({ type: CREATE_LEAD, payload: response.data });
   history.push('/leads');
 }
@@ -278,6 +289,7 @@ export const editLead = (id, formValues) => async dispatch => {
   }
 
   const response = await api.put(`/updateData/leads/${id}`, formValues, options)
+  toast.success("Lead was successfully updated!");
   dispatch( {type: EDIT_LEAD, payload: response.data});
   history.push('/leads');
 }
@@ -290,6 +302,7 @@ export const deleteLead = (id) => async dispatch => {
   }
 
   await api.delete(`deleteData/leads/${id}`, options);
+  toast.success("Lead was successfully removed!");
   dispatch({ type: DELETE_LEAD, payload: id });
   history.push('/leads');
 }
@@ -302,6 +315,7 @@ export const createAddress = formValues => async dispatch => {
     } 
   }
   const response = await api.post('addNewData/addresses',  formValues, options)
+  toast.success("Address was successfully Added!");
   dispatch( {type: CREATE_ADDRESS, payload: response.data});
   history.push('/addresses');
 }
@@ -334,6 +348,7 @@ export const editAddress = (id, formValues) => async dispatch => {
   }
   formValues['id'] = id;
   const response = await api.put(`updateData/addresses/${id}`, formValues, options);
+  toast.success("Address was successfully updated!");
   dispatch({ type: EDIT_ADDRESS, payload: response.data });
   history.push('/addresses');
 };
@@ -349,6 +364,7 @@ export const deleteAddress = (id) => async dispatch => {
   formValues['id'] = id;
   formValues['status'] = 0;
   await api.put(`updateData/addresses/${id}`, formValues, options);
+  toast.success("Address was successfully removed!");
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }
