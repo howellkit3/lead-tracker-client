@@ -5,9 +5,8 @@ import LeadForm from './LeadForm';
 
 class LeadEdit extends React.Component {
     componentWillMount() {
-        const {fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders} = this.props;
+        const {fetchLeads, fetchAgents, fetchContractors, fetchLenders} = this.props;
         fetchLeads();
-        fetchAddresses();
         fetchAgents();
         fetchContractors();
         fetchLenders();
@@ -38,7 +37,6 @@ class LeadEdit extends React.Component {
                     <div className="field" style={{marginTop: '5%'}}>
                     <LeadForm 
                         initialValues={this.props.lead}
-                        addresses={this.props.addresses} 
                         agents={this.props.agents} 
                         contractors={this.props.contractors} 
                         lenders={this.props.lenders} 
@@ -53,11 +51,10 @@ class LeadEdit extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         lead: state.leads[ownProps.match.params.id],
-        addresses : state.addresses,
         agents : state.agents,
         contractors : state.contractors,
         lenders : state.lenders
     }
 }
 
-export default connect(mapStateToProps, { editLead, fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders })(LeadEdit)
+export default connect(mapStateToProps, { editLead, fetchLeads, fetchAgents, fetchContractors, fetchLenders })(LeadEdit)
