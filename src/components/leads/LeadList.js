@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchLeads } from '../../actions';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './LeadList.css'
 
 class LeadList extends React.Component {
@@ -188,6 +190,7 @@ class LeadList extends React.Component {
               </tfoot>
             </table>
           </div>
+          <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>
     );
   }
