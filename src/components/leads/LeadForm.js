@@ -35,7 +35,7 @@ class LeadForm extends React.Component {
     renderInput = ({ input, label, meta, type }) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
-        if(input.name == 'leadNumber') {
+        if(input.name === 'leadNumber') {
             return (
                 <div className={className}>
                     <label>{label}</label>
@@ -56,7 +56,7 @@ class LeadForm extends React.Component {
 
     renderSelect = ({ input, label, meta, category}) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
-        if(category == 'addressType'){
+        if(category === 'addressType'){
             return (
                 <div className={className}>
                     <label>{label}</label>

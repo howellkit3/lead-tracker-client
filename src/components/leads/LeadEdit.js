@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editLead, fetchLeads, fetchContractors, fetchLenders, fetchAgents, fetchAddresses } from '../../actions'
+import { editLead, fetchLeads, fetchContractors, fetchLenders, fetchAgents } from '../../actions'
 import LeadForm from './LeadForm';
 
 class LeadEdit extends React.Component {
