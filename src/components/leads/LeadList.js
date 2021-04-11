@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchLeads } from '../../actions';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import './LeadList.css'
 
 class LeadList extends React.Component {
   constructor() {
@@ -46,10 +49,23 @@ class LeadList extends React.Component {
     return processedData;
   }
 
+  manageColor(type) {
+    if (type == 1) {
+      return "construction-yellow"
+    } if (type == 2) {
+      return "on-market-blue"
+    } if (type == 3) {
+      return "problem-red"
+    } if (type == 4) {
+      return "lis-pendens-green"
+    } else {
+      return null
+    }
+  }
+
   renderList() {
     //DATA LIMIT WITH PAGINATION
     let processedData = this.processList();
-
     let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
     if(data.length === 0 || !data) {
       return <div class="ui segment sixteen wide">
@@ -65,7 +81,7 @@ class LeadList extends React.Component {
           <tr key={lead.id}>
               <td>{lead.leadNumber}</td>
               <td>{lead.agentData}</td>
-              <td>{lead.addressData['address']}</td>
+              <td className={ this.manageColor(lead.addressData['type']) } >{lead.addressData['address']}</td>
               <td>{lead.titleCompany}</td>
               <td>{lead.hasEarnestMoneyDeposit ? 'Y' : 'N'}</td>
               <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
@@ -174,6 +190,7 @@ class LeadList extends React.Component {
               </tfoot>
             </table>
           </div>
+          <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>
     );
   }

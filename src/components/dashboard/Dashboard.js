@@ -31,6 +31,7 @@ export class Dashboard extends Component {
     }
 
     createTabs() {
+        console.log("thisprops", this.props)
        return <div className="ui stackable grid centered">
         {
             this.category.map((cat) => {
@@ -45,7 +46,7 @@ export class Dashboard extends Component {
                                     <div className={`ui huge ${cat.color} statistic`}>
                                         
                                         <div className="value">
-                                            {this.props[cat.title].length}
+                                            {(this.props[cat.title].length -1) < 0 ? 0 : this.props[cat.title].length -1 }
                                         </div>
                                     </div>
                                     {/* <div className="header2">

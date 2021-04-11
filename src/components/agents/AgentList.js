@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAgents } from '../../actions';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class AgentList extends React.Component {
   componentDidMount() {
@@ -70,6 +72,7 @@ class AgentList extends React.Component {
             </table>
           </div>
         </div>
+        <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>
     );
   }
