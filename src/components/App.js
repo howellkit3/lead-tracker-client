@@ -43,7 +43,7 @@ const App = (props) => {
                 <div>
                     {/* TODO:
                     Remove Header on Login Page, Show on dashboard once logged in */}
-                    <Header />
+                    <Header isSignedIn={props.isSignedIn} />
                     <Route path="/" exact component={() => <Login user={props.isSignedIn} />} />
                     {/* Following routes to secure */}
 

@@ -41,13 +41,6 @@ import {
     //WILL RETURN ERROR MESSAGE inside response.data.message, response.status != 200 login failed
     sessionStorage.setItem("access_token", token); //STORE TOKEN TO SESSION STORAGE (WILL CHANGE IT)
 
-    if (response.status !== 200) {
-      toast.error("Login Failed");
-    } else {
-      console.log("ASdas");
-      toast.success("Logged in Successfully");
-    }
-
     dispatch( {
       type: response.status === 200 ? SIGN_IN : SIGN_OUT,
       payload: token
