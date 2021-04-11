@@ -114,10 +114,7 @@ import {
         'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
       } 
     }
-    let formValues = [];
-    formValues['id'] = id;
-    formValues['status'] = 0;
-    await api.put(`updateData/contractors/${id}`, formValues, options);
+    await api.delete(`deleteData/contractors/${id}`, options);
     toast.success("Contractor was successfully removed!");
     dispatch({ type: DELETE_CONTRACTOR, payload: id });
     history.push('/contractors');
@@ -179,10 +176,7 @@ import {
       } 
     }
 
-    let formValues = [];
-    formValues['id'] = id;
-    formValues['status'] = 0;
-    await api.put(`updateData/lenders/${id}`, formValues, options);
+    await api.delete(`deleteData/lenders/${id}`, options);
     toast.success("Lender was successfully removed!");
     dispatch({ type: DELETE_LENDER, payload: id });
     history.push('/lenders');
@@ -243,10 +237,7 @@ import {
       } 
     }
 
-    let formValues = [];
-    formValues['id'] = id;
-    formValues['status'] = 0;
-    await api.put(`updateData/agents/${id}`, formValues, options);
+    await api.delete(`deleteData/agents/${id}`, options);
     toast.success("Agent was successfully removed!");
     dispatch({ type: DELETE_AGENT, payload: id });
     history.push('/agents');
@@ -367,10 +358,7 @@ export const deleteAddress = (id) => async dispatch => {
     } 
   }
   
-  let formValues = [];
-  formValues['id'] = id;
-  formValues['status'] = 0;
-  await api.put(`updateData/addresses/${id}`, formValues, options);
+  await api.delete(`deleteData/addresses/${id}`, options);
   toast.success("Address was successfully removed!");
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
