@@ -3,7 +3,6 @@ import login from '../apis/login';
 import logout from '../apis/logout';
 import history from '../history';
 import { toast } from "react-toastify";
-import _ from 'lodash';
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -340,7 +339,6 @@ export const editAddress = (id, formValues) => async dispatch => {
   formValues['id'] = id;
   const response = await api.put(`updateData/addresses/${id}`, formValues, options);
   toast.success("Address was successfully updated!");
-  console.log("********* TEST", _.mapKeys(response.data, "id"))
   dispatch({ type: EDIT_ADDRESS, payload: response.data });
   history.push('/addresses');
 };
