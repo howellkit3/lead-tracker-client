@@ -12,7 +12,7 @@ const leadReducer = (state = {}, action) => {
     case FETCH_LEADS:
       return { ...state, ..._.mapKeys(action.payload, 'id') }
     case FETCH_LEAD:
-      return { ...state, [action.payload.id]: action.payload };
+      return { ...state, ..._.mapKeys(action.payload, 'id')};
     case CREATE_LEAD:
       return { ...state, ..._.mapKeys(action.payload, 'id')};
     case EDIT_LEAD:

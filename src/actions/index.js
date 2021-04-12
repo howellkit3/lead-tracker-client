@@ -3,6 +3,7 @@ import login from '../apis/login';
 import logout from '../apis/logout';
 import history from '../history';
 import { toast } from "react-toastify";
+import _ from 'lodash';
 import { 
   SIGN_IN, 
   SIGN_OUT, 
@@ -37,7 +38,6 @@ import {
     let response = false;
     response = await login.post('/login', userEmail);
     const token = response.data.access_token;
-    console.log("************* RESPONSE", response);
     //WILL RETURN ERROR MESSAGE inside response.data.message, response.status != 200 login failed
     sessionStorage.setItem("access_token", token); //STORE TOKEN TO SESSION STORAGE (WILL CHANGE IT)
 
@@ -340,6 +340,7 @@ export const editAddress = (id, formValues) => async dispatch => {
   formValues['id'] = id;
   const response = await api.put(`updateData/addresses/${id}`, formValues, options);
   toast.success("Address was successfully updated!");
+  console.log("********* TEST", _.mapKeys(response.data, "id"))
   dispatch({ type: EDIT_ADDRESS, payload: response.data });
   history.push('/addresses');
 };

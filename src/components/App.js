@@ -41,9 +41,8 @@ const App = (props) => {
         <div className="background">
             <Router history={history}>
                 <div >
-                    <Header />
+                    <Header user={props.isSignedIn} />
                     <Route path="/" exact component={() => <Login user={props.isSignedIn} /> } />
-
                     {/* Following routes to secure */}
 
                     <ProtectedApp path="/dashboard" exact user={props.isSignedIn} component={Dashboard}/>

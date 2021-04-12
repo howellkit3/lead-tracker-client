@@ -49,9 +49,6 @@ export class Dashboard extends Component {
                                             {this.props[cat.title].length}
                                         </div>
                                     </div>
-                                    {/* <div className="header2">
-                                        <h2>{this.props[cat.title].length}</h2>
-                                    </div> */}
                                 </div>
                             
                             </div>
