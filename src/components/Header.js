@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
 
 const Header = ({user, ...props}) => {
-.    return (
+    return (
         <div>
             {user && <div className="ui secondary pointing menu" >
                     <Link to="/dashboard" className="item">
