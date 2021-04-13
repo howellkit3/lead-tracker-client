@@ -10,15 +10,15 @@ import {
 const agentReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_AGENTS:
-      return { ...state, ..._.mapKeys(action.payload, 'id') };
     case FETCH_AGENT:
-      return { ...state, [action.payload.id]: action.payload };
     case CREATE_AGENT:
-      return { ...state, [action.payload.id]: action.payload };
     case EDIT_AGENT:
-      return { ...state, [action.payload.id]: action.payload };
     case DELETE_AGENT:
-      return _.omit(state, action.payload);
+      return { ...state, ..._.mapKeys(action.payload, 'id') };
+      // return { ...state, [action.payload.id]: action.payload };
+      // return { ...state, [action.payload.id]: action.payload };
+      // return { ...state, [action.payload.id]: action.payload };
+      // return _.omit(state, action.payload);
     default:
       return state;
   }

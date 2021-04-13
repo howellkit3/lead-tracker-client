@@ -10,15 +10,12 @@ import {
 const addressReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_ADDRESSES:
+    case EDIT_ADDRESS:
+    case CREATE_ADDRESS:
+    case DELETE_ADDRESS:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
     case FETCH_ADDRESS:
-      return { ...state, [action.payload.id]: action.payload };
-    case CREATE_ADDRESS:
-      return { ...state, [action.payload.id]: action.payload };
-    case EDIT_ADDRESS:
-      return { ...state, [action.payload.id]: action.payload };
-    case DELETE_ADDRESS:
-      return _.omit(state, action.payload);
+      return { ...state, ..._.mapKeys(action.payload, 'id') };
     default:
       return state;
   }

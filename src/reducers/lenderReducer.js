@@ -10,15 +10,15 @@ import {
 const lenderReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_LENDERS:
-      return { ...state, ..._.mapKeys(action.payload, 'id') };
     case FETCH_LENDER:
-      return { ...state, [action.payload.id]: action.payload };
     case CREATE_LENDER:
-      return { ...state, [action.payload.id]: action.payload };
     case EDIT_LENDER:
-      return { ...state, [action.payload.id]: action.payload };
     case DELETE_LENDER:
-      return _.omit(state, action.payload);
+      return { ...state, ..._.mapKeys(action.payload, 'id') };
+      // return { ...state, [action.payload.id]: action.payload };
+      // return { ...state, [action.payload.id]: action.payload };
+      // return { ...state, [action.payload.id]: action.payload };
+      // return _.omit(state, action.payload);
     default:
       return state;
   }

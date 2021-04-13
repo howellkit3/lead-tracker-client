@@ -40,11 +40,9 @@ const App = (props) => {
     return (
         <div className="background" style={{ flex: 1, minHeight: '101.5vh' }}>
             <Router history={history}>
-                <div>
-                    {/* TODO:
-                    Remove Header on Login Page, Show on dashboard once logged in */}
-                    <Header isSignedIn={props.isSignedIn} />
-                    <Route path="/" exact component={() => <Login user={props.isSignedIn} />} />
+                <div >
+                    <Header user={props.isSignedIn} />
+                    <Route path="/" exact component={() => <Login user={props.isSignedIn} /> } />
                     {/* Following routes to secure */}
 
                     <ProtectedApp path="/dashboard" exact user={props.isSignedIn} component={Dashboard} />

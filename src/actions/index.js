@@ -37,7 +37,6 @@ import {
     let response = false;
     response = await login.post('/login', userEmail);
     const token = response.data.access_token;
-    console.log("************* RESPONSE", response);
     //WILL RETURN ERROR MESSAGE inside response.data.message, response.status != 200 login failed
     sessionStorage.setItem("access_token", token); //STORE TOKEN TO SESSION STORAGE (WILL CHANGE IT)
 

@@ -1,7 +1,7 @@
 import { SIGN_IN, SIGN_OUT } from '../actions/types';
 
 const INTIAL_STATE = {
-  isSignedIn: null,
+  isSignedIn: false,
   token: null
 };
   
