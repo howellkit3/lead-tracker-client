@@ -21,7 +21,6 @@ export class Dashboard extends Component {
 
     componentDidMount() {
         const {fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders} = this.props;
-
         fetchLeads();
         fetchAddresses();
         fetchAgents();
@@ -30,7 +29,6 @@ export class Dashboard extends Component {
     }
 
     createTabs() {
-        console.log("thisprops", this.props)
        return <div className="ui stackable grid centered">
         {
             this.category.map((cat) => {
@@ -43,7 +41,6 @@ export class Dashboard extends Component {
                                         {cat.label}
                                     </div>
                                     <div className={`ui huge ${cat.color} statistic`}>
-                                        
                                         <div className="value">
                                             {this.props[cat.title].length}
                                         </div>
@@ -114,7 +111,6 @@ export class Dashboard extends Component {
                                         {cat.label}
                                     </div>
                                     <div className={`ui huge ${cat.color} statistic`}>
-                                        
                                         <div className="value">
                                             {this.props[cat.title].length}
                                         </div>

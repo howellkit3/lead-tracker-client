@@ -77,21 +77,12 @@ class LeadList extends React.Component {
     }
   }
 
-  renderList() {
+  renderList(data) {
     //DATA LIMIT WITH PAGINATION
-    let processedData = this.processList();
-    let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
-    if(data.length === 0 || !data) {
-      return <div class="ui segment sixteen wide">
-        <div class="ui active inverted dimmer centered">
-          <div class="ui text loader">Loading</div>
-        </div>
-        <p>Data Loading</p>
-      </div>
-    }
     return data.map(lead1 => {
       const lead = this.props.leads[lead1];
-      return (
+      if(lead.leadNumber!= undefined){
+        return (
           <tr key={lead.id}>
               <td>{lead.leadNumber}</td>
               <td>{lead.agentData}</td>
@@ -108,9 +99,11 @@ class LeadList extends React.Component {
               <td>{lead.contractorData['contractor_name']}</td>
               <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
               <td>{this.renderAdmin(lead)}</td>
-          </tr>
-        );
-    });
+            </tr>
+          );
+        }
+      return null;
+    })
   }
 
   //PAGINATION PART
@@ -160,7 +153,71 @@ class LeadList extends React.Component {
      }
   }
 
+  renderLoader(data) {
+    if(!data) {
+      return <div className="ui segment sixteen wide">
+        <div className="ui active inverted dimmer centered">
+          <div className="ui text loader">Loading</div>
+        </div>
+        <p>Data Loading</p>
+      </div>
+    }
+  
+    if(data.length === 0){
+      return <div className="ui segment sixteen wide">
+      <div className="ui active centered">
+        <h4>No Data</h4>
+      </div>
+    </div>
+    }
+  }
+
+  renderTable(data) {
+    if(data[0] != undefined) {
+      return (
+        <table className="ui left aligned striped celled table">
+          <thead>
+            <tr>
+              <th>Lead ID</th>
+              <th>Agent</th>
+              <th>Address</th>
+              <th>Type</th>
+              <th>Title Company</th>
+              <th>EMD</th>
+              <th>Renovation (Y/N)</th>
+              <th>Vacant</th>
+              <th>Assigned to Contract</th>
+              <th>Lead Source</th>
+              <th>Lender</th>
+              <th>Estimated Finish</th>
+              <th>Contractor</th>
+              <th>Close of Escrow</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+              {this.renderList(data)}
+          </tbody>
+        {/* PAGINATION PART */}
+        <tfoot>
+          <tr>
+            <th colSpan="15">
+              <div className="ui right floated pagination menu">
+                {this.renderLimit()}
+                {this.renderPagination()}
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+      )
+    }
+  }
+
   render() {
+    let processedData = this.processList();
+    let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
+
     return (
       <div className="ui stackable four column grid" style={{marginLeft:'100px', marginRight:'100px'}}>
         <div className="four wide column">
@@ -170,41 +227,8 @@ class LeadList extends React.Component {
           {this.renderCreate()}
         </div>
         <div className="sixteen wide column">
-          <table className="ui left aligned striped celled table">
-              <thead>
-                <tr>
-                  <th>Lead ID</th>
-                  <th>Agent</th>
-                  <th>Address</th>
-                  <th>Type</th>
-                  <th>Title Company</th>
-                  <th>EMD</th>
-                  <th>Renovation (Y/N)</th>
-                  <th>Vacant</th>
-                  <th>Assigned to Contract</th>
-                  <th>Lead Source</th>
-                  <th>Lender</th>
-                  <th>Estimated Finish</th>
-                  <th>Contractor</th>
-                  <th>Close of Escrow</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {this.renderList()}
-              </tbody>
-              {/* PAGINATION PART */}
-              <tfoot>
-                <tr>
-                  <th colSpan="15">
-                    <div className="ui right floated pagination menu">
-                      {this.renderLimit()}
-                      {this.renderPagination()}
-                    </div>
-                  </th>
-                </tr>
-              </tfoot>
-            </table>
+          {this.renderLoader(data)}
+          {data != undefined ? this.renderTable(data) : null}
           </div>
           <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>

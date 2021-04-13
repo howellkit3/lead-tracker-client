@@ -39,7 +39,6 @@ class LeadDelete extends React.Component {
   }
 
   render() {
-    console.log("props", this.props);
     return (
       <Modal
         title="Delete Contractor"
