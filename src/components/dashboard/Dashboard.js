@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchLeads, fetchContractors, fetchLenders, fetchAgents, fetchAddresses } from '../../actions';
 
-
 export class Dashboard extends Component {
     constructor() {
         super();
         this.category = [
-           {title : "addresses", label: "Addresses", color: "orange", icon: "address card outline"},
+        //    {title : "addresses", label: "Addresses", color: "orange", icon: "address card outline"},
            {title : "agents", label: "Agents", color: "blue", icon: "user"},
            {title : "contractors", label: "Contractors", color: "green", icon:"building"},
            {title : "lenders", label: "Lenders", color: "red", icon:"briefcase"}

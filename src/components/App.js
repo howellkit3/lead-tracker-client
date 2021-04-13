@@ -38,24 +38,24 @@ import history from '../history';
 
 const App = (props) => {
     return (
-        <div className="background">
+        <div className="background" style={{ flex: 1, minHeight: '101.5vh' }}>
             <Router history={history}>
                 <div >
                     <Header user={props.isSignedIn} />
                     <Route path="/" exact component={() => <Login user={props.isSignedIn} /> } />
                     {/* Following routes to secure */}
 
-                    <ProtectedApp path="/dashboard" exact user={props.isSignedIn} component={Dashboard}/>
+                    <ProtectedApp path="/dashboard" exact user={props.isSignedIn} component={Dashboard} />
 
-                    <ProtectedApp path="/contractors" exact user={props.isSignedIn} component={ContractorList}/>
-                    <ProtectedApp path="/contractors/new" exact user={props.isSignedIn} component={ContractorCreate}/>
-                    <ProtectedApp path="/contractors/edit/:id" exact user={props.isSignedIn} component={ContractorEdit}/>
-                    <ProtectedApp path="/contractors/delete/:id" exact user={props.isSignedIn} component={ContractorDelete}/>
+                    <ProtectedApp path="/contractors" exact user={props.isSignedIn} component={ContractorList} />
+                    <ProtectedApp path="/contractors/new" exact user={props.isSignedIn} component={ContractorCreate} />
+                    <ProtectedApp path="/contractors/edit/:id" exact user={props.isSignedIn} component={ContractorEdit} />
+                    <ProtectedApp path="/contractors/delete/:id" exact user={props.isSignedIn} component={ContractorDelete} />
 
                     <ProtectedApp path="/lenders" exact user={props.isSignedIn} component={LenderList} />
                     <ProtectedApp path="/lenders/new" exact user={props.isSignedIn} component={LenderCreate} />
                     <ProtectedApp path="/lenders/edit/:id" exact user={props.isSignedIn} component={LenderEdit} />
-                    <ProtectedApp path="/lenders/delete/:id" exact user={props.isSignedIn} component={LenderDelete}/>
+                    <ProtectedApp path="/lenders/delete/:id" exact user={props.isSignedIn} component={LenderDelete} />
 
                     <ProtectedApp path="/addresses" exact user={props.isSignedIn} component={AddressList} />
                     <ProtectedApp path="/addresses/new" exact user={props.isSignedIn} component={AddressCreate} />
@@ -81,11 +81,10 @@ const App = (props) => {
 const mapStateToProps = state => {
     return {
         isSignedIn: state.auth.isSignedIn
-      };
-  };
-  
-  
-  export default connect(
+    };
+};
+
+export default connect(
     mapStateToProps,
     null
-  )(App);
+)(App);

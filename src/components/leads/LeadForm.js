@@ -5,9 +5,11 @@ class LeadForm extends React.Component {
     super();
         this.fields = [
             { name:'agent_id', label: 'Agent:', type:'select', category: 'agents'},
-            { name:'address_id', label: 'Address:', type:'select', category: 'addresses'},
+            { name:'address', label: 'Address:', type:'text', category: ''},
+            { name:'address_type', label: 'Type:', type:'select', category: 'addressType'},
             { name:'titleCompany', label: 'Company Title:', type:'text', category:''},
             { name:'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type:'checkbox', category:''},
+            { name:'renovation', label: 'Renovation:', type:'text', category:''},
             { name:'isUnderRenovation', label: 'Under Renovation:', type:'checkbox', category:''},
             { name:'isVacant', label: 'Vacant:', type:'checkbox', category:''},
             { name:'vacantDate', label: 'Vacant Date:', type:'date', category:''},
@@ -33,7 +35,7 @@ class LeadForm extends React.Component {
     renderInput = ({ input, label, meta, type }) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
-        if(input.name == 'leadNumber') {
+        if(input.name === 'leadNumber') {
             return (
                 <div className={className}>
                     <label>{label}</label>
@@ -54,30 +56,43 @@ class LeadForm extends React.Component {
 
     renderSelect = ({ input, label, meta, category}) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
-
-        return (
-        <div className={className}>
-            <label>{label}</label>
-            <select defaultValue={input.value} {...input} autoComplete="off" >
-                 <option key={0}/>
-                 {Object.keys(this.props[category]).map((id) => {
-                     const data = this.props[category][id]; 
-                     if(data.address !== undefined || data.first_name !== undefined 
-                        || data.lender_name !== undefined || data.contractor_name !== undefined) {
-                        return <option key={data.id} value={data.id}>
-                        {category === 'addresses' && `${data.address}`}
-                        {category === 'agents' && `${data.first_name} ${data.middle_name} ${data.last_name}`}
-                        {category === 'lenders' && `${data.lender_name}`}
-                        {category === 'contractors' && `${data.contractor_name}`}
-                        </option>
-                    }
-                    return null;
-                 })
-                 }
-             </select>
-            {this.renderError(meta)}
-        </div>
-        );
+        if(category === 'addressType'){
+            return (
+                <div className={className}>
+                    <label>{label}</label>
+                    <select defaultValue={input.value} {...input} autoComplete="off" >
+                        <option value="1">Construction</option>
+                        <option value="2">On Market</option>
+                        <option value="3">Problem</option>
+                        <option value="4">Lis Pendens</option>
+                     </select>
+                    {this.renderError(meta)}
+                </div>
+            );
+        } else {
+            return (
+                <div className={className}>
+                    <label>{label}</label>
+                    <select defaultValue={input.value} {...input} autoComplete="off" >
+                         <option key={0}/>
+                         {Object.keys(this.props[category]).map((id) => {
+                             const data = this.props[category][id]; 
+                             if(data.first_name !== undefined 
+                                || data.lender_name !== undefined || data.contractor_name !== undefined) {
+                                return <option key={data.id} value={data.id}>
+                                {category === 'agents' && `${data.first_name} ${data.middle_name} ${data.last_name}`}
+                                {category === 'lenders' && `${data.lender_name}`}
+                                {category === 'contractors' && `${data.contractor_name}`}
+                                </option>
+                            }
+                            return null;
+                         })
+                         }
+                     </select>
+                    {this.renderError(meta)}
+                </div>
+            );
+        }
     };
 
     renderCheckbox = ({ input, label, meta }) => {

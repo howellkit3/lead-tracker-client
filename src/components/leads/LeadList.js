@@ -63,6 +63,20 @@ class LeadList extends React.Component {
     }
   }
 
+  manageAddressType(type) {
+    if (type == 1) {
+      return "Construction"
+    } if (type == 2) {
+      return "On Market"
+    } if (type == 3) {
+      return "Problem"
+    } if (type == 4) {
+      return "Green"
+    } else {
+      return null
+    }
+  }
+
   renderList() {
     //DATA LIMIT WITH PAGINATION
     let processedData = this.processList();
@@ -81,7 +95,8 @@ class LeadList extends React.Component {
           <tr key={lead.id}>
               <td>{lead.leadNumber}</td>
               <td>{lead.agentData}</td>
-              <td className={ this.manageColor(lead.addressData['type']) } >{lead.addressData['address']}</td>
+              <td>{lead.address}</td>
+              <td className={ this.manageColor(lead.address_type) } >{ this.manageAddressType(lead.address_type) }</td>
               <td>{lead.titleCompany}</td>
               <td>{lead.hasEarnestMoneyDeposit ? 'Y' : 'N'}</td>
               <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
@@ -161,6 +176,7 @@ class LeadList extends React.Component {
                   <th>Lead ID</th>
                   <th>Agent</th>
                   <th>Address</th>
+                  <th>Type</th>
                   <th>Title Company</th>
                   <th>EMD</th>
                   <th>Renovation (Y/N)</th>
@@ -180,7 +196,7 @@ class LeadList extends React.Component {
               {/* PAGINATION PART */}
               <tfoot>
                 <tr>
-                  <th colSpan="13">
+                  <th colSpan="15">
                     <div className="ui right floated pagination menu">
                       {this.renderLimit()}
                       {this.renderPagination()}
