@@ -50,13 +50,13 @@ class LeadList extends React.Component {
   }
 
   manageColor(type) {
-    if (type == 1) {
+    if (+type === 1) {
       return "construction-yellow"
-    } if (type == 2) {
+    } if (+type === 2) {
       return "on-market-blue"
-    } if (type == 3) {
+    } if (+type === 3) {
       return "problem-red"
-    } if (type == 4) {
+    } if (+type === 4) {
       return "lis-pendens-green"
     } else {
       return null
@@ -64,13 +64,13 @@ class LeadList extends React.Component {
   }
 
   manageAddressType(type) {
-    if (type == 1) {
+    if (+type === 1) {
       return "Construction"
-    } if (type == 2) {
+    } if (+type === 2) {
       return "On Market"
-    } if (type == 3) {
+    } if (+type === 3) {
       return "Problem"
-    } if (type == 4) {
+    } if (+type === 4) {
       return "Green"
     } else {
       return null
@@ -81,15 +81,16 @@ class LeadList extends React.Component {
     //DATA LIMIT WITH PAGINATION
     return data.map(lead1 => {
       const lead = this.props.leads[lead1];
-      if(lead.leadNumber!= undefined){
+      if(lead.leadNumber != undefined){
         return (
           <tr key={lead.id}>
               <td>{lead.leadNumber}</td>
               <td>{lead.agentData}</td>
-              <td>{lead.address}</td>
-              <td className={ this.manageColor(lead.address_type) } >{ this.manageAddressType(lead.address_type) }</td>
+              <td className={ this.manageColor(lead.address_type) }>{lead.address}</td>
+              <td>{ this.manageAddressType(lead.address_type) }</td>
               <td>{lead.titleCompany}</td>
-              <td>{lead.hasEarnestMoneyDeposit ? 'Y' : 'N'}</td>
+              <td>{lead.hasEarnestMoneyDeposit}</td>
+              <td>{lead.renovation}</td>
               <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
               <td>{lead.isVacant ? 'Y' : 'N'}</td>
               <td>{lead.isAssignedToContract ? 'Y' : 'N'}</td>
@@ -184,6 +185,7 @@ class LeadList extends React.Component {
               <th>Type</th>
               <th>Title Company</th>
               <th>EMD</th>
+              <th>Renovation</th>
               <th>Renovation (Y/N)</th>
               <th>Vacant</th>
               <th>Assigned to Contract</th>
@@ -201,7 +203,7 @@ class LeadList extends React.Component {
         {/* PAGINATION PART */}
         <tfoot>
           <tr>
-            <th colSpan="15">
+            <th colSpan="16">
               <div className="ui right floated pagination menu">
                 {this.renderLimit()}
                 {this.renderPagination()}

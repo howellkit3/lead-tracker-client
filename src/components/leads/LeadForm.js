@@ -8,7 +8,7 @@ class LeadForm extends React.Component {
             { name:'address', label: 'Address:', type:'text', category: ''},
             { name:'address_type', label: 'Type:', type:'select', category: 'addressType'},
             { name:'titleCompany', label: 'Company Title:', type:'text', category:''},
-            { name:'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type:'checkbox', category:''},
+            { name:'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type:'select', category:'emd'},
             { name:'renovation', label: 'Renovation:', type:'text', category:''},
             { name:'isUnderRenovation', label: 'Under Renovation:', type:'checkbox', category:''},
             { name:'isVacant', label: 'Vacant:', type:'checkbox', category:''},
@@ -65,6 +65,18 @@ class LeadForm extends React.Component {
                         <option value="2">On Market</option>
                         <option value="3">Problem</option>
                         <option value="4">Lis Pendens</option>
+                     </select>
+                    {this.renderError(meta)}
+                </div>
+            );
+        } else if (category === 'emd'){
+            return (
+                <div className={className}>
+                    <label>{label}</label>
+                    <select defaultValue={input.value} {...input} autoComplete="off" >
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="?">?</option>
                      </select>
                     {this.renderError(meta)}
                 </div>
