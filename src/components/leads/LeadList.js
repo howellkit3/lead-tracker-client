@@ -221,7 +221,7 @@ class LeadList extends React.Component {
     let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
 
     return (
-      <div className="ui stackable four column grid" style={{marginLeft:'100px', marginRight:'100px'}}>
+      <div className="ui stackable four column grid" style={{marginLeft:'25px', marginRight:'25px'}}>
         <div className="four wide column">
           <h2>Leads</h2>
         </div>
