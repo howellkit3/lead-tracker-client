@@ -38,7 +38,7 @@ import history from '../history';
 
 const App = (props) => {
     return (
-        <div className="background" style={{ flex: 1, minHeight: '101.5vh' }}>
+        <div className="background" style={{ flex: 1, minHeight: '100vh', minWidth: '100vw', backgroundColor: '#FFFF' }}>
             <Router history={history}>
                 <div >
                     <Header user={props.isSignedIn} />

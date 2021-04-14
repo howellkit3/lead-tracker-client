@@ -50,13 +50,13 @@ class LeadList extends React.Component {
   }
 
   manageColor(type) {
-    if (type == 1) {
+    if (type === 1) {
       return "construction-yellow"
-    } if (type == 2) {
+    } if (type === 2) {
       return "on-market-blue"
-    } if (type == 3) {
+    } if (type === 3) {
       return "problem-red"
-    } if (type == 4) {
+    } if (type === 4) {
       return "lis-pendens-green"
     } else {
       return null
@@ -64,13 +64,13 @@ class LeadList extends React.Component {
   }
 
   manageAddressType(type) {
-    if (type == 1) {
+    if (type === 1) {
       return "Construction"
-    } if (type == 2) {
+    } if (type === 2) {
       return "On Market"
-    } if (type == 3) {
+    } if (type === 3) {
       return "Problem"
-    } if (type == 4) {
+    } if (type === 4) {
       return "Green"
     } else {
       return null
@@ -81,7 +81,7 @@ class LeadList extends React.Component {
     //DATA LIMIT WITH PAGINATION
     return data.map(lead1 => {
       const lead = this.props.leads[lead1];
-      if(lead.leadNumber!= undefined){
+      if(lead.leadNumber!== undefined){
         return (
           <tr key={lead.id}>
               <td>{lead.leadNumber}</td>
@@ -173,7 +173,7 @@ class LeadList extends React.Component {
   }
 
   renderTable(data) {
-    if(data[0] != undefined) {
+    if(data[0] !== undefined) {
       return (
         <table className="ui left aligned striped celled table">
           <thead>
@@ -228,7 +228,7 @@ class LeadList extends React.Component {
         </div>
         <div className="sixteen wide column">
           {this.renderLoader(data)}
-          {data != undefined ? this.renderTable(data) : null}
+          {data !== undefined ? this.renderTable(data) : null}
           </div>
           <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>
