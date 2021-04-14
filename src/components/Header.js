@@ -12,9 +12,14 @@ const Header = ({ user, ...props }) => {
             alt="logo"
             style={{ width: '3vw', height: 'auto' }}
           />
-          <span style={{ padding: 16, fontSize: '1.25vw', color: '#FFFF' }}>
-            Brothers Buy Homes Tracker
-          </span>
+          <div>
+            <span style={{ display: 'block', paddingLeft: 16, fontSize: '1.25vw', color: '#FFFF' }}>
+              Brothers Buy Homes
+            </span>
+            <span style={{ display: 'block', paddingLeft: 16, fontSize: '1vw', color: '#95A5A6' }}>
+              Tracker
+            </span>
+          </div>
         </Link>
         <div className="right menu" style={{ fontSize: '1vw', alignItems: 'center', fontWeight: 400 }}>
           <Link to="/dashboard" className="item" style={{ color: '#FFFF' }}>
