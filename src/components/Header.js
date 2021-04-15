@@ -23,10 +23,10 @@ const Header = ({ user, ...props }) => {
         </Link>
         <div className="right menu" style={{ fontSize: '1vw', alignItems: 'center', fontWeight: 400 }}>
           <Link to="/dashboard" className="item" style={{ color: '#FFFF' }}>
-            Home
+            Dashboard
           </Link>
           <Link to="/leads" className="item" style={{ color: '#FFFF' }}>
-            Leads
+            Inventory
           </Link>
           <Link to="/agents" className="item" style={{ color: '#FFFF' }}>
             Agents

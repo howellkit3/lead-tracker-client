@@ -12,22 +12,22 @@ class LenderList extends React.Component {
 
   renderAdmin(lender) {
     return (
-        <div className="right floated content">
-            <Link to={`/lenders/edit/${lender.id}`} className="ui button primary">Edit</Link>
-            <Link to={`/lenders/delete/${lender.id}`} className="ui button negative">Delete</Link>
-        </div>
+      <div className="right floated content">
+        <Link to={`/lenders/edit/${lender.id}`} className="ui button primary">Edit</Link>
+        <Link to={`/lenders/delete/${lender.id}`} className="ui button negative">Delete</Link>
+      </div>
     );
   }
 
   renderList() {
 
     return this.props.lenders.map(lender => {
-      if(lender.id) {
+      if (lender.id) {
         return (
-            <tr key={lender.id}>
-              <td>{lender.lender_name}</td>
-              <td>{this.renderAdmin(lender)}</td>
-            </tr>
+          <tr key={lender.id}>
+            <td>{lender.lender_name}</td>
+            <td>{this.renderAdmin(lender)}</td>
+          </tr>
         );
       }
       return null;
@@ -36,53 +36,51 @@ class LenderList extends React.Component {
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
-          return (
-            <div>
-              <Link to="/lenders/new" className="ui button primary">
-                  Create Lender
+    if (this.props.isSignedIn) {
+      return (
+        <div>
+          <Link to="/lenders/new" className="ui button primary">
+            Add a Lender
               </Link>
-            </div>
-          )
-      }
+        </div>
+      )
+    }
   }
 
   render() {
     return (
 
-      <div className="ui main text container">
-        <div className="ui grid">
-          <div className="four wide column">
-            <h2>Lenders</h2>
-          </div>
-          <div className="twelve wide column right aligned">
-            {this.renderCreate()}
-          </div>
-          <div className="sixteen wide column">
-            <table className="ui left aligned striped celled table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderList()}
-              </tbody>
-            </table>
-          </div>
+      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '75px', marginRight: '75px', paddingTop: 24 }}>
+        <div className="two wide column">
+          <h2>Lenders</h2>
         </div>
-        <ToastContainer autoClose={3000} position="bottom-right"/>
+        <div className="fourteen wide column right aligned">
+          {this.renderCreate()}
+        </div>
+        <div className="sixteen wide column">
+          <table className="ui left aligned striped celled table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderList()}
+            </tbody>
+          </table>
+        </div>
+        <ToastContainer autoClose={3000} position="bottom-right" />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { 
-      lenders: Object.values(state.lenders).reverse(),
-      isSignedIn: state.auth.isSignedIn
-    };
+  return {
+    lenders: Object.values(state.lenders).reverse(),
+    isSignedIn: state.auth.isSignedIn
+  };
 };
 
 

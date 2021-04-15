@@ -10,7 +10,7 @@ class LeadList extends React.Component {
   constructor() {
     super();
     this.state = {
-      activePage :  1,
+      activePage: 1,
       itemPerPage: 50,
       list: []
     }
@@ -21,18 +21,18 @@ class LeadList extends React.Component {
 
   renderAdmin(lead) {
     return (
-        <p className="right floated content">
-            <Link to={`/leads/edit/${lead.id}`} className="ui button primary" >Edit</Link>
-            <Link to={`/leads/delete/${lead.id}`} className="ui button negative" >Delete</Link>
-        </p>
+      <p className="right floated content">
+        <Link to={`/leads/edit/${lead.id}`} className="ui button primary" >Edit</Link>
+        <Link to={`/leads/delete/${lead.id}`} className="ui button negative" >Delete</Link>
+      </p>
     );
   }
 
   processList() {
-    let processedData ;
-    if(this.props.match.params) {
-      processedData = [...Object.keys({...this.props.leads})].sort((a, b) => {
-        switch(+this.props.match.params.id) {
+    let processedData;
+    if (this.props.match.params) {
+      processedData = [...Object.keys({ ...this.props.leads })].sort((a, b) => {
+        switch (+this.props.match.params.id) {
           case 0:
           case 1:
             return new Date(this.props.leads[a].estimatedFinishDate) - new Date(this.props.leads[b].estimatedFinishDate);
@@ -43,7 +43,7 @@ class LeadList extends React.Component {
         }
       })
     } else {
-      processedData = [...Object.keys({...this.props.leads})].reverse();
+      processedData = [...Object.keys({ ...this.props.leads })].reverse();
     }
 
     return processedData;
@@ -81,28 +81,28 @@ class LeadList extends React.Component {
     //DATA LIMIT WITH PAGINATION
     return data.map(lead1 => {
       const lead = this.props.leads[lead1];
-      if(lead.leadNumber != undefined){
+      if (lead.leadNumber != undefined) {
         return (
           <tr key={lead.id}>
-              <td>{lead.leadNumber}</td>
-              <td>{lead.agentData}</td>
-              <td className={ this.manageColor(lead.address_type) }>{lead.address}</td>
-              <td>{ this.manageAddressType(lead.address_type) }</td>
-              <td>{lead.titleCompany}</td>
-              <td>{lead.hasEarnestMoneyDeposit}</td>
-              <td>{lead.renovation}</td>
-              <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
-              <td>{lead.isVacant ? 'Y' : 'N'}</td>
-              <td>{lead.isAssignedToContract ? 'Y' : 'N'}</td>
-              <td>{lead.leadSource}</td>
-              <td>{lead.lenderData['lender_name']}</td>
-              <td>{lead.estimatedFinishDate}</td>
-              <td>{lead.contractorData['contractor_name']}</td>
-              <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
-              <td>{this.renderAdmin(lead)}</td>
-            </tr>
-          );
-        }
+            {/* <td>{lead.leadNumber}</td> */}
+            <td>{lead.agentData}</td>
+            <td className={this.manageColor(lead.address_type)}>{lead.address}</td>
+            <td>{this.manageAddressType(lead.address_type)}</td>
+            <td>{lead.titleCompany}</td>
+            <td>{lead.hasEarnestMoneyDeposit}</td>
+            <td>{lead.renovation}</td>
+            <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
+            <td>{lead.isVacant ? 'Y' : 'N'}</td>
+            <td>{lead.isAssignedToContract ? 'Y' : 'N'}</td>
+            <td>{lead.leadSource}</td>
+            <td>{lead.lenderData['lender_name']}</td>
+            <td>{lead.estimatedFinishDate}</td>
+            <td>{lead.contractorData['contractor_name']}</td>
+            <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
+            <td>{this.renderAdmin(lead)}</td>
+          </tr>
+        );
+      }
       return null;
     })
   }
@@ -111,14 +111,14 @@ class LeadList extends React.Component {
   renderPagination() {
     const pages = Object.keys(this.props.leads).length / this.state.itemPerPage;
     const elements = [];
-    for(let i = 0; i < pages; i++) {
-      elements.push(<a href='#' key={i} onClick={() => this.actionPagination(i+1)} className="item">{i+1}</a>)
+    for (let i = 0; i < pages; i++) {
+      elements.push(<a href='#' key={i} onClick={() => this.actionPagination(i + 1)} className="item">{i + 1}</a>)
     }
-    
+
     return <React.Fragment>
-      <a href='#' onClick={(e) => this.actionPagination(0,1,e)} className="item">{'<'}</a>
+      <a href='#' onClick={(e) => this.actionPagination(0, 1, e)} className="item">{'<'}</a>
       {elements}
-      <a href='#' onClick={(e) => this.actionPagination(0,2,e)} className="item">{'>'}</a>
+      <a href='#' onClick={(e) => this.actionPagination(0, 2, e)} className="item">{'>'}</a>
     </React.Fragment>
   }
 
@@ -132,30 +132,30 @@ class LeadList extends React.Component {
 
   actionPagination(page, mode, e) {
     const maxPage = Math.round(Object.keys(this.props.leads).length / this.state.itemPerPage);
-    if((this.state.activePage === 1 && mode === 1) || (this.state.activePage === maxPage && mode === 2)) return
-    if(!mode) page = page < 1 ? 1 : page > maxPage ? maxPage : page;
+    if ((this.state.activePage === 1 && mode === 1) || (this.state.activePage === maxPage && mode === 2)) return
+    if (!mode) page = page < 1 ? 1 : page > maxPage ? maxPage : page;
     else page = mode === 1 ? this.state.activePage - 1 : this.state.activePage + 1;
-    this.setState({activePage : page});
+    this.setState({ activePage: page });
   }
 
   changeLimit(e) {
-    this.setState({itemPerPage: e.target.value})
+    this.setState({ itemPerPage: e.target.value })
   }
   //END OF PAGINATION
   renderCreate() {
-     if (this.props.isSignedIn) {
-        return (
-          <div>
-            <Link to="/leads/new" className="ui button primary">
-                Add a Lead
+    if (this.props.isSignedIn) {
+      return (
+        <div>
+          <Link to="/leads/new" className="ui button primary">
+            Add new Record
             </Link>
-          </div>
-        )
-     }
+        </div>
+      )
+    }
   }
 
   renderLoader(data) {
-    if(!data) {
+    if (!data) {
       return <div className="ui segment sixteen wide">
         <div className="ui active inverted dimmer centered">
           <div className="ui text loader">Loading</div>
@@ -163,23 +163,23 @@ class LeadList extends React.Component {
         <p>Data Loading</p>
       </div>
     }
-  
-    if(data.length === 0){
+
+    if (data.length === 0) {
       return <div className="ui segment sixteen wide">
-      <div className="ui active centered">
-        <h4>No Data</h4>
+        <div className="ui active centered">
+          <h3>No Data</h3>
+        </div>
       </div>
-    </div>
     }
   }
 
   renderTable(data) {
-    if(data[0] != undefined) {
+    if (data[0] != undefined) {
       return (
-        <table className="ui left aligned striped celled table">
-          <thead>
+        <table className="ui fixed striped celled table">
+          <thead className="full-width">
             <tr>
-              <th>Lead ID</th>
+              {/* <th>Lead ID</th> */}
               <th>Agent</th>
               <th>Address</th>
               <th>Type</th>
@@ -198,20 +198,20 @@ class LeadList extends React.Component {
             </tr>
           </thead>
           <tbody>
-              {this.renderList(data)}
+            {this.renderList(data)}
           </tbody>
-        {/* PAGINATION PART */}
-        <tfoot>
-          <tr>
-            <th colSpan="16">
-              <div className="ui right floated pagination menu">
-                {this.renderLimit()}
-                {this.renderPagination()}
-              </div>
-            </th>
-          </tr>
-        </tfoot>
-      </table>
+          {/* PAGINATION PART */}
+          <tfoot>
+            <tr>
+              <th colSpan="15">
+                <div className="ui right floated pagination menu">
+                  {this.renderLimit()}
+                  {this.renderPagination()}
+                </div>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
       )
     }
   }
@@ -221,9 +221,9 @@ class LeadList extends React.Component {
     let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
 
     return (
-      <div className="ui stackable four column grid" style={{marginLeft:'25px', marginRight:'25px'}}>
+      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '25px', marginRight: '25px', paddingTop: 24 }}>
         <div className="four wide column">
-          <h2>Leads</h2>
+          <h1>Inventory</h1>
         </div>
         <div className="twelve wide column right aligned">
           {this.renderCreate()}
@@ -231,18 +231,18 @@ class LeadList extends React.Component {
         <div className="sixteen wide column">
           {this.renderLoader(data)}
           {data != undefined ? this.renderTable(data) : null}
-          </div>
-          <ToastContainer autoClose={2000} position="bottom-right"/>
+        </div>
+        <ToastContainer autoClose={2000} position="bottom-right" />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { 
-      leads: state.leads,
-      isSignedIn: state.auth.isSignedIn
-    };
+  return {
+    leads: state.leads,
+    isSignedIn: state.auth.isSignedIn
+  };
 };
 
 
