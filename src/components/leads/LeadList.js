@@ -90,10 +90,10 @@ class LeadList extends React.Component {
             <td>{this.manageAddressType(lead.address_type)}</td>
             <td>{lead.titleCompany}</td>
             <td>{lead.hasEarnestMoneyDeposit}</td>
+            <td>{lead.isUnderRenovation ? 'Yes' : 'No'}</td>
             <td>{lead.renovation}</td>
-            <td>{lead.isUnderRenovation ? 'Y' : 'N'}</td>
-            <td>{lead.isVacant ? 'Y' : 'N'}</td>
-            <td>{lead.isAssignedToContract ? 'Y' : 'N'}</td>
+            <td>{lead.isVacant ? 'Yes' : 'No'}</td>
+            <td>{lead.isAssignedToContract ? 'Yes' : 'No'}</td>
             <td>{lead.leadSource}</td>
             <td>{lead.lenderData['lender_name']}</td>
             <td>{lead.estimatedFinishDate}</td>
@@ -186,12 +186,12 @@ class LeadList extends React.Component {
               <th>Title Company</th>
               <th>EMD</th>
               <th>Renovation</th>
-              <th>Renovation (Y/N)</th>
+              <th>Renv. Remarks</th>
               <th>Vacant</th>
-              <th>Assigned to Contract</th>
+              <th>With Contract</th>
               <th>Lead Source</th>
               <th>Lender</th>
-              <th>Estimated Finish</th>
+              <th>Est. Finish</th>
               <th>Contractor</th>
               <th>Close of Escrow</th>
               <th>Actions</th>
