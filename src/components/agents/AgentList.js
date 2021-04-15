@@ -69,7 +69,7 @@ class AgentList extends React.Component {
             </tbody>
           </table>
         </div>
-        <ToastContainer autoClose={2000} position="center" />
+        <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>
     );
   }
