@@ -12,10 +12,11 @@ const addressReducer = (state = {}, action) => {
     case FETCH_ADDRESSES:
     case EDIT_ADDRESS:
     case CREATE_ADDRESS:
-    case DELETE_ADDRESS:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
     case FETCH_ADDRESS:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
+    case DELETE_ADDRESS:
+      return _.omit(state, action.payload);
     default:
       return state;
   }
