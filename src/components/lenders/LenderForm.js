@@ -35,6 +35,9 @@ class LenderForm extends React.Component {
         <Field name="lender_name"
           label="Enter Lender Name"
           component={this.renderInput} />
+        <Field name="point_of_contact"
+          label="Point of Contact"
+          component={this.renderInput} />
         <button className="ui button primary">Submit</button>
       </form>
     )

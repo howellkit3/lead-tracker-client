@@ -26,7 +26,7 @@ class AgentList extends React.Component {
           <tr key={agent.id}>
             <td>{agent.first_name} {agent.middle_name}, {agent.last_name}</td>
             <td>{agent.email} </td>
-            <td>{this.renderAdmin(agent)}</td>
+            <td class="right aligned">{this.renderAdmin(agent)}</td>
           </tr>
         );
       }
@@ -61,7 +61,7 @@ class AgentList extends React.Component {
               <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Action</th>
+                <th className="right aligned">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@ class AgentList extends React.Component {
             </tbody>
           </table>
         </div>
-        <ToastContainer autoClose={2000} position="center" />
+        <ToastContainer autoClose={2000} position="bottom-right"/>
       </div>
     );
   }

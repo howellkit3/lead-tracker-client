@@ -26,7 +26,8 @@ class LenderList extends React.Component {
         return (
           <tr key={lender.id}>
             <td>{lender.lender_name}</td>
-            <td>{this.renderAdmin(lender)}</td>
+            <td>{lender.point_of_contact}</td>
+            <td class="right aligned">{this.renderAdmin(lender)}</td>
           </tr>
         );
       }
@@ -62,7 +63,8 @@ class LenderList extends React.Component {
             <thead>
               <tr>
                 <th>Company</th>
-                <th>Action</th>
+                <th>Point of Contact</th>
+                <th className="right aligned">Action</th>
               </tr>
             </thead>
             <tbody>

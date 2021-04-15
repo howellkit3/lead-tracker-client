@@ -23,6 +23,17 @@ class ContractorForm extends React.Component {
     );
   };
 
+  renderInputNumber= ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input {...input} autoComplete="off" type="number"/>
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   }
@@ -35,6 +46,9 @@ class ContractorForm extends React.Component {
         <Field name="contractor_name"
           label="Enter Contractor Name"
           component={this.renderInput} />
+        <Field name="contact_number"
+          label="Contact Number"
+          component={this.renderInputNumber} />
         <button className="ui button primary">Submit</button>
       </form>
     )
