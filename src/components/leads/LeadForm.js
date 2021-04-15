@@ -5,20 +5,20 @@ class LeadForm extends React.Component {
     super();
     this.fields = [
       { name: 'agent_id', label: 'Agent:', type: 'select', category: 'agents' },
+      { name: 'titleCompany', label: 'Company Title:', type: 'text', category: '' },
       { name: 'address', label: 'Address:', type: 'text', category: '' },
       { name: 'address_type', label: 'Type:', type: 'select', category: 'addressType' },
-      { name: 'titleCompany', label: 'Company Title:', type: 'text', category: '' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
       { name: 'renovation', label: 'Renovation:', type: 'text', category: '' },
+      { name: 'vacantDate', label: 'Vacant Date:', type: 'date', category: '' },
+      { name: 'leadSource', label: 'Lead Source:', type: 'text', category: '' },
       { name: 'isUnderRenovation', label: 'Under Renovation:', type: 'checkbox', category: '' },
       { name: 'isVacant', label: 'Vacant:', type: 'checkbox', category: '' },
-      { name: 'vacantDate', label: 'Vacant Date:', type: 'date', category: '' },
       { name: 'isAssignedToContract', label: 'Assigned To Contract:', type: 'checkbox', category: '' },
-      { name: 'leadSource', label: 'Lead Source:', type: 'text', category: '' },
+      { name: 'isClosed', label: 'Is closed', type: 'checkbox', category: '' },
       { name: 'lender_id', label: 'Lender:', type: 'select', category: 'lenders' },
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
       { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
-      { name: 'isClosed', label: 'Is closed', type: 'checkbox', category: '' },
       { name: 'closeDate', label: 'Closing Date:', type: 'date', category: '' }
     ];
   }
@@ -33,7 +33,7 @@ class LeadForm extends React.Component {
   }
 
   renderInput = ({ input, label, meta, type }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
 
     if (input.name === 'leadNumber') {
       return (
@@ -55,12 +55,12 @@ class LeadForm extends React.Component {
   };
 
   renderSelect = ({ input, label, meta, category }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
     if (category === 'addressType') {
       return (
         <div className={className}>
           <label>{label}</label>
-          <select defaultValue={input.value} {...input} autoComplete="off" >
+          <select className="ui search dropdown" {...input} autoComplete="off" >
             <option value="1">Construction</option>
             <option value="2">On Market</option>
             <option value="3">Problem</option>
@@ -73,7 +73,7 @@ class LeadForm extends React.Component {
       return (
         <div className={className}>
           <label>{label}</label>
-          <select defaultValue={input.value} {...input} autoComplete="off" >
+          <select {...input} autoComplete="off" >
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             <option value="?">?</option>
@@ -85,7 +85,7 @@ class LeadForm extends React.Component {
       return (
         <div className={className}>
           <label>{label}</label>
-          <select defaultValue={input.value} {...input} autoComplete="off" >
+          <select {...input} autoComplete="off" >
             <option key={0} />
             {Object.keys(this.props[category]).map((id) => {
               const data = this.props[category][id];
@@ -108,7 +108,7 @@ class LeadForm extends React.Component {
   };
 
   renderCheckbox = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
     const value = input.value;
     return (
       <div className={className}>
@@ -116,6 +116,7 @@ class LeadForm extends React.Component {
         <input {...input} autoComplete="off" type="checkbox" checked={value} />
         {this.renderError(meta)}
       </div>
+    
     );
   };
 
@@ -126,19 +127,29 @@ class LeadForm extends React.Component {
 
   render() {
     return (
-      <form
-      style={{fontSize: '1.9vh'}}
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className="ui form error">
-        { this.fields.map((field) => {
-          return <Field name={field.name}
-            label={field.label}
-            type={field.type}
-            category={field.category}
-            component={field.type === "select" ? this.renderSelect : field.type === "checkbox" ? this.renderCheckbox : this.renderInput} />
-        })}
-        <button className="ui button primary">Submit</button>
-      </form>
+      <div className="ui equal width grid">
+        <div className="sixteen wide column">
+          <div className="ui segment">
+            <form
+            style={{fontSize: '1.9vh'}}
+              onSubmit={this.props.handleSubmit(this.onSubmit)}
+              className="ui form error">
+              <div className="ui grid">
+                { this.fields.map((field, i) => {
+                  return <Field name={field.name}
+                    label={field.label}
+                    type={field.type}
+                    category={field.category}
+                    component={field.type === "select" ? this.renderSelect : field.type === "checkbox" ? this.renderCheckbox : this.renderInput} />
+                })}
+                <div className="ten wide column field centered">
+                  <button className="fluid ui button primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     )
   }
 }
