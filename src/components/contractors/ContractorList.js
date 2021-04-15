@@ -25,7 +25,8 @@ class ContractorList extends React.Component {
         return (
           <tr key={contractor.id}>
             <td>{contractor.contractor_name}</td>
-            <td>{this.renderAdmin(contractor)}</td>
+            <td>{contractor.contact_number}</td>
+            <td className="right aligned">{this.renderAdmin(contractor)}</td>
           </tr>
         );
       }
@@ -59,7 +60,8 @@ class ContractorList extends React.Component {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Action</th>
+                <th>Contact Number</th>
+                <th class="right aligned">Action</th>
               </tr>
             </thead>
             <tbody>
