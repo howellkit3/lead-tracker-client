@@ -134,7 +134,7 @@ class LeadForm extends React.Component {
             style={{fontSize: '1.9vh'}}
               onSubmit={this.props.handleSubmit(this.onSubmit)}
               className="ui form error">
-              <div className="ui grid">
+              <div className="ui stackable grid">
                 { this.fields.map((field, i) => {
                   return <Field name={field.name}
                     label={field.label}
