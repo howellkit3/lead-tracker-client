@@ -12,22 +12,22 @@ class AgentList extends React.Component {
 
   renderAdmin(agent) {
     return (
-        <div className="left floated content">
-            <Link to={`/agents/edit/${agent.id}`} className="ui button primary">Edit</Link>
-            <Link to={`/agents/delete/${agent.id}`} className="ui button negative">Delete</Link>
-        </div>
+      <div className="right floated content">
+        <Link to={`/agents/edit/${agent.id}`} className="ui button primary">Edit</Link>
+        <Link to={`/agents/delete/${agent.id}`} className="ui button negative">Delete</Link>
+      </div>
     );
   }
 
   renderList() {
     return this.props.agents.map(agent => {
-      if(agent.id) {
+      if (agent.id) {
         return (
-            <tr key={agent.id}>
-              <td>{agent.first_name } { agent.middle_name }, { agent.last_name }</td>
-              <td>{agent.email } </td>
-              <td>{this.renderAdmin(agent)}</td>
-            </tr>
+          <tr key={agent.id}>
+            <td>{agent.first_name} {agent.middle_name}, {agent.last_name}</td>
+            <td>{agent.email} </td>
+            <td>{this.renderAdmin(agent)}</td>
+          </tr>
         );
       }
       return null;
@@ -35,54 +35,51 @@ class AgentList extends React.Component {
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
-        return (
-          <div>
-            <Link to="/agents/new" className="ui button primary">
-                Create Agent
+    if (this.props.isSignedIn) {
+      return (
+        <div>
+          <Link to="/agents/new" className="ui button primary">
+            Add an Agent
             </Link>
-          </div>
-        )
-      }
+        </div>
+      )
+    }
   }
 
   render() {
     return (
-
-      <div className="ui main text container">
-        <div className="ui grid">
-          <div className="four wide column">
-            <h2>Agents</h2>
-          </div>
-          <div className="twelve wide column right aligned">
-            {this.renderCreate()}
-          </div>
-          <div className="sixteen wide column">
-            <table className="ui left aligned striped celled table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderList()}
-              </tbody>
-            </table>
-          </div>
+      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '75px', marginRight: '75px', paddingTop: 24 }}>
+        <div className="two wide column">
+          <h2>Agents</h2>
         </div>
-        <ToastContainer autoClose={2000} position="bottom-right"/>
+        <div className="fourteen wide column right aligned">
+          {this.renderCreate()}
+        </div>
+        <div className="sixteen wide column">
+          <table className="ui left aligned striped celled table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderList()}
+            </tbody>
+          </table>
+        </div>
+        <ToastContainer autoClose={2000} position="center" />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { 
-      agents: Object.values(state.agents).reverse(),
-      isSignedIn: state.auth.isSignedIn
-    };
+  return {
+    agents: Object.values(state.agents).reverse(),
+    isSignedIn: state.auth.isSignedIn
+  };
 };
 
 

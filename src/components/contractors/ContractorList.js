@@ -12,21 +12,21 @@ class ContractorList extends React.Component {
 
   renderAdmin(contractor) {
     return (
-        <div className="left floated content">
-            <Link to={`/contractors/edit/${contractor.id}`} className="ui button primary">Edit</Link>
-            <Link to={`/contractors/delete/${contractor.id}`} className="ui button negative">Delete</Link>
-        </div>
+      <div className="left floated content">
+        <Link to={`/contractors/edit/${contractor.id}`} className="ui button primary">Edit</Link>
+        <Link to={`/contractors/delete/${contractor.id}`} className="ui button negative">Delete</Link>
+      </div>
     );
   }
 
   renderList() {
     return this.props.contractors.map(contractor => {
-      if(contractor.id){
+      if (contractor.id) {
         return (
-            <tr key={contractor.id}>
-              <td>{contractor.contractor_name}</td>
-              <td>{this.renderAdmin(contractor)}</td>
-            </tr>
+          <tr key={contractor.id}>
+            <td>{contractor.contractor_name}</td>
+            <td>{this.renderAdmin(contractor)}</td>
+          </tr>
         );
       }
       return null;
@@ -34,52 +34,50 @@ class ContractorList extends React.Component {
   }
 
   renderCreate() {
-      if (this.props.isSignedIn) {
-        return (
-          <div>
-            <Link to="/contractors/new" className="ui button primary">
-                Add a Contractor
+    if (this.props.isSignedIn) {
+      return (
+        <div>
+          <Link to="/contractors/new" className="ui button primary">
+            Add a Contractor
             </Link>
-          </div>
-        )
-      }
+        </div>
+      )
+    }
   }
 
   render() {
     return (
-      <div className="ui main text container">
-        <div className="ui grid">
-          <div className="four wide column">
-            <h2>Contractors</h2>
-          </div>
-          <div className="twelve wide column right aligned">
-            {this.renderCreate()}
-          </div>
-          <div className="sixteen wide column">
-            <table className="ui left aligned striped celled table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderList()}
-              </tbody>
-            </table>
-          </div>
+      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '75px', marginRight: '75px', paddingTop: 24 }}>
+        <div className="two wide column">
+          <h2>Contractors</h2>
         </div>
-        <ToastContainer autoClose={2000} position="bottom-right"/>
+        <div className="fourteen wide column right aligned">
+          {this.renderCreate()}
+        </div>
+        <div className="sixteen wide column">
+          <table className="ui left aligned striped celled table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderList()}
+            </tbody>
+          </table>
+        </div>
+        <ToastContainer autoClose={2000} position="bottom-right" />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { 
-      contractors: Object.values(state.contractors).reverse(),
-      isSignedIn: state.auth.isSignedIn
-    };
+  return {
+    contractors: Object.values(state.contractors).reverse(),
+    isSignedIn: state.auth.isSignedIn
+  };
 };
 
 

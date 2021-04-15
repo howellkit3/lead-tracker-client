@@ -57,7 +57,7 @@ class GoogleAuth extends React.Component {
           className="ui massive button"
           style={{
             backgroundColor: '#FBC54C',
-            color: 'white',
+            color: '#282828',
             width: '28vw',
             borderRadius: '4vh',
             fontSize: '3vmin'

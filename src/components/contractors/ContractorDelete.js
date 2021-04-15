@@ -32,9 +32,7 @@ class ContractorDelete extends React.Component {
       return 'Are you sure you want to delete this contractor?';
     }
 
-    return `Are you sure you want to delete the contractor with name of: ${
-      this.props.contractors.contractor_name
-    }`;
+    return `Are you sure you want to delete the contractor with name of: ${this.props.contractors.contractor_name}`;
   }
 
   render() {
@@ -55,5 +53,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { fetchContractor, deleteContractor  }
+  { fetchContractor, deleteContractor }
 )(ContractorDelete);
