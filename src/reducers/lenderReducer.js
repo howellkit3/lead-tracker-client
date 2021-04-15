@@ -13,12 +13,12 @@ const lenderReducer = (state = {}, action) => {
     case FETCH_LENDER:
     case CREATE_LENDER:
     case EDIT_LENDER:
-    case DELETE_LENDER:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
       // return { ...state, [action.payload.id]: action.payload };
       // return { ...state, [action.payload.id]: action.payload };
       // return { ...state, [action.payload.id]: action.payload };
-      // return _.omit(state, action.payload);
+    case DELETE_LENDER:
+      return _.omit(state, action.payload);
     default:
       return state;
   }

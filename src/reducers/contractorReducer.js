@@ -13,12 +13,12 @@ const contractorReducer = (state = {}, action) => {
     case FETCH_CONTRACTOR:
     case CREATE_CONTRACTOR:
     case EDIT_CONTRACTOR:
-    case DELETE_CONTRACTOR:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
       // return { ...state, [action.payload.id]: action.payload };
       // return { ...state, [action.payload.id]: action.payload };
       // return { ...state, [action.payload.id]: action.payload };
-      // return _.omit(state, action.payload);
+    case DELETE_CONTRACTOR:
+      return _.omit(state, action.payload);
     default:
       return state;
   }
