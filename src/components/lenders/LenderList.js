@@ -61,7 +61,7 @@ class LenderList extends React.Component {
           <table className="ui left aligned striped celled table">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Company</th>
                 <th>Action</th>
               </tr>
             </thead>
