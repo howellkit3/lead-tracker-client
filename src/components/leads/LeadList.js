@@ -49,15 +49,19 @@ class LeadList extends React.Component {
     return processedData;
   }
 
-  manageColor(type) {
-    if (+type === 1) {
+  manageColor(type, category) {
+    if (+type === 1 && category === 'address') {
       return "construction-yellow"
     } if (+type === 2) {
       return "on-market-blue"
-    } if (+type === 3) {
+    } if (+type === 3 || +type === 'No') {
       return "problem-red"
-    } if (+type === 4) {
+    } if (+type === 4 || +type === 'Yes') {
       return "lis-pendens-green"
+    } if (category === 'checkbox' && type) {
+      return "lis-pendens-green"
+    } if (category === 'checkbox' && !type) {
+      return "problem-red"
     } else {
       return null
     }
@@ -86,14 +90,14 @@ class LeadList extends React.Component {
           <tr key={lead.id}>
             {/* <td>{lead.leadNumber}</td> */}
             <td>{lead.agentData}</td>
-            <td className={this.manageColor(lead.address_type)}>{lead.address}</td>
+            <td className={this.manageColor(lead.address_type, 'address')}>{lead.address}</td>
             <td>{this.manageAddressType(lead.address_type)}</td>
             <td>{lead.titleCompany}</td>
             <td>{lead.hasEarnestMoneyDeposit}</td>
-            <td>{lead.isUnderRenovation ? 'Yes' : 'No'}</td>
+            <td className={this.manageColor(lead.isUnderRenovation, 'checkbox')}>{lead.isUnderRenovation ? 'Yes' : 'No'}</td>
             <td>{lead.renovation}</td>
-            <td>{lead.isVacant ? 'Yes' : 'No'}</td>
-            <td>{lead.isAssignedToContract ? 'Yes' : 'No'}</td>
+            <td className={this.manageColor(lead.isVacant, 'checkbox')}>{lead.isVacant ? 'Yes' : 'No'}</td>
+            <td className={this.manageColor(lead.isAssignedToContract, 'checkbox')}>{lead.isAssignedToContract ? 'Yes' : 'No'}</td>
             <td>{lead.leadSource}</td>
             <td>{lead.lenderData['lender_name']}</td>
             <td>{lead.estimatedFinishDate}</td>
