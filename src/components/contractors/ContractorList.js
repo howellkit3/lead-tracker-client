@@ -61,7 +61,7 @@ class ContractorList extends React.Component {
               <tr>
                 <th>Name</th>
                 <th>Contact Number</th>
-                <th class="right aligned">Action</th>
+                <th className="right aligned">Action</th>
               </tr>
             </thead>
             <tbody>

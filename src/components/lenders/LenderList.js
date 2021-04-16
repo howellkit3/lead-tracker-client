@@ -27,7 +27,7 @@ class LenderList extends React.Component {
           <tr key={lender.id}>
             <td>{lender.lender_name}</td>
             <td>{lender.point_of_contact}</td>
-            <td class="right aligned">{this.renderAdmin(lender)}</td>
+            <td className="right aligned">{this.renderAdmin(lender)}</td>
           </tr>
         );
       }

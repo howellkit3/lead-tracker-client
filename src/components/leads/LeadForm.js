@@ -32,12 +32,12 @@ class LeadForm extends React.Component {
     }
   }
 
-  renderInput = ({ input, label, meta, type }) => {
+  renderInput = ({ input, key, label, meta, type }) => {
     const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
 
     if (input.name === 'leadNumber') {
       return (
-        <div className={className}>
+        <div key={key} className={className}>
           <label>{label}</label>
           <input {...input} autoComplete="off" type={type} value={Math.floor(Math.random() * 90000) + 10000} />
           {this.renderError(meta)}
@@ -45,7 +45,7 @@ class LeadForm extends React.Component {
       );
     } else {
       return (
-        <div className={className}>
+        <div key={key} className={className}>
           <label>{label}</label>
           <input {...input} autoComplete="off" type={type} />
           {this.renderError(meta)}
@@ -54,15 +54,15 @@ class LeadForm extends React.Component {
     }
   };
 
-  renderSelect = ({ input, label, meta, category }) => {
+  renderSelect = ({ input, key, label, meta, category }) => {
     const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
     if (category === 'addressType') {
       return (
-        <div className={className}>
+        <div key={key} className={className}>
           <label>{label}</label>
           <select {...input} autoComplete="off" >
             <option default value="">Select Address Type</option>
-            <option value="1" value="">Construction</option>
+            <option value="1">Construction</option>
             <option value="2">On Market</option>
             <option value="3">Problem</option>
             <option value="4">Lis Pendens</option>
@@ -72,7 +72,7 @@ class LeadForm extends React.Component {
       );
     } else if (category === 'emd') {
       return (
-        <div className={className}>
+        <div key={key} className={className}>
           <label>{label}</label>
           <select {...input} autoComplete="off" >
             <option default value="">Select Earnest Money Deposit</option>
@@ -85,7 +85,7 @@ class LeadForm extends React.Component {
       );
     } else {
       return (
-        <div className={className}>
+        <div key={key} className={className}>
           <label>{label}</label>
           <select {...input} autoComplete="off" >
             <option key={0} />
@@ -109,11 +109,11 @@ class LeadForm extends React.Component {
     }
   };
 
-  renderCheckbox = ({ input, label, meta }) => {
+  renderCheckbox = ({ input, key, label, meta }) => {
     const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
     const value = input.value;
     return (
-      <div className={className}>
+      <div key={key} className={className}>
         <label>{label}</label>
         <input {...input} autoComplete="off" type="checkbox" checked={value} style={{ marginTop: '4px', marginLeft: '4px', transform: 'scale(1.5)' }} />
         {this.renderError(meta)}
@@ -137,8 +137,9 @@ class LeadForm extends React.Component {
               onSubmit={this.props.handleSubmit(this.onSubmit)}
               className="ui form error">
               <div className="ui stackable grid">
-                {this.fields.map((field, i) => {
+                { this.fields.map((field, index) => {
                   return <Field name={field.name}
+                    key={index}
                     label={field.label}
                     type={field.type}
                     category={field.category}

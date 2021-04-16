@@ -26,7 +26,7 @@ class AgentList extends React.Component {
           <tr key={agent.id}>
             <td>{agent.first_name} {agent.middle_name}, {agent.last_name}</td>
             <td>{agent.email} </td>
-            <td class="right aligned">{this.renderAdmin(agent)}</td>
+            <td className="right aligned">{this.renderAdmin(agent)}</td>
           </tr>
         );
       }
