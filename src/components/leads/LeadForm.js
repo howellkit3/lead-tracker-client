@@ -61,7 +61,8 @@ class LeadForm extends React.Component {
         <div className={className}>
           <label>{label}</label>
           <select className="ui search dropdown" {...input} autoComplete="off" >
-            <option value="1">Construction</option>
+            <option default value="">Select Address Type</option>
+            <option value="1" value="">Construction</option>
             <option value="2">On Market</option>
             <option value="3">Problem</option>
             <option value="4">Lis Pendens</option>
@@ -74,6 +75,7 @@ class LeadForm extends React.Component {
         <div className={className}>
           <label>{label}</label>
           <select {...input} autoComplete="off" >
+            <option default value="">Select Earnest Money Deposit </option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             <option value="?">?</option>
