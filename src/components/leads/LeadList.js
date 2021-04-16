@@ -208,6 +208,10 @@ class LeadList extends React.Component {
           <tfoot>
             <tr>
               <th colSpan="15">
+                <a class="ui blue circular label">On Market</a>
+                <a class="ui green circular label">Lis Pendens</a>
+                <a class="ui yellow circular label">Construction</a>
+                <a class="ui red circular label">Problem</a>
                 <div className="ui right floated pagination menu">
                   {this.renderLimit()}
                   {this.renderPagination()}
@@ -228,6 +232,7 @@ class LeadList extends React.Component {
       <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '25px', marginRight: '25px', paddingTop: 24 }}>
         <div className="four wide column">
           <h1>Inventory</h1>
+
         </div>
         <div className="twelve wide column right aligned">
           {this.renderCreate()}
