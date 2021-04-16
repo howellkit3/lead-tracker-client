@@ -128,7 +128,7 @@ export class Dashboard extends Component {
 
   render() {
     return (
-      <div className="ui stackable four column grid" style={{ minHeight: '92.3vh', margin: 0, marginLeft: '75px', marginRight: '75px', backgroundColor: 'red' }}>
+      <div className="ui stackable four column grid" style={{ minHeight: '92.3vh', margin: 0, backgroundColor: 'red' }}>
         <div className="sixteen wide column" style={{ backgroundColor: 'white', paddingTop: 32 }}>
           <h3 style={{ color: '#7f8c8d', fontWeight: 300, margin: 0 }}>
             Overview
@@ -137,7 +137,7 @@ export class Dashboard extends Component {
             Dashboard
           </h1>
 
-          <div className="sixteen wide column left aligned" style={{ paddingTop: '2%', backgroundColor: '#FFFF' }}>
+          <div className="sixteen wide column center aligned" style={{ paddingTop: '2%', backgroundColor: '#FFFF' }}>
             {this.createTabs()}
           </div>
           <div className="sixteen wide column left aligned" style={{ paddingTop: '3%', backgroundColor: '#FFFF' }}>
