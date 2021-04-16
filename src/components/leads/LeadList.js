@@ -22,8 +22,8 @@ class LeadList extends React.Component {
   renderAdmin(lead) {
     return (
       <p className="right floated content">
-        <Link to={`/leads/edit/${lead.id}`} className="ui button primary" >Edit</Link>
-        <Link to={`/leads/delete/${lead.id}`} className="ui button negative" >Delete</Link>
+        <Link to={`/leads/edit/${lead.id}`} className="fluid ui tiny button primary" >Edit</Link>
+        <Link to={`/leads/delete/${lead.id}`} className="fluid ui tiny button negative" >Delete</Link>
       </p>
     );
   }
@@ -180,8 +180,8 @@ class LeadList extends React.Component {
   renderTable(data) {
     if (data[0] != undefined) {
       return (
-        <table className="ui fixed striped celled table">
-          <thead className="full-width">
+        <table className="ui compact striped celled table">
+          <thead className="center aligned">
             <tr>
               {/* <th>Lead ID</th> */}
               <th>Agent</th>
@@ -190,7 +190,7 @@ class LeadList extends React.Component {
               <th>Title Company</th>
               <th>EMD</th>
               <th>Renovation</th>
-              <th>Renv. Remarks</th>
+              <th>Renovation Remarks</th>
               <th>Vacant</th>
               <th>With Contract</th>
               <th>Lead Source</th>
@@ -229,7 +229,7 @@ class LeadList extends React.Component {
     let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
 
     return (
-      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '25px', marginRight: '25px', paddingTop: 24 }}>
+      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '24px', marginRight: '24px',  paddingTop: 24 }}>
         <div className="four wide column">
           <h1>Inventory</h1>
 
