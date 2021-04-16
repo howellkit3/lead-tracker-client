@@ -24,7 +24,7 @@ class LenderEdit extends React.Component {
           <h2 className="ui dividing header">Edit a Lender</h2>
           <div className="field" style={{ marginTop: '5%' }}>
             <LenderForm
-              initialValues={_.pick(this.props.lender, 'lender_name')}
+              initialValues={_.pick(this.props.lender, 'lender_name', 'point_of_contact')}
               onSubmit={this.onSubmit} />
           </div>
         </div>

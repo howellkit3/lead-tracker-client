@@ -24,7 +24,7 @@ class ContractorEdit extends React.Component {
           <h2 className="ui dividing header">Edit a Contractor</h2>
           <div className="field" style={{ marginTop: '5%' }}>
             <ContractorForm
-              initialValues={_.pick(this.props.contractor, 'contractor_name')}
+              initialValues={_.pick(this.props.contractor, 'contractor_name', 'contact_number')}
               onSubmit={this.onSubmit} />
           </div>
         </div>
