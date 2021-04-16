@@ -7,15 +7,15 @@ class LeadForm extends React.Component {
       { name: 'agent_id', label: 'Agent:', type: 'select', category: 'agents' },
       { name: 'titleCompany', label: 'Company Title:', type: 'text', category: '' },
       { name: 'address', label: 'Address:', type: 'text', category: '' },
-      { name: 'address_type', label: 'Type:', type: 'select', category: 'addressType' },
+      { name: 'address_type', label: 'Address Type:', type: 'select', category: 'addressType' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
       { name: 'renovation', label: 'Renovation:', type: 'text', category: '' },
       { name: 'vacantDate', label: 'Vacant Date:', type: 'date', category: '' },
       { name: 'leadSource', label: 'Lead Source:', type: 'text', category: '' },
-      { name: 'isUnderRenovation', label: 'Under Renovation:', type: 'checkbox', category: '' },
-      { name: 'isVacant', label: 'Vacant:', type: 'checkbox', category: '' },
-      { name: 'isAssignedToContract', label: 'Assigned To Contract:', type: 'checkbox', category: '' },
-      { name: 'isClosed', label: 'Is closed', type: 'checkbox', category: '' },
+      { name: 'isUnderRenovation', label: 'Under Renovation?', type: 'checkbox', category: '' },
+      { name: 'isVacant', label: 'Vacant?', type: 'checkbox', category: '' },
+      { name: 'isAssignedToContract', label: 'Assigned To Contract?', type: 'checkbox', category: '' },
+      { name: 'isClosed', label: 'Is closed?', type: 'checkbox', category: '' },
       { name: 'lender_id', label: 'Lender:', type: 'select', category: 'lenders' },
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
       { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
@@ -60,7 +60,7 @@ class LeadForm extends React.Component {
       return (
         <div key={key} className={className}>
           <label>{label}</label>
-          <select className="ui search dropdown" {...input} autoComplete="off" >
+          <select {...input} autoComplete="off" >
             <option default value="">Select Address Type</option>
             <option value="1">Construction</option>
             <option value="2">On Market</option>
@@ -75,7 +75,7 @@ class LeadForm extends React.Component {
         <div key={key} className={className}>
           <label>{label}</label>
           <select {...input} autoComplete="off" >
-            <option default value="">Select Earnest Money Deposit </option>
+            <option default value="">Select Earnest Money Deposit</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             <option value="?">?</option>
@@ -115,10 +115,10 @@ class LeadForm extends React.Component {
     return (
       <div key={key} className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete="off" type="checkbox" checked={value} />
+        <input {...input} autoComplete="off" type="checkbox" checked={value} style={{ marginTop: '4px', marginLeft: '4px', transform: 'scale(1.5)' }} />
         {this.renderError(meta)}
       </div>
-    
+
     );
   };
 
@@ -133,7 +133,7 @@ class LeadForm extends React.Component {
         <div className="sixteen wide column">
           <div className="ui segment">
             <form
-            style={{fontSize: '1.9vh'}}
+              style={{ fontSize: '1.9vh' }}
               onSubmit={this.props.handleSubmit(this.onSubmit)}
               className="ui form error">
               <div className="ui stackable grid">
