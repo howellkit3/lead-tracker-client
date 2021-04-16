@@ -24,7 +24,7 @@ class AgentList extends React.Component {
       if (agent.id) {
         return (
           <tr key={agent.id}>
-            <td>{agent.first_name} {agent.middle_name}, {agent.last_name}</td>
+            <td>{agent.first_name} {agent.middle_name} {agent.last_name}</td>
             <td>{agent.email} </td>
             <td className="right aligned">{this.renderAdmin(agent)}</td>
           </tr>

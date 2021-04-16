@@ -141,9 +141,9 @@ export class Dashboard extends Component {
             {this.createTabs()}
           </div>
           <div className="sixteen wide column left aligned" style={{ paddingTop: '3%', backgroundColor: '#FFFF' }}>
-          <h2 style={{ fontWeight: 700, marginBottom: '25px' }}>
+          {/* <h2 style={{ fontWeight: 700, marginBottom: '25px' }}>
             Reporting Tabs
-          </h2>
+          </h2> */}
             {this.createReportTabs()}
           </div>
         </div>
