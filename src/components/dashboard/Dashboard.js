@@ -34,7 +34,7 @@ export class Dashboard extends Component {
       {
         this.category.map((cat) => {
           return <Link key={cat.title} to={`/${cat.title}`}>
-            <div className={`ui link ${cat.color} cards`}>
+            <div className={`ui link ${cat.color} cards`} style={{marginTop: '5px', marginBottom: '5px'}}>
               <div className="card">
                 <div className="content">
                   <i className={`left floated huge ${cat.icon} icon ${cat.color} circular`}></i>
@@ -71,7 +71,7 @@ export class Dashboard extends Component {
       {
         this.reportTabs.map((cat) => {
           return <Link key={cat.title} to={`/${cat.title}`} className="centered">
-            <div className={`ui link ${cat.color} cards`}>
+            <div className={`ui link ${cat.color} cards`} style={{marginTop: '5px', marginBottom: '5px'}}>
               <div className="card">
                 <div className="content">
                   <div className={`ui ${cat.color} statistic circular`} >
@@ -141,6 +141,9 @@ export class Dashboard extends Component {
             {this.createTabs()}
           </div>
           <div className="sixteen wide column left aligned" style={{ paddingTop: '3%', backgroundColor: '#FFFF' }}>
+          <h2 style={{ fontWeight: 700, marginBottom: '25px' }}>
+            Reporting Tabs
+          </h2>
             {this.createReportTabs()}
           </div>
         </div>
