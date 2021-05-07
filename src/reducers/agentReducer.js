@@ -13,7 +13,7 @@ const agentReducer = (state = {}, action) => {
     case FETCH_AGENT:
     case CREATE_AGENT:
     case EDIT_AGENT:
-      return { ...state, ..._.mapKeys(action.payload, 'id') };
+      return { ...state, ..._.mapKeys(action.payload, '_id') };
       // return { ...state, [action.payload.id]: action.payload };
       // return { ...state, [action.payload.id]: action.payload };
       // return { ...state, [action.payload.id]: action.payload };

@@ -311,23 +311,23 @@ export const createAddress = formValues => async dispatch => {
 }
 
 export const fetchAddresses = () => async dispatch => {
-  const options = {
-    headers: {
-      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
-    } 
-  }
-  const response = await api.get('getAllData/addresses', options);
-  dispatch({ type: FETCH_ADDRESSES, payload: response.data });
+  // const options = {
+  //   headers: {
+  //     'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+  //   } 
+  // }
+  // const response = await api.get('getAllData/addresses', options);
+  // dispatch({ type: FETCH_ADDRESSES, payload: response.data });
 };
 
 export const fetchAddress = (id) => async dispatch => {
-  const options = {
-    headers: {
-      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
-    } 
-  }
-  const response = await api.get(`getData/addresses/${id}`, options)
-  dispatch( {type: FETCH_ADDRESS, payload: response.data});
+  // const options = {
+  //   headers: {
+  //     'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+  //   } 
+  // }
+  // const response = await api.get(`getData/addresses/${id}`, options)
+  // dispatch( {type: FETCH_ADDRESS, payload: response.data});
 }
 
 export const editAddress = (id, formValues) => async dispatch => {

@@ -13,8 +13,8 @@ class LenderList extends React.Component {
   renderAdmin(lender) {
     return (
       <div className="right floated content">
-        <Link to={`/lenders/edit/${lender.id}`} className="ui button primary">Edit</Link>
-        <Link to={`/lenders/delete/${lender.id}`} className="ui button negative">Delete</Link>
+        <Link to={`/lenders/edit/${lender._id}`} className="ui button primary">Edit</Link>
+        <Link to={`/lenders/delete/${lender._id}`} className="ui button negative">Delete</Link>
       </div>
     );
   }
@@ -22,9 +22,9 @@ class LenderList extends React.Component {
   renderList() {
 
     return this.props.lenders.map(lender => {
-      if (lender.id) {
+      if (lender._id) {
         return (
-          <tr key={lender.id}>
+          <tr key={lender._id}>
             <td>{lender.lender_name}</td>
             <td>{lender.point_of_contact}</td>
             <td className="right aligned">{this.renderAdmin(lender)}</td>

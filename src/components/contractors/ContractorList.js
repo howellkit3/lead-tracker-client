@@ -13,17 +13,17 @@ class ContractorList extends React.Component {
   renderAdmin(contractor) {
     return (
       <div className="left floated content">
-        <Link to={`/contractors/edit/${contractor.id}`} className="ui button primary">Edit</Link>
-        <Link to={`/contractors/delete/${contractor.id}`} className="ui button negative">Delete</Link>
+        <Link to={`/contractors/edit/${contractor._id}`} className="ui button primary">Edit</Link>
+        <Link to={`/contractors/delete/${contractor._id}`} className="ui button negative">Delete</Link>
       </div>
     );
   }
 
   renderList() {
     return this.props.contractors.map(contractor => {
-      if (contractor.id) {
+      if (contractor._id) {
         return (
-          <tr key={contractor.id}>
+          <tr key={contractor._id}>
             <td>{contractor.contractor_name}</td>
             <td>{contractor.contact_number}</td>
             <td className="right aligned">{this.renderAdmin(contractor)}</td>

@@ -93,7 +93,7 @@ class LeadForm extends React.Component {
               const data = this.props[category][id];
               if (data.first_name !== undefined
                 || data.lender_name !== undefined || data.contractor_name !== undefined) {
-                return <option key={data.id} value={data.id}>
+                return <option key={data._id} value={data._id}>
                   {category === 'agents' && `${data.first_name} ${data.middle_name} ${data.last_name}`}
                   {category === 'lenders' && `${data.lender_name}`}
                   {category === 'contractors' && `${data.contractor_name}`}
