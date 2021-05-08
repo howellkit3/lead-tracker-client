@@ -13,17 +13,17 @@ class AgentList extends React.Component {
   renderAdmin(agent) {
     return (
       <div className="right floated content">
-        <Link to={`/agents/edit/${agent.id}`} className="ui button primary">Edit</Link>
-        <Link to={`/agents/delete/${agent.id}`} className="ui button negative">Delete</Link>
+        <Link to={`/agents/edit/${agent._id}`} className="ui button primary">Edit</Link>
+        <Link to={`/agents/delete/${agent._id}`} className="ui button negative">Delete</Link>
       </div>
     );
   }
 
   renderList() {
     return this.props.agents.map(agent => {
-      if (agent.id) {
+      if (agent._id) {
         return (
-          <tr key={agent.id}>
+          <tr key={agent._id}>
             <td>{agent.first_name} {agent.middle_name} {agent.last_name}</td>
             <td>{agent.email} </td>
             <td className="right aligned">{this.renderAdmin(agent)}</td>

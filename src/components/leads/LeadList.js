@@ -22,8 +22,8 @@ class LeadList extends React.Component {
   renderAdmin(lead) {
     return (
       <p className="right floated content">
-        <Link to={`/leads/edit/${lead.id}`} className="fluid ui tiny button primary" >Edit</Link>
-        <Link to={`/leads/delete/${lead.id}`} className="fluid ui tiny button negative" >Delete</Link>
+        <Link to={`/leads/edit/${lead._id}`} className="fluid ui tiny button primary" >Edit</Link>
+        <Link to={`/leads/delete/${lead._id}`} className="fluid ui tiny button negative" >Delete</Link>
       </p>
     );
   }
@@ -32,7 +32,7 @@ class LeadList extends React.Component {
     let processedData;
     if (this.props.match.params) {
       processedData = [...Object.keys({ ...this.props.leads })].sort((a, b) => {
-        switch (+this.props.match.params.id) {
+        switch (+this.props.match.params._id) {
           case 0:
           case 1:
             return new Date(this.props.leads[a].estimatedFinishDate) - new Date(this.props.leads[b].estimatedFinishDate);
@@ -87,7 +87,7 @@ class LeadList extends React.Component {
       const lead = this.props.leads[lead1];
       if (lead.leadNumber != undefined) {
         return (
-          <tr key={lead.id}>
+          <tr key={lead._id}>
             {/* <td>{lead.leadNumber}</td> */}
             <td>{lead.agentData}</td>
             <td className={this.manageColor(lead.address_type, 'address')}>{lead.address}</td>

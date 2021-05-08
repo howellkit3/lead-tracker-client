@@ -10,13 +10,13 @@ import {
 const leadReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_LEADS:
-      return { ...state, ..._.mapKeys(action.payload, 'id') }
+      return { ...state, ..._.mapKeys(action.payload, '_id') }
     case FETCH_LEAD:
-      return { ...state, ..._.mapKeys(action.payload, 'id')};
+      return { ...state, ..._.mapKeys(action.payload, '_id')};
     case CREATE_LEAD:
-      return { ...state, ..._.mapKeys(action.payload, 'id')};
+      return { ...state, ..._.mapKeys(action.payload, '_id')};
     case EDIT_LEAD:
-      return { ...state, ..._.mapKeys(action.payload, 'id')};
+      return { ...state, ..._.mapKeys(action.payload, '_id')};
     case DELETE_LEAD:
       return _.omit(state, action.payload);
     default:
