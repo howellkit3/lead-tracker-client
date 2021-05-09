@@ -208,6 +208,7 @@ class LeadList extends React.Component {
           <tfoot>
             <tr>
               <th colSpan="15">
+                <span>Address Type: </span>
                 <a class="ui blue circular label">On Market</a>
                 <a class="ui green circular label">Lis Pendens</a>
                 <a class="ui yellow circular label">Construction</a>
@@ -229,7 +230,7 @@ class LeadList extends React.Component {
     let data = processedData.slice((this.state.activePage * this.state.itemPerPage) - this.state.itemPerPage, this.state.itemPerPage * this.state.activePage)
 
     return (
-      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '24px', marginRight: '24px',  paddingTop: 24 }}>
+      <div className="ui stackable four column grid" style={{ margin: 0, marginLeft: '24px', marginRight: '24px', paddingTop: 24 }}>
         <div className="four wide column">
           <h1>Inventory</h1>
 

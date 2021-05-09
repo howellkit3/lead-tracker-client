@@ -9,12 +9,12 @@ class LeadForm extends React.Component {
       { name: 'address', label: 'Address:', type: 'text', category: '' },
       { name: 'address_type', label: 'Address Type:', type: 'select', category: 'addressType' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
-      { name: 'renovation', label: 'Renovation:', type: 'text', category: '' },
+      { name: 'renovation', label: 'Renovation Remarks:', type: 'text', category: '' },
       { name: 'vacantDate', label: 'Vacant Date:', type: 'date', category: '' },
       { name: 'leadSource', label: 'Lead Source:', type: 'text', category: '' },
+      { name: 'isAssignedToContract', label: 'Assigned To Contract?', type: 'checkbox', category: '' },
       { name: 'isUnderRenovation', label: 'Under Renovation?', type: 'checkbox', category: '' },
       { name: 'isVacant', label: 'Vacant?', type: 'checkbox', category: '' },
-      { name: 'isAssignedToContract', label: 'Assigned To Contract?', type: 'checkbox', category: '' },
       { name: 'isClosed', label: 'Is closed?', type: 'checkbox', category: '' },
       { name: 'lender_id', label: 'Lender:', type: 'select', category: 'lenders' },
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
@@ -137,7 +137,7 @@ class LeadForm extends React.Component {
               onSubmit={this.props.handleSubmit(this.onSubmit)}
               className="ui form error">
               <div className="ui stackable grid">
-                { this.fields.map((field, index) => {
+                {this.fields.map((field, index) => {
                   return <Field name={field.name}
                     key={index}
                     label={field.label}
@@ -164,9 +164,9 @@ const validate = (formValues) => {
   // if(!formValues.titleCompany) { errors.titleCompany = 'You must enter a value'; } 
   // if(!formValues.vacantDate) { errors.vacantDate = 'You must enter a value'; } 
   // if(!formValues.leadSource) { errors.leadSource = 'You must enter a value'; } 
-  // if(!formValues.lender_id) { errors.lender_id = 'You must enter a value'; } 
+  if (formValues.lender_id === undefined) { errors.lender_id = 'You must enter a value'; }
   // if(!formValues.estimatedFinishDate) { errors.estimatedFinishDate = 'You must enter a value'; } 
-  // if(!formValues.contract_id) { errors.contract_id = 'You must enter a value'; } 
+  if (formValues.contractor_id === undefined) { errors.contractor_id = 'You must enter a value'; }
   // if(!formValues.closeDate) { errors.closeDate = 'You must enter a value'; }
   // if(!formValues.hasEarnestMoneyDeposit) formValues.hasEarnestMoneyDeposit = false; 
   // if(!formValues.isUnderRenovation) formValues.isUnderRenovation = false; 
