@@ -5,7 +5,7 @@ class LeadForm extends React.Component {
     super();
     this.fields = [
       { name: 'agent_id', label: 'Agent:', type: 'select', category: 'agents' },
-      { name: 'titleCompany', label: 'Company Title:', type: 'text', category: '' },
+      { name: 'titleCompany', label: 'Title Company:', type: 'text', category: '' }, //connect new module for Title Company, change to dropdown
       { name: 'address', label: 'Address:', type: 'text', category: '' },
       { name: 'address_type', label: 'Address Type:', type: 'select', category: 'addressType' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
@@ -19,7 +19,11 @@ class LeadForm extends React.Component {
       { name: 'lender_id', label: 'Lender:', type: 'select', category: 'lenders' },
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
       { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
-      { name: 'closeDate', label: 'Closing Date:', type: 'date', category: '' }
+      { name: 'closeDate', label: 'Closing Date:', type: 'date', category: '' },
+      { name: 'holback', label: 'Holdback:', type: 'text', category: '' }, //add in backend
+      { name: 'deposit', label: 'Deposit:', type: 'text', category: '' }, //add in backend
+      { name: 'lastTimeSpoken', label: 'Last time seller spoken to:', type: 'date', category: '' }, //add in backend
+      { name: 'notes', label: 'Notes:', type: 'text', category: '' } //add in backend
     ];
   }
   renderError({ error, touched }) {

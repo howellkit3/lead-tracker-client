@@ -64,7 +64,7 @@ class LenderList extends React.Component {
               <tr>
                 <th>Company</th>
                 <th>Point of Contact</th>
-                <th className="right aligned">Action</th>
+                <th className="right aligned">Actions</th>
               </tr>
             </thead>
             <tbody>

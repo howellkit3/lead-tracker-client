@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 
-class ContractorForm extends React.Component {
+class TitleCompanyForm extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -32,8 +32,11 @@ class ContractorForm extends React.Component {
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error">
-        <Field name="contractor_name"
-          label="Enter Contractor Name"
+        <Field name="titleCompany_name"
+          label="Enter Title Company"
+          component={this.renderInput} />
+        <Field name="titleCompany_contactPerson"
+          label="Contact Person"
           component={this.renderInput} />
         <button className="ui button primary">Submit</button>
       </form>
@@ -43,13 +46,13 @@ class ContractorForm extends React.Component {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.contractor_name) {
-    errors.contractor_name = 'You must enter a contactor name';
+  if (!formValues.lender_name) {
+    errors.LenderForm = 'You must enter a lender name';
   }
   return errors;
 }
 
 export default reduxForm({
-  form: 'contractorForm',
+  form: 'titleCompanyForm',
   validate
-})(ContractorForm);
+})(TitleCompanyForm);

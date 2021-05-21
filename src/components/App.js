@@ -31,6 +31,11 @@ import LeadEdit from './leads/LeadEdit'
 import LeadDelete from './leads/LeadDelete'
 import LeadList from './leads/LeadList'
 
+// import TitleCompanyCreate from './titleCompany/TitleCompanyCreate'
+// import TitleCompanyEdit from './titleCompany/TitleCompanyEdit'
+// import TitleCompanyDelete from './titleCompany/TitleCompanyDelete'
+// import TitleCompanyList from './titleCompany/TitleCompanyList'
+
 import Dashboard from './dashboard/Dashboard'
 
 import Header from './Header';
@@ -66,6 +71,11 @@ const App = (props) => {
                     <ProtectedApp path="/agents/new" exact user={props.isSignedIn} component={AgentCreate} />
                     <ProtectedApp path="/agents/edit/:id" exact user={props.isSignedIn} component={AgentEdit} />
                     <ProtectedApp path="/agents/delete/:id" exact user={props.isSignedIn} component={AgentDelete} />
+
+                    {/* <ProtectedApp path="/titleCompany" exact user={props.isSignedIn} component={TitleCompanyList} />
+                    <ProtectedApp path="/titleCompany/new" exact user={props.isSignedIn} component={TitleCompanyCreate} />
+                    <ProtectedApp path="/titleCompany/edit/:id" exact user={props.isSignedIn} component={TitleCompanyEdit} />
+                    <ProtectedApp path="/titleCompany/delete/:id" exact user={props.isSignedIn} component={TitleCompanyDelete} /> */}
 
                     <ProtectedApp path="/leads" exact user={props.isSignedIn} component={LeadList} />
                     <ProtectedApp path="/leads/sort/:id" exact user={props.isSignedIn} component={LeadList} />

@@ -94,15 +94,19 @@ class LeadList extends React.Component {
             <td>{this.manageAddressType(lead.address_type)}</td>
             <td>{lead.titleCompany}</td>
             <td>{lead.hasEarnestMoneyDeposit}</td>
-            <td className={this.manageColor(lead.isUnderRenovation, 'checkbox')}>{lead.isUnderRenovation ? 'Yes' : 'No'}</td>
+            <td>{lead.isUnderRenovation ? 'Yes' : 'No'}</td>
             <td>{lead.renovation}</td>
-            <td className={this.manageColor(lead.isVacant, 'checkbox')}>{lead.isVacant ? 'Yes' : 'No'}</td>
-            <td className={this.manageColor(lead.isAssignedToContract, 'checkbox')}>{lead.isAssignedToContract ? 'Yes' : 'No'}</td>
+            <td>{lead.isVacant ? 'Yes' : 'No'}</td>
+            <td>{lead.isAssignedToContract ? 'Yes' : 'No'}</td>
             <td>{lead.leadSource}</td>
             <td>{lead.lenderData['lender_name']}</td>
             <td>{lead.estimatedFinishDate}</td>
             <td>{lead.contractorData['contractor_name']}</td>
             <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
+            <td>'holdback'</td>
+            <td>'deposit'</td>
+            <td>'lastTimeSpoken'</td>
+            <td>'notes'</td>
             <td>{this.renderAdmin(lead)}</td>
           </tr>
         );
@@ -195,9 +199,13 @@ class LeadList extends React.Component {
               <th>With Contract</th>
               <th>Lead Source</th>
               <th>Lender</th>
-              <th>Est. Finish</th>
+              <th>Est. Const. Finish</th>
               <th>Contractor</th>
-              <th>Close of Escrow</th>
+              <th>COE</th>
+              <th>Holdback</th>
+              <th>Deposit</th>
+              <th>Spoken to Seller</th>
+              <th>Notes</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -207,11 +215,12 @@ class LeadList extends React.Component {
           {/* PAGINATION PART */}
           <tfoot>
             <tr>
-              <th colSpan="15">
+              <th colSpan="19">
                 <span>Address Type: </span>
                 <a class="ui blue circular label">On Market</a>
                 <a class="ui green circular label">Lis Pendens</a>
                 <a class="ui yellow circular label">Construction</a>
+                <a class="ui brown circular label">Assignment</a>
                 <a class="ui red circular label">Problem</a>
                 <div className="ui right floated pagination menu">
                   {this.renderLimit()}

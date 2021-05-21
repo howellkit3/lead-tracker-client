@@ -355,3 +355,5 @@ export const deleteAddress = (id) => async dispatch => {
   dispatch({ type: DELETE_ADDRESS, payload: id });
   history.push('/addresses');
 }
+
+//TODO ADD TITLE COMPANY

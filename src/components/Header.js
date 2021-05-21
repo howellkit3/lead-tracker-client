@@ -37,6 +37,9 @@ const Header = ({ user, ...props }) => {
           <Link to="/lenders" className="item" style={{ color: '#FFFF' }}>
             Lenders
           </Link>
+          <Link to="/titleCompany" className="item" style={{ color: '#FFFF' }}>
+            Title Company
+          </Link>
           <GoogleAuth />
         </div>
       </div>
