@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchTitleCompany } from '../../actions';
+import { fetchTitleCompanies } from '../../actions';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 class TitleCompanyList extends React.Component {
   componentDidMount() {
-    this.props.fetchTitleCompany();
+    this.props.fetchTitleCompanies();
   }
 
   renderAdmin(titleCompany) {
     return (
       <div className="right floated content">
-        <Link to={`/titleCompany/edit/${titleCompany._id}`} className="ui button primary">Edit</Link>
-        <Link to={`/titleCompany/delete/${titleCompany._id}`} className="ui button negative">Delete</Link>
+        <Link to={`/title_companies/edit/${titleCompany._id}`} className="ui button primary">Edit</Link>
+        <Link to={`/title_companies/delete/${titleCompany._id}`} className="ui button negative">Delete</Link>
       </div>
     );
   }
@@ -25,8 +25,8 @@ class TitleCompanyList extends React.Component {
       if (titleCompany._id) {
         return (
           <tr key={titleCompany._id}>
-            <td>{titleCompany.titleCompany_name}</td>
-            <td>{titleCompany.titleCompany_contactPerson}</td>
+            <td>{titleCompany.name}</td>
+            <td>{titleCompany.contact_person}</td>
             <td className="right aligned">{this.renderAdmin(titleCompany)}</td>
           </tr>
         );
@@ -40,7 +40,7 @@ class TitleCompanyList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div>
-          <Link to="/titleCompany/new" className="ui button primary">
+          <Link to="/title_companies/new" className="ui button primary">
             Add a Title Company
               </Link>
         </div>
@@ -79,7 +79,7 @@ class TitleCompanyList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    titleCompany: Object.values(state.titleCompany).reverse(),
+    titleCompany: Object.values(state.title_companies).reverse(),
     isSignedIn: state.auth.isSignedIn
   };
 };
@@ -87,5 +87,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchTitleCompany }
+  { fetchTitleCompanies }
 )(TitleCompanyList);

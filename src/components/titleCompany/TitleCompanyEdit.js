@@ -24,7 +24,7 @@ class TitleCompanyEdit extends React.Component {
           <h2 className="ui dividing header">Edit a Title Company</h2>
           <div className="field" style={{ marginTop: '5%' }}>
             <TitleCompanyForm
-              initialValues={_.pick(this.props.titleCompany, 'titleCompany_name', 'titleCompany_contactPerson')}
+              initialValues={_.pick(this.props.titleCompany, 'name', 'contact_person')}
               onSubmit={this.onSubmit} />
           </div>
         </div>
@@ -34,7 +34,7 @@ class TitleCompanyEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { titleCompany: state.titleCompany[ownProps.match.params.id] };
+  return { titleCompany: state.title_companies[ownProps.match.params.id] };
 }
 
 export default connect(

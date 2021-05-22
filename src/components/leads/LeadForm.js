@@ -5,7 +5,7 @@ class LeadForm extends React.Component {
     super();
     this.fields = [
       { name: 'agent_id', label: 'Agent:', type: 'select', category: 'agents' },
-      { name: 'titleCompany', label: 'Title Company:', type: 'text', category: '' }, //connect new module for Title Company, change to dropdown
+      { name: 'titleCompany_id', label: 'Title Company:', type: 'select', category: 'titleCompany' }, //connect new module for Title Company, change to dropdown
       { name: 'address', label: 'Address:', type: 'text', category: '' },
       { name: 'address_type', label: 'Address Type:', type: 'select', category: 'addressType' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
@@ -20,7 +20,7 @@ class LeadForm extends React.Component {
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
       { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
       { name: 'closeDate', label: 'Closing Date:', type: 'date', category: '' },
-      { name: 'holback', label: 'Holdback:', type: 'text', category: '' }, //add in backend
+      { name: 'holdback', label: 'Holdback:', type: 'text', category: '' }, //add in backend
       { name: 'deposit', label: 'Deposit:', type: 'text', category: '' }, //add in backend
       { name: 'lastTimeSpoken', label: 'Last time seller spoken to:', type: 'date', category: '' }, //add in backend
       { name: 'notes', label: 'Notes:', type: 'text', category: '' } //add in backend
@@ -70,6 +70,7 @@ class LeadForm extends React.Component {
             <option value="2">On Market</option>
             <option value="3">Problem</option>
             <option value="4">Lis Pendens</option>
+            <option value="5">Assignment</option>
           </select>
           {this.renderError(meta)}
         </div>
@@ -96,11 +97,12 @@ class LeadForm extends React.Component {
             {Object.keys(this.props[category]).map((id) => {
               const data = this.props[category][id];
               if (data.first_name !== undefined
-                || data.lender_name !== undefined || data.contractor_name !== undefined) {
+                || data.lender_name !== undefined || data.contractor_name !== undefined || data.name !== undefined) {
                 return <option key={data._id} value={data._id}>
                   {category === 'agents' && `${data.first_name} ${data.middle_name} ${data.last_name}`}
                   {category === 'lenders' && `${data.lender_name}`}
                   {category === 'contractors' && `${data.contractor_name}`}
+                  {category === 'titleCompany' && `${data.name}`}
                 </option>
               }
               return null;
@@ -171,6 +173,7 @@ const validate = (formValues) => {
   if (formValues.lender_id === undefined) { errors.lender_id = 'You must enter a value'; }
   // if(!formValues.estimatedFinishDate) { errors.estimatedFinishDate = 'You must enter a value'; } 
   if (formValues.contractor_id === undefined) { errors.contractor_id = 'You must enter a value'; }
+  if (formValues.titleCompany_id === undefined) { errors.titleCompany_id = 'You must enter a value'; }
   // if(!formValues.closeDate) { errors.closeDate = 'You must enter a value'; }
   // if(!formValues.hasEarnestMoneyDeposit) formValues.hasEarnestMoneyDeposit = false; 
   // if(!formValues.isUnderRenovation) formValues.isUnderRenovation = false; 

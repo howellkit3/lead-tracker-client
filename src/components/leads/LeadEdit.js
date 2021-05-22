@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editLead, fetchLeads, fetchContractors, fetchLenders, fetchAgents } from '../../actions'
+import { editLead, fetchLeads, fetchContractors, fetchLenders, fetchAgents, fetchTitleCompanies } from '../../actions'
 import LeadForm from './LeadForm';
 
 class LeadEdit extends React.Component {
   componentWillMount() {
-    const { fetchLeads, fetchAgents, fetchContractors, fetchLenders } = this.props;
+    const { fetchLeads, fetchAgents, fetchContractors, fetchLenders, fetchTitleCompanies } = this.props;
     fetchLeads();
     fetchAgents();
     fetchContractors();
     fetchLenders();
+    fetchTitleCompanies();
   }
 
 
@@ -40,6 +41,7 @@ class LeadEdit extends React.Component {
               agents={this.props.agents}
               contractors={this.props.contractors}
               lenders={this.props.lenders}
+              titleCompany={this.props.titleCompany}
               onSubmit={this.onSubmit} />
           </div>
         </div>
@@ -53,8 +55,9 @@ const mapStateToProps = (state, ownProps) => {
     lead: state.leads[ownProps.match.params.id],
     agents: state.agents,
     contractors: state.contractors,
+    titleCompany: state.title_companies,
     lenders: state.lenders
   }
 }
 
-export default connect(mapStateToProps, { editLead, fetchLeads, fetchAgents, fetchContractors, fetchLenders })(LeadEdit)
+export default connect(mapStateToProps, { editLead, fetchLeads, fetchAgents, fetchContractors, fetchLenders, fetchTitleCompanies })(LeadEdit)

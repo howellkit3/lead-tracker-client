@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchLeads, fetchContractors, fetchLenders, fetchAgents, fetchAddresses } from '../../actions';
+import { fetchLeads, fetchContractors, fetchLenders, fetchAgents, fetchAddresses, fetchTitleCompanies } from '../../actions';
 
 export class Dashboard extends Component {
   constructor() {
@@ -10,7 +10,8 @@ export class Dashboard extends Component {
       { title: "leads", label: "Inventory", color: "blue", icon: "file" },
       { title: "agents", label: "Agents", color: "blue", icon: "user" },
       { title: "contractors", label: "Contractors", color: "blue", icon: "building" },
-      { title: "lenders", label: "Lenders", color: "blue", icon: "briefcase" }
+      { title: "lenders", label: "Lenders", color: "blue", icon: "briefcase" },
+      { title: "title_companies", label: "Title Companies", color: "blue", icon: "briefcase" }
     ]
     this.reportTabs = [
       { title: "leads/sort/0", label: "Closed Transaction", color: "green", category: 2 },
@@ -21,12 +22,13 @@ export class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders } = this.props;
+    const { fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders, fetchTitleCompanies } = this.props;
     fetchLeads();
     fetchAddresses();
     fetchAgents();
     fetchContractors();
     fetchLenders();
+    fetchTitleCompanies();
   }
 
   createTabs() {
@@ -159,6 +161,7 @@ const mapStateToProps = state => {
     addresses: Object.values(state.addresses),
     agents: Object.values(state.agents),
     contractors: Object.values(state.contractors),
+    title_companies:  Object.values(state.title_companies),
     lenders: Object.values(state.lenders),
     isSignedIn: state.auth.isSignedIn
   };
@@ -167,5 +170,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders }
+  { fetchLeads, fetchAddresses, fetchAgents, fetchContractors, fetchLenders, fetchTitleCompanies }
 )(Dashboard);
