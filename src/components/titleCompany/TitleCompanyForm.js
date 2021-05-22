@@ -46,8 +46,8 @@ class TitleCompanyForm extends React.Component {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.lender_name) {
-    errors.LenderForm = 'You must enter a lender name';
+  if (!formValues.name) {
+    errors.name = 'You must enter a title company name';
   }
   return errors;
 }
