@@ -21,7 +21,7 @@ class TitleCompanyDelete extends React.Component {
         >
           Delete
         </button>
-        <Link to="/titleCompany" className="ui button">
+        <Link to="/title_companies" className="ui button">
           Cancel
         </Link>
       </React.Fragment>
@@ -33,7 +33,7 @@ class TitleCompanyDelete extends React.Component {
       return 'Are you sure you want to delete this title company?';
     }
 
-    return `Are you sure you want to delete the title company with name of: ${this.props.titleCompany.titleCompany_name
+    return `Are you sure you want to delete the title company with name of: ${this.props.titleCompany.name
       }`;
   }
 
@@ -43,14 +43,14 @@ class TitleCompanyDelete extends React.Component {
         title="Delete a Title Company"
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={() => history.push('/titleCompany')}
+        onDismiss={() => history.push('/title_companies')}
       />
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { titleCompany: state.titleCompany[ownProps.match.params.id] };
+  return { titleCompany: state.title_companies[ownProps.match.params.id] };
 };
 
 export default connect(

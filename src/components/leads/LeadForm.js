@@ -20,12 +20,20 @@ class LeadForm extends React.Component {
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
       { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
       { name: 'closeDate', label: 'Closing Date:', type: 'date', category: '' },
-      { name: 'holdback', label: 'Holdback:', type: 'text', category: '' }, //add in backend
-      { name: 'deposit', label: 'Deposit:', type: 'text', category: '' }, //add in backend
+      { name: 'holdback', label: 'Holdback:', type: 'text', category: 'number' }, //add in backend
+      { name: 'deposit', label: 'Deposit:', type: 'text', category: 'number' }, //add in backend
       { name: 'lastTimeSpoken', label: 'Last time seller spoken to:', type: 'date', category: '' }, //add in backend
       { name: 'notes', label: 'Notes:', type: 'text', category: '' } //add in backend
     ];
   }
+
+  normalizeAmount(value) {
+    if (!value) return value
+    if(value < 1) return value.replace(0, '');
+    return value.replace(/[^0-9.]/g, '')
+  }
+
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -36,7 +44,7 @@ class LeadForm extends React.Component {
     }
   }
 
-  renderInput = ({ input, key, label, meta, type }) => {
+  renderInput = ({ input, key, label, meta, type, category }) => {
     const className = `four wide computer column field ${meta.error && meta.touched ? 'error' : ''}`;
 
     if (input.name === 'leadNumber') {
@@ -47,6 +55,17 @@ class LeadForm extends React.Component {
           {this.renderError(meta)}
         </div>
       );
+    } else if(category === "number") {
+      return (
+        <div key={key} className={className}>
+          <label>{label}</label>
+          <div className="ui left icon input">
+            <i className="dollar sign icon" />
+            <input {...input} autoComplete="off" type={type}/>
+          </div>
+          {this.renderError(meta)}
+        </div>
+      )
     } else {
       return (
         <div key={key} className={className}>
@@ -149,6 +168,7 @@ class LeadForm extends React.Component {
                     label={field.label}
                     type={field.type}
                     category={field.category}
+                    normalize={field.category === "number" ? this.normalizeAmount : (value) => value}
                     component={field.type === "select" ? this.renderSelect : field.type === "checkbox" ? this.renderCheckbox : this.renderInput} />
                 })}
                 <div className="ten wide column field centered">

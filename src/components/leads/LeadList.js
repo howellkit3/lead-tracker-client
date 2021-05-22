@@ -107,8 +107,8 @@ class LeadList extends React.Component {
             <td>{lead.estimatedFinishDate}</td>
             <td>{lead.contractorData['contractor_name']}</td>
             <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
-            <td>{lead.holdback}</td>
-            <td>{lead.deposit}</td>
+            <td>${lead.holdback}</td>
+            <td>${lead.deposit}</td>
             <td>{lead.lastTimeSpoken}</td>
             <td>{lead.notes}</td>
             <td>{this.renderAdmin(lead)}</td>
@@ -221,11 +221,11 @@ class LeadList extends React.Component {
             <tr>
               <th colSpan="19">
                 <span>Address Type: </span>
-                <a class="ui blue circular label">On Market</a>
-                <a class="ui green circular label">Lis Pendens</a>
-                <a class="ui yellow circular label">Construction</a>
-                <a class="ui brown circular label">Assignment</a>
-                <a class="ui red circular label">Problem</a>
+                <a className="ui blue circular label">On Market</a>
+                <a className="ui green circular label">Lis Pendens</a>
+                <a className="ui yellow circular label">Construction</a>
+                <a className="ui brown circular label">Assignment</a>
+                <a className="ui red circular label">Problem</a>
                 <div className="ui right floated pagination menu">
                   {this.renderLimit()}
                   {this.renderPagination()}
