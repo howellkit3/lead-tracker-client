@@ -32,10 +32,10 @@ class TitleCompanyForm extends React.Component {
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error">
-        <Field name="titleCompany_name"
+        <Field name="name"
           label="Enter Title Company"
           component={this.renderInput} />
-        <Field name="titleCompany_contactPerson"
+        <Field name="contact_person"
           label="Contact Person"
           component={this.renderInput} />
         <button className="ui button primary">Submit</button>

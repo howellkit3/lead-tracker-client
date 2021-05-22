@@ -58,6 +58,8 @@ class LeadList extends React.Component {
       return "problem-red"
     } if (+type === 4 || +type === 'Yes') {
       return "lis-pendens-green"
+    } if (+type === 5 || +type === 'Yes') {
+      return "assignment-brown"
     } if (category === 'checkbox' && type) {
       return "lis-pendens-green"
     } if (category === 'checkbox' && !type) {
@@ -75,7 +77,9 @@ class LeadList extends React.Component {
     } if (+type === 3) {
       return "Problem"
     } if (+type === 4) {
-      return "Green"
+      return "Lis-Pendens"
+    } if (+type === 5) {
+      return "Assignment"
     } else {
       return null
     }
@@ -92,7 +96,7 @@ class LeadList extends React.Component {
             <td>{lead.agentData}</td>
             <td className={this.manageColor(lead.address_type, 'address')}>{lead.address}</td>
             <td>{this.manageAddressType(lead.address_type)}</td>
-            <td>{lead.titleCompany}</td>
+            <td>{lead.titleCompany_data.name}</td>
             <td>{lead.hasEarnestMoneyDeposit}</td>
             <td>{lead.isUnderRenovation ? 'Yes' : 'No'}</td>
             <td>{lead.renovation}</td>
@@ -103,10 +107,10 @@ class LeadList extends React.Component {
             <td>{lead.estimatedFinishDate}</td>
             <td>{lead.contractorData['contractor_name']}</td>
             <td>{lead.isClosed ? 'Closed' : lead.closeDate}</td>
-            <td>'holdback'</td>
-            <td>'deposit'</td>
-            <td>'lastTimeSpoken'</td>
-            <td>'notes'</td>
+            <td>{lead.holdback}</td>
+            <td>{lead.deposit}</td>
+            <td>{lead.lastTimeSpoken}</td>
+            <td>{lead.notes}</td>
             <td>{this.renderAdmin(lead)}</td>
           </tr>
         );
@@ -247,7 +251,7 @@ class LeadList extends React.Component {
         <div className="twelve wide column right aligned">
           {this.renderCreate()}
         </div>
-        <div className="sixteen wide column">
+        <div className="sixteen wide column" style={{overflowX: "auto"}}>
           {this.renderLoader(data)}
           {data != undefined ? this.renderTable(data) : null}
         </div>

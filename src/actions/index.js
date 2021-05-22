@@ -30,7 +30,12 @@ import {
   FETCH_LEAD,
   FETCH_LEADS,
   EDIT_LEAD,
-  DELETE_LEAD
+  DELETE_LEAD,
+  CREATE_TITLE_COMPANY,
+  FETCH_TITLE_COMPANY,
+  FETCH_TITLE_COMPANIES,
+  EDIT_TITLE_COMPANY,
+  DELETE_TITLE_COMPANY
 } from './types';
 
   export const signIn = userEmail => async dispatch => {
@@ -357,3 +362,64 @@ export const deleteAddress = (id) => async dispatch => {
 }
 
 //TODO ADD TITLE COMPANY
+
+export const createTitleCompany = formValues => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+  const response = await api.post('addNewData/title_companies', formValues, options);
+  toast.success("Company was successfully added!");
+  dispatch({ type: CREATE_TITLE_COMPANY, payload: response.data });
+  history.push('/title_companies');
+}
+
+export const fetchTitleCompanies = (params) => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  const response = await api.get('/getAllData/title_companies', options);
+  
+  dispatch({ type: FETCH_TITLE_COMPANIES, payload: response.data});
+}
+
+export const fetchTitleCompany = (id) => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  const response = await api.get(`/getData/title_companies/${id}`, options);
+  dispatch( {type: FETCH_TITLE_COMPANY, payload: response.data[0]});
+}
+
+export const editTitleCompany = (id, formValues) => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  const response = await api.put(`/updateData/title_companies/${id}`, formValues, options)
+  toast.success("Company was successfully updated!");
+  dispatch( {type: EDIT_TITLE_COMPANY, payload: response.data});
+  history.push('/title_companies');
+}
+
+export const deleteTitleCompany = (id) => async dispatch => {
+  const options = {
+    headers: {
+      'Authorization' : `Bearer ${sessionStorage.getItem('access_token')}`
+    } 
+  }
+
+  await api.delete(`deleteData/title_companies/${id}`, options);
+  toast.success("Company was successfully removed!");
+  dispatch({ type: DELETE_TITLE_COMPANY, payload: id });
+  history.push('/title_companies');
+}

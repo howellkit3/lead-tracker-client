@@ -1,15 +1,24 @@
 .construction-yellow {
-    background-color: #FCFFE0 ;
+    background-color: #fbbd08 ;
+    color: #FFFFFF;
 }
 
 .on-market-blue {
-    background-color: #C5EAFA ;
+    background-color: #2185d0 ;
+    color: #FFFFFF;
 }
 
 .problem-red {
-    background-color: #FDEAFD ;
+    background-color: #db2828 ;
+    color: #FFFFFF;
 }
 
 .lis-pendens-green {
-    background-color: #D2F8DF ;
+    background-color: #21ba45 ;
+    color: #FFFFFF;
+}
+
+.assignment-brown {
+    background-color: #a5673f ;
+    color: #FFFFFF;
 }
