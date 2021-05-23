@@ -7,7 +7,7 @@ class LeadForm extends React.Component {
       { name: 'agent_id', label: 'Agent:', type: 'select', category: 'agents' },
       { name: 'titleCompany_id', label: 'Title Company:', type: 'select', category: 'titleCompany' }, //connect new module for Title Company, change to dropdown
       { name: 'address', label: 'Address:', type: 'text', category: '' },
-      { name: 'address_type', label: 'Address Type:', type: 'select', category: 'addressType' },
+      { name: 'address_type', label: 'Property Type:', type: 'select', category: 'addressType' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
       { name: 'renovation', label: 'Renovation Remarks:', type: 'text', category: '' },
       { name: 'vacantDate', label: 'Vacant Date:', type: 'date', category: '' },
@@ -84,7 +84,7 @@ class LeadForm extends React.Component {
         <div key={key} className={className}>
           <label>{label}</label>
           <select {...input} autoComplete="off" >
-            <option default value="">Select Address Type</option>
+            <option default value="">Select Property Type</option>
             <option value="1">Construction</option>
             <option value="2">On Market</option>
             <option value="3">Problem</option>

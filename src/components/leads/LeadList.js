@@ -220,7 +220,7 @@ class LeadList extends React.Component {
           <tfoot>
             <tr>
               <th colSpan="19">
-                <span>Address Type: </span>
+                <span>Property Type: </span>
                 <a className="ui blue circular label">On Market</a>
                 <a className="ui green circular label">Lis Pendens</a>
                 <a className="ui yellow circular label">Construction</a>
