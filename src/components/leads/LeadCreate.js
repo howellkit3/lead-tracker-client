@@ -30,10 +30,10 @@ class LeadCreate extends React.Component {
   render() {
     return (
 
-      <div className="ui stackable two column grid" style={{ margin: 0, marginLeft: '25px', marginRight: '25px', paddingTop: 24 }}>
+      <div className="ui stackable two column grid" style={{ margin: 0, marginLeft: '25px', marginRight: '25px', paddingTop: 8 }}>
         <div className="sixteen wide column">
-          <h2 className="ui dividing header">Add new Record</h2>
-          <div className="field" style={{ marginTop: '2%', backgroundColor: 'white' }}>
+          <h2 className="ui header">Add new Record</h2>
+          <div className="field" style={{ backgroundColor: 'white' }}>
             <LeadForm
               addresses={this.props.addresses}
               agents={this.props.agents}
