@@ -94,8 +94,8 @@ class LeadForm extends React.Component {
             <option value="3">Problem</option>
             <option value="4">Lis Pendens</option>
             <option value="5">Assignment</option>
-            <option value="5">In Escrow to SELL</option>
-            <option value="5">In Escrow to BUY</option>
+            <option value="6">In Escrow to SELL</option>
+            <option value="7">In Escrow to BUY</option>
           </select>
           {this.renderError(meta)}
         </div>
