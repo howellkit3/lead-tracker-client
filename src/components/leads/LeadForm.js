@@ -5,7 +5,7 @@ class LeadForm extends React.Component {
     super();
     this.fields = [
       { name: 'agent_id', label: 'Agent:', type: 'select', category: 'agents' },
-      { name: 'titleCompany_id', label: 'Title Company:', type: 'select', category: 'titleCompany' }, //connect new module for Title Company, change to dropdown
+      { name: 'titleCompany_id', label: 'Title Company:', type: 'select', category: 'titleCompany' },
       { name: 'address', label: 'Address:', type: 'text', category: '' },
       { name: 'address_type', label: 'Property Type:', type: 'select', category: 'addressType' },
       { name: 'hasEarnestMoneyDeposit', label: 'Earnest Money Deposit:', type: 'select', category: 'emd' },
@@ -16,20 +16,24 @@ class LeadForm extends React.Component {
       { name: 'isUnderRenovation', label: 'Under Renovation?', type: 'checkbox', category: '' },
       { name: 'isVacant', label: 'Vacant?', type: 'checkbox', category: '' },
       { name: 'isClosed', label: 'Is closed?', type: 'checkbox', category: '' },
-      { name: 'lender_id', label: 'Lender:', type: 'select', category: 'lenders' },
+      { name: 'isSellerSigned', label: 'Seller signed?', type: 'checkbox', category: '' }, //add in backend
+      { name: 'isDaryllSigned', label: 'Daryll signed?', type: 'checkbox', category: '' }, //add in backend
+      { name: 'areLoanDocsIn', label: 'Loan Docs are in?', type: 'checkbox', category: '' }, //add in backend
       { name: 'estimatedFinishDate', label: 'Estimated Finish Date:', type: 'date', category: '' },
-      { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
+      { name: 'isContingentonSellers', label: 'Contingent on Sellers Finding Home?', type: 'checkbox', category: '' }, //add in backend
       { name: 'closeDate', label: 'Closing Date:', type: 'date', category: '' },
-      { name: 'holdback', label: 'Holdback:', type: 'text', category: 'number' }, //add in backend
-      { name: 'deposit', label: 'Deposit:', type: 'text', category: 'number' }, //add in backend
-      { name: 'lastTimeSpoken', label: 'Last time seller spoken to:', type: 'date', category: '' }, //add in backend
-      { name: 'notes', label: 'Notes:', type: 'text', category: '' } //add in backend
+      { name: 'contractor_id', label: 'Contractor:', type: 'select', category: 'contractors' },
+      { name: 'lender_id', label: 'Lender:', type: 'select', category: 'lenders' },
+      { name: 'holdback', label: 'Holdback:', type: 'text', category: 'number' },
+      { name: 'deposit', label: 'Deposit:', type: 'text', category: 'number' },
+      { name: 'lastTimeSpoken', label: 'Last time seller spoken to:', type: 'date', category: '' },
+      { name: 'notes', label: 'Notes:', type: 'text', category: '' },
     ];
   }
 
   normalizeAmount(value) {
     if (!value) return value
-    if(value < 1) return value.replace(0, '');
+    if (value < 1) return value.replace(0, '');
     return value.replace(/[^0-9.]/g, '')
   }
 
@@ -55,13 +59,13 @@ class LeadForm extends React.Component {
           {this.renderError(meta)}
         </div>
       );
-    } else if(category === "number") {
+    } else if (category === "number") {
       return (
         <div key={key} className={className}>
           <label>{label}</label>
           <div className="ui left icon input">
             <i className="dollar sign icon" />
-            <input {...input} autoComplete="off" type={type}/>
+            <input {...input} autoComplete="off" type={type} />
           </div>
           {this.renderError(meta)}
         </div>
@@ -158,7 +162,7 @@ class LeadForm extends React.Component {
         <div className="sixteen wide column">
           <div className="ui segment">
             <form
-              style={{ fontSize: '1.9vh' }}
+              style={{ fontSize: '1.9vh'}}
               onSubmit={this.props.handleSubmit(this.onSubmit)}
               className="ui form error">
               <div className="ui stackable grid">

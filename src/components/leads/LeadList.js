@@ -60,6 +60,10 @@ class LeadList extends React.Component {
       return "lis-pendens-green"
     } if (+type === 5 || +type === 'Yes') {
       return "assignment-brown"
+    } if (+type === 6 || +type === 'Yes') {
+      return "in-escrow-to-sell-violet"
+    } if (+type === 7 || +type === 'Yes') {
+      return "in-escrow-to-buy-purple"
     } if (category === 'checkbox' && type) {
       return "lis-pendens-green"
     } if (category === 'checkbox' && !type) {
@@ -80,6 +84,10 @@ class LeadList extends React.Component {
       return "Lis-Pendens"
     } if (+type === 5) {
       return "Assignment"
+    } if (+type === 6) {
+      return "In Escrow to SELL"
+    } if (+type === 7) {
+      return "In Escrow to BUY"
     } else {
       return null
     }
@@ -110,6 +118,10 @@ class LeadList extends React.Component {
             <td>${lead.holdback}</td>
             <td>${lead.deposit}</td>
             <td>{lead.lastTimeSpoken}</td>
+            <td>{lead.isSellerSigned ? 'Yes' : 'No'}</td>
+            <td>{lead.isDaryllSigned ? 'Yes' : 'No'}</td>
+            <td>{lead.areLoanDocsIn ? 'Yes' : 'No'}</td>
+            <td>{lead.isContingentonSellers ? 'Yes' : 'No'}</td>
             <td>{lead.notes}</td>
             <td>{this.renderAdmin(lead)}</td>
           </tr>
@@ -209,6 +221,10 @@ class LeadList extends React.Component {
               <th>Holdback</th>
               <th>Deposit</th>
               <th>Spoken to Seller</th>
+              <th>Seller Signed</th>
+              <th>Daryll Signed</th>
+              <th>Loan Docs In</th>
+              <th>Contingent on Sellers Finding Home</th>
               <th>Notes</th>
               <th>Actions</th>
             </tr>
@@ -225,6 +241,8 @@ class LeadList extends React.Component {
                 <a className="ui green circular label">Lis Pendens</a>
                 <a className="ui yellow circular label">Construction</a>
                 <a className="ui brown circular label">Assignment</a>
+                <a className="ui violet circular label">In Escrow to SELL</a>
+                <a className="ui purple circular label">In Escrow to BUY</a>
                 <a className="ui red circular label">Problem</a>
                 <div className="ui right floated pagination menu">
                   {this.renderLimit()}
@@ -251,7 +269,7 @@ class LeadList extends React.Component {
         <div className="twelve wide column right aligned">
           {this.renderCreate()}
         </div>
-        <div className="sixteen wide column" style={{overflowX: "auto"}}>
+        <div className="sixteen wide column" style={{ overflowX: "auto" }}>
           {this.renderLoader(data)}
           {data != undefined ? this.renderTable(data) : null}
         </div>
