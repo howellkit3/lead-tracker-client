@@ -118,6 +118,10 @@ class LeadList extends React.Component {
             <td>${lead.holdback}</td>
             <td>${lead.deposit}</td>
             <td>{lead.lastTimeSpoken}</td>
+            <td>{lead.isSellerSigned ? 'Yes' : 'No'}</td>
+            <td>{lead.isDaryllSigned ? 'Yes' : 'No'}</td>
+            <td>{lead.areLoanDocsIn ? 'Yes' : 'No'}</td>
+            <td>{lead.isContingentonSellers ? 'Yes' : 'No'}</td>
             <td>{lead.notes}</td>
             <td>{this.renderAdmin(lead)}</td>
           </tr>
@@ -217,6 +221,10 @@ class LeadList extends React.Component {
               <th>Holdback</th>
               <th>Deposit</th>
               <th>Spoken to Seller</th>
+              <th>Seller Signed</th>
+              <th>Daryll Signed</th>
+              <th>Loan Docs In</th>
+              <th>Contingent on Sellers Finding Home</th>
               <th>Notes</th>
               <th>Actions</th>
             </tr>
