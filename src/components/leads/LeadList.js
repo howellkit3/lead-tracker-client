@@ -61,9 +61,9 @@ class LeadList extends React.Component {
     } if (+type === 5 || +type === 'Yes') {
       return "assignment-brown"
     } if (+type === 6 || +type === 'Yes') {
-      return "in-escrow-to-sell-violet"
+      return "in-escrow-to-sell-teal"
     } if (+type === 7 || +type === 'Yes') {
-      return "in-escrow-to-buy-purple"
+      return "in-escrow-to-buy-olive"
     } if (category === 'checkbox' && type) {
       return "lis-pendens-green"
     } if (category === 'checkbox' && !type) {
@@ -235,14 +235,14 @@ class LeadList extends React.Component {
           {/* PAGINATION PART */}
           <tfoot>
             <tr>
-              <th colSpan="19">
+              <th colSpan="23">
                 <span>Property Type: </span>
                 <a className="ui blue circular label">On Market</a>
                 <a className="ui green circular label">Lis Pendens</a>
                 <a className="ui yellow circular label">Construction</a>
+                <a className="ui olive circular label">In Escrow to BUY</a>
+                <a className="ui teal circular label">In Escrow to SELL</a>
                 <a className="ui brown circular label">Assignment</a>
-                <a className="ui violet circular label">In Escrow to SELL</a>
-                <a className="ui purple circular label">In Escrow to BUY</a>
                 <a className="ui red circular label">Problem</a>
                 <div className="ui right floated pagination menu">
                   {this.renderLimit()}
